@@ -1,0 +1,18 @@
+<?php
+
+function showGuestBook($root)
+{
+
+    $res = [];
+    $fh = fopen($root, 'r');
+
+    while (!feof($fh)) {
+        $line = fgets($fh);
+        $res[] .= $line;
+    }
+    return $res;
+    fclose($fh);
+}
+
+
+<a href="lection04quest01.php" >Внести запись</a>
