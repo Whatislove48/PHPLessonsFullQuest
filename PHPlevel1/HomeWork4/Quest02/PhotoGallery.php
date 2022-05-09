@@ -13,7 +13,8 @@
     Photo Gallery
 </h1>
 
-
+    <img src="pictures/203256_900.jpg" width="150" height="150" alt="картинки">
+    <br>
     <form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="file" name = "picture01">
         <button type="submit">Отправить</button>
@@ -23,8 +24,23 @@
 <?php
 
 
+echo '<br>';
 
+$path = __DIR__ . "/pictures/";
+//echo $path;
+$root = scandir($path);
+$len = count($root);
+for ($i = 2;$i<$len;$i++){
+    $image = $root[$i];
+    echo '<br>';
 
+    ?>
+    <img src= " pictures/<?php echo $image ?>" height="150" width="150" alt="чтото было">
+
+    <?php
+}
+echo '<br>';
+echo 'Конец галереи';
 ?>
 
 

@@ -1,12 +1,13 @@
 <?php
 
-/*
-var_dump($_FILES['picture01']['name']);
-echo '<br>';
-var_dump($_FILES);
-echo '<br>';
-var_dump($_FILES['picture01']['tmp_name']);die;
-*/
+
+//var_dump($_FILES['picture01']['name']);
+//echo '<br>';
+//var_dump($_FILES);
+//echo '<br>';
+//var_dump($_FILES['picture01']['tmp_name']);die;
+
+
 
 $type = $_FILES['picture01']['type'];
 $error = $_FILES['picture01']['error'];
@@ -29,8 +30,11 @@ if (isset($_FILES['picture01'])){
         echo 'Error';
     }
 }
+echo 'You Photo';
 ?>
-
+<br>
+<img src="pictures/<?php echo $name ?>" height="250" width="300">
+<br>
 <a href="PhotoGallery.php">На главную</a>
 
 
