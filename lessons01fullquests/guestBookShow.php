@@ -31,27 +31,18 @@ foreach ($lines as $line){                    // отображает запис
     <?php
     }
     ?>
-<form method="post">
+<form action="" method="post">
     Введите новую запись: <input type="text" name="record">
     <button type="submit">Внести запись</button>
-    <?php
-    echo 'Grisha';
-    echo '<br>';
-    //$lines[] = $_POST['record']."\n";
-    //foreach ($lines as $str){
-    //    echo $str. '<br>';
-   // }
-
-    ?>
 </form>
 
 <?php
-//var_dump($_POST['record']);
-//var_dump(isset($_POST['record']));
 
 if(isset($_POST['record'])) {
+    $trans = [" " =>""];
+    $testLine = strtr($_POST['record'],$trans);
     $recLine = $_POST['record'];
-    if ('' !== $recLine) {
+    if ('' !== $testLine) {
         $lines[] = $recLine . "\n";
         echo 'Запись внесена' . '<br>';
         addRecordGuestBook($path, $lines);
