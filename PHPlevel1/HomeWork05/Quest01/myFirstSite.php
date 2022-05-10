@@ -3,8 +3,8 @@ session_start();
 
 //$users = require_once __DIR__ . '/functionsForCook.php';
 
-setcookie('username','admin');
-setcookie('secret','Zeliboba');
+setcookie('username','Grisha');
+setcookie('secret','Aboba');
 
 var_dump($_COOKIE);
 $_SESSION['mycount']=30;
@@ -37,6 +37,10 @@ var_dump($_SESSION);
 <?php
 
 echo 'MAIN' . '<br>';
+
+
+//echo getCurrentUser();
+
 
 if (isset($_POST['password']) && isset($_POST['user'])) {
     $password = $_POST['password'];

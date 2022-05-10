@@ -40,7 +40,16 @@ function saveUser(array $newList) // добавит новые данные по
     $GLOBALS['test']+=1;
 }
 
-//function getCurrentUser(){
-//    if
-//}
+function getCurrentUser()
+{
+    $login = $_COOKIE['username'];
+    $password = $_COOKIE['secret'];
+    $list = getUsersList();
+    foreach ($list as $name => $pass){
+        if ($name == $login && $password == $pass) {
+            return $login;
+        }
+    }
+    return false;
+}
 
