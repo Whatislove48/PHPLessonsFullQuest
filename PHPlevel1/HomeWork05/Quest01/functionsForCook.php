@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 static $test = 0;
 
 static $userList = ['Grisha'=>'Aboba',
@@ -38,7 +40,7 @@ function saveUser(array $newList) // добавит новые данные по
     $GLOBALS['test']+=1;
 }
 
-function getTest()
-{
-    return $GLOBALS['test'];
-}
+//function getCurrentUser(){
+//    if
+//}
+

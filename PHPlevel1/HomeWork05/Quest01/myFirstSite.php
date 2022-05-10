@@ -1,11 +1,14 @@
 <?php
 session_start();
 
-$users = require_once __DIR__ . '/functionsForCook.php';
+//$users = require_once __DIR__ . '/functionsForCook.php';
 
-//setcookie('username','admin');
-//setcookie('secret',sha1('13.04.1980'));
+setcookie('username','admin');
+setcookie('secret','Zeliboba');
 
+var_dump($_COOKIE);
+$_SESSION['mycount']=30;
+var_dump($_SESSION);
 ?>
 
 <!doctype html>

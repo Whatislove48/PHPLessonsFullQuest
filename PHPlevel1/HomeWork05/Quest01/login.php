@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+var_dump($_SESSION);
 $users = require_once __DIR__ . '/functionsForCook.php';
 
 ?>
@@ -26,12 +26,20 @@ $users = require_once __DIR__ . '/functionsForCook.php';
 
 <?php
 
+if ($_COOKIE['username'] == 'admin'){
+    echo 'Admin is comin';
+    header("Location: myFirstSite.php");
+}
+else {
+    echo 'Who are you';
+}
+
 if (isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
     $userLogin = $_POST['userLogin'];
     $userPassword = $_POST['userPassword'];
     if (checkPassword($userLogin,$userPassword)){
         echo 'Вы уже зарегистрированы';
-        header(__DIR__. '/myFirstSite.php'); // тут нужно чтото вставить для куков
+        header("Location: myFirstSite.php"); // тут нужно чтото вставить для куков
         exit;
     }
     if (3 > strlen($userPassword)){
