@@ -32,7 +32,7 @@ foreach ($lines as $line){                    // отображает запис
     }
     ?>
 <form action="" method="post">
-    Введите новую запись: <input type="text" name="record">
+    Введите новую запись: <input type="text" name="record" required>
     <button type="submit">Внести запись</button>
 </form>
 
