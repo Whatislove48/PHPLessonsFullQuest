@@ -5,15 +5,15 @@ static $test = 0;
 static $userList = ['Grisha'=>'Aboba',
     'Petya'=>'Bebra',
     'Danil'=>'Biba',
-];
+];                // начальная база пользователей
 
 
-function getUsersList()
+function getUsersList()                  // вернет массив всех пользователей
 {
     return $GLOBALS['userList'];
 }
 
-function existsUser(string $login)
+function existsUser(string $login) // вернет есть ли пользователь с данным именем
 {
     $list = getUsersList();
     foreach ($list as $name){
@@ -22,7 +22,7 @@ function existsUser(string $login)
     return false;
 }
 
-function checkPassword(string $login,string $password)
+function checkPassword(string $login,string $password)// проверяет логин и пароль возвращает bool
 {
     $list = getUsersList();
     foreach ($list as $name => $pass){
@@ -31,12 +31,8 @@ function checkPassword(string $login,string $password)
     return false;
 }
 
-function getCurrentUser()
-{
 
-}
-
-function saveUser(array $newList)
+function saveUser(array $newList) // добавит новые данные пользователя в базу
 {
     $GLOBALS['userList'] = $newList;
     $GLOBALS['test']+=1;

@@ -29,8 +29,13 @@ $users = require_once __DIR__ . '/functionsForCook.php';
 if (isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
     $userLogin = $_POST['userLogin'];
     $userPassword = $_POST['userPassword'];
-    if (4 > strlen($userPassword)){
-        echo 'Ваш проль слишком короткий';
+    if (checkPassword($userLogin,$userPassword)){
+        echo 'Вы уже зарегистрированы';
+        header(__DIR__. '/myFirstSite.php'); // тут нужно чтото вставить для куков
+        exit;
+    }
+    if (3 > strlen($userPassword)){
+        echo 'Ваш пароль слишком короткий';
         exit;
     }
     echo 'Hello '. $userLogin . '<br>'. 'You password'. $userPassword;

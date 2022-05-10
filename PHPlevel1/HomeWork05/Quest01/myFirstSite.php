@@ -34,48 +34,21 @@ $users = require_once __DIR__ . '/functionsForCook.php';
 <?php
 
 echo 'MAIN' . '<br>';
-var_dump($_POST);
 
 if (isset($_POST['password']) && isset($_POST['user'])) {
     $password = $_POST['password'];
     $name = $_POST['user'];
     echo password_hash($password, PASSWORD_DEFAULT); // Хэширует пароль указанный в аргументе
+    if (checkPassword($name,$password)){
+        echo 'Ну здарова '. $name;
+    }
+    else {
+        echo 'Ты кто';
+    }
 
 
 }
 
-
-$ara = getUsersList();
-
-foreach ($ara as $name=>$pass){
-    echo $name . '--->'. ($pass);
-    echo '<br>';
-}
-
-echo '<br>';
-$ara['Vitalik'] ='Debil';
-echo 'NEXT';
-echo '<br>';
-
-foreach ($ara as $name=>$pass){
-    echo $name . '--->'. ($pass);
-    echo '<br>';
-}
-
-saveUser($ara);
-echo '<br>';
-echo 'AFTET SAVE';
-echo '<br>';
-
-$newara = getUsersList();
-
-foreach ($newara as $name=>$pass){
-    echo $name . '--->'. ($pass);
-    echo '<br>';
-}
-
-
-die;
 
 ?>
 
