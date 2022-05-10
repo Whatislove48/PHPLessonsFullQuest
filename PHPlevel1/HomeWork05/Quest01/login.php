@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$users = require_once __DIR__ . '/functionsForCook.php';
+
 ?>
 
 <!doctype html>
@@ -13,30 +15,26 @@ session_start();
     <title>LoginUser</title>
 </head>
 <body>
-<h1>
-    Регистрация пользователя
-</h1>
+<h1> Регистрация пользователя </h1>
 
 <form action="" method="post">
-    <input type="text" name="userLogin" value="Логин" required><br>
-    <input type="text" name="userPassword" value="Пароль" required><br>
+    <input type="text" name="userLogin" placeholder="Логин" required><br>
+    <input type="text" name="userPassword" placeholder="Пароль" required><br>
     <button type="submit"> Зарегистрироваться </button>
 </form>
 
 
 <?php
 
-$userLogin = $_POST['userLogin'];
-$userPassword = $_POST['userPassword'];
-
-if (4 > strlen($userPassword)){
-    echo 'Ваш проль слишком короткий';
-    exit;
+if (isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
+    $userLogin = $_POST['userLogin'];
+    $userPassword = $_POST['userPassword'];
+    if (4 > strlen($userPassword)){
+        echo 'Ваш проль слишком короткий';
+        exit;
+    }
+    echo 'Hello '. $userLogin . '<br>'. 'You password'. $userPassword;
 }
-echo password_hash($userPassword, PASSWORD_DEFAULT);
-
-
-
 
 
 
