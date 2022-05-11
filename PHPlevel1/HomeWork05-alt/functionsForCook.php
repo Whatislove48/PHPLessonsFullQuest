@@ -14,6 +14,7 @@ function getUsersList()                  // вернет массив строк
     return file($pathBase,FILE_IGNORE_NEW_LINES);
 }
 
+//------------------------------------------------------------------------
 
 function existsUser(string $login) // вернет есть ли пользователь с данным именем
 {
@@ -59,17 +60,15 @@ function checkPassword(string $login, string $password)// проверяет л�
     $normalList = getUserInfo();
     // $normalList[] это двумерный массив в [колличество строк count] [пара -> логин пароль]
     for ($i = 0;$i<$len;$i++){
-        for ($j = 0;$j<2;$j++){
-            if ($normalList[$i][0] == $login &&
-                $normalList[$i][1] == $password ){
-                return true;
-            }
+        if ($normalList[$i][0] == $login &&
+            $normalList[$i][1] == $password ){
+            return true;
         }
     }
     return false;
 }
 
-//________________________________________________________________________________________________
+//________________________________________________________________________________________
 
 function saveUser(string $log, string $pass) // добавит новые данные пользователя в базу
 {
@@ -82,14 +81,19 @@ function saveUser(string $log, string $pass) // добавит новые дан
 
 
 
+//-----------------------------------------------------------------------------
+//                               COMPLETE
+//
 function getCurrentUser()                                  // вернет имя или же нулл
 {
     if (isset($_COOKIE['username']) && isset($_COOKIE['secret'])) {
+        $len = count(getUsersList());
+        $normalList = getUserInfo();
         $login = $_COOKIE['username'];
         $password = $_COOKIE['secret'];
-        $list = getUsersList();
-        foreach ($list as $name => $pass) {
-            if ($name == $login && $password == ($pass)) {
+        for ($i = 0;$i<$len;$i++){
+            if ($normalList[$i][0] == $login &&
+                $normalList[$i][1] == ($password)){
                 return $login;
             }
         }
@@ -117,6 +121,7 @@ function saveLog(string $path, array $userInfo)
     }
     fclose($rec);
 }
+
 
 //-----------------------------------------------------------------------
 

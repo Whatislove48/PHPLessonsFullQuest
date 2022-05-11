@@ -3,7 +3,13 @@ session_start();
 
 require_once __DIR__ . '/functionsForCook.php';
 
+//Grisha Bebra
+setUserCookie('Grisha','Bebra');
 
+echo getCurrentUser(). 'GetCurrent';
+echo '<br>';
+echo checkPassword('Grisha','Bebra') . 'CheckPassword';
+echo '<br>';
 
 $normalList = getUserInfo();
 //var_dump($normalList);          // двумерный массив в [колличество строк count] [пара -> логин пароль]
@@ -11,9 +17,8 @@ $len = count(getUsersList());
 
 echo '<br>';
 for ($i = 0;$i<$len;$i++){
-    for ($j = 0;$j<2;$j++){
-        echo $normalList[$i][$j];
-    }
+    echo $normalList[$i][0];
+    echo $normalList[$i][1];
     echo '<br>';
 }
 
