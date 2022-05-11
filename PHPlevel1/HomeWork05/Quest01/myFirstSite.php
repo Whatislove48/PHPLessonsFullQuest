@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-//$users = require_once __DIR__ . '/functionsForCook.php';
+$users = require_once __DIR__ . '/functionsForCook.php';
 
 setcookie('username','Grisha');
 setcookie('secret','Aboba');
@@ -39,7 +39,7 @@ var_dump($_SESSION);
 echo 'MAIN' . '<br>';
 
 
-//echo getCurrentUser();
+echo getCurrentUser();
 
 
 if (isset($_POST['password']) && isset($_POST['user'])) {
