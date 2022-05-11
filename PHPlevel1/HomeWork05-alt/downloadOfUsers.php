@@ -8,12 +8,11 @@ $error = $_FILES['picture01']['error'];
 $name = $_FILES['picture01']['name'];
 
 
-
 if (isset($_FILES['picture01']) && $_FILES['picture01']['size'] !== 0) {
     if (0 == $error && existsUser($_COOKIE['username'])) {
         if ('image/jpeg' === $type || 'image/png' === $type) {
             move_uploaded_file($_FILES['picture01']['tmp_name'],
-                __DIR__ . '/image/' . $name);
+                __DIR__ . '/Pictures/' . $name);
             $caseInfo = file($path);
             $caseInfo[] = date("Y-m-d H:i:s") . "\n";
             $caseInfo[] = 'User name ' . getCurrentUser() . "\n";
@@ -29,6 +28,6 @@ if (isset($_FILES['picture01']) && $_FILES['picture01']['size'] !== 0) {
 echo 'You Photo';
 ?>
 <br>
-<img src="image/<?php echo $name ?>" height="250" width="300">
+<img src="Pictures/<?php echo $name ?>" height="250" width="300">
 <br>
 <a href="myFirstSite.php">На главную</a>

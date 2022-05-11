@@ -3,29 +3,8 @@ session_start();
 
 require_once __DIR__ . '/functionsForCook.php';
 
-//Grisha Bebra
-setUserCookie('Grisha','Bebra');
-
-
-echo '<br>';
-
-if (getCurrentUser() !== false && checkPassword('Grisha','Bebra')){
-
-}
-
-$normalList = getUserInfo();
-$len = count(getUsersList());
-
-echo '<br>';
-for ($i = 0;$i<$len;$i++){
-    echo $normalList[$i][0];
-    echo $normalList[$i][1];
-    echo '<br>';
-}
-
 
 echo '--------------------' . '<br>';
-
 
 
 ?>
@@ -77,11 +56,12 @@ $path = __DIR__ . '/Userslog.txt';
 
 echo '<br>';
 
+var_dump($_POST);
 if (isset($_POST['password']) && isset($_POST['user'])) {
     $password = $_POST['password'];
     $name = $_POST['user'];
     //echo password_hash($password, PASSWORD_DEFAULT); // Хэширует пароль указанный в аргументе
-    if (checkPassword($name, $password)) {
+    if (checkPassword($name, sha1($password))) {
         setUserCookie($name, $password);
         header("Location: myFirstSite.php");
         exit;

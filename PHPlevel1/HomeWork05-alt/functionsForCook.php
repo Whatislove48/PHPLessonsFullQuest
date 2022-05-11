@@ -3,50 +3,47 @@
 session_start();
 
 
-//$pathBase = __DIR__. 'userBase.txt';
+//$pathBase = __DIR__. '/userBase.txt';
 
 //--------------------------------------------------------
 //                               COMPLETE
 
 function getUsersList()                  // вернет массив строк пользователей
 {
-    $pathBase = __DIR__. '/userBase.txt';
-    return file($pathBase,FILE_IGNORE_NEW_LINES);
+    $pathBase = __DIR__ . '/userBase.txt';
+    return file($pathBase, FILE_IGNORE_NEW_LINES);
 }
 
 //------------------------------------------------------------------------
-
+//                               COMPLETE
 function existsUser(string $login) // вернет есть ли пользователь с данным именем
 {
-    $pathBase = __DIR__. '/userBase.txt';
-    $list = getUsersList();
-    $trimLine =[];
-    foreach ($list as $line){      // обрезает пробелы в начале и конце строк массива
-        $trimLine = trim($line);
-    }
-    $normalList = [];
-    $normalList = explode(' ',$list);
-    foreach ($trimLine as $lines) {
-
+    $len = count(getUsersList());
+    $normalList = getUserInfo();
+    //$login = $_COOKIE['username'];
+    for ($i = 0; $i < $len; $i++) {
+        if ($normalList[$i][0] == $login) {
+            return true;
+        }
     }
     return false;
-
 }
 
 //========================================================================================
 //                               COMPLETE
 
-function getUserInfo(){// возвращает двумерный массив [колличество строк count] [пара -> логин пароль]
+function getUserInfo()
+{// возвращает двумерный массив [колличество строк count] [пара -> логин пароль]
 
     $list = getUsersList();
-    $trimLine =[];
-    foreach ($list as $line){      // обрезает пробелы в начале и конце строк массива
+    $trimLine = [];
+    foreach ($list as $line) {      // обрезает пробелы в начале и конце строк массива
         $trimLine[] = trim($line);
     }
     $len = count($trimLine);
     $normalList = [];
     foreach ($trimLine as $lines) {
-        $normalList[] = explode(' ',$lines);
+        $normalList[] = explode(' ', $lines);
     }
     return $normalList;
 }
@@ -59,9 +56,9 @@ function checkPassword(string $login, string $password)// проверяет л�
     $len = count(getUsersList());
     $normalList = getUserInfo();
     // $normalList[] это двумерный массив в [колличество строк count] [пара -> логин пароль]
-    for ($i = 0;$i<$len;$i++){
+    for ($i = 0; $i < $len; $i++) {
         if ($normalList[$i][0] == $login &&
-            $normalList[$i][1] == $password ){
+            $normalList[$i][1] == $password) {
             return true;
         }
     }
@@ -80,9 +77,9 @@ function getCurrentUser()                                  // вернет им�
         $normalList = getUserInfo();
         $login = $_COOKIE['username'];
         $password = $_COOKIE['secret'];
-        for ($i = 0;$i<$len;$i++){
+        for ($i = 0; $i < $len; $i++) {
             if ($normalList[$i][0] == $login &&
-                $normalList[$i][1] == ($password)){
+                $normalList[$i][1] == $password) {
                 return $login;
             }
         }
@@ -113,14 +110,12 @@ function saveLog(string $path, array $userInfo)
 
 
 //-----------------------------------------------------------------------
-
+//                               COMPLETE
 function saveUser(string $log, string $pass) // добавит новые данные пользователя в базу
 {
-    $fh = fopen($path, 'w+');
-    foreach ($userInfo as $lineRec) {
-        fwrite($rec, $lineRec);
-    }
-    fclose($rec);
+    $pathBase = __DIR__ . '/userBase.txt';
+    $userInfo = "\n" . $log . ' ' . sha1($pass);
+    file_put_contents($pathBase, $userInfo, FILE_APPEND);
 }
 
 //-----------------------------------------------------------------------

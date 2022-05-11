@@ -50,6 +50,7 @@ if (isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
         echo 'Added new user'.'<br>';
         saveUser($userLogin,$userPassword);
         setUserCookie($userLogin,$userPassword);
+        header("Location: myFirstSite.php");
     }
 
     echo 'Hello ' . $userLogin . '<br>' . 'You password - ' . sha1($userPassword);
