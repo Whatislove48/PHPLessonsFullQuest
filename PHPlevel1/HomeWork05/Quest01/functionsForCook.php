@@ -53,3 +53,10 @@ function getCurrentUser()
     return false;
 }
 
+function setUserCookie(string $login,string $password)
+{
+    setcookie('username', $login);
+    setcookie('secret', $password);
+
+}
+
