@@ -3,7 +3,7 @@ session_start();
 
 $users = require_once __DIR__ . '/functionsForCook.php';
 
-echo '<br>'. 'AFTER'.'<br>' ;
+//echo '<br>'. 'AFTER'.'<br>' ;
 
 
 ?>

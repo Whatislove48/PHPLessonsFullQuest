@@ -56,7 +56,7 @@ $path = __DIR__ . '/Userslog.txt';
 
 echo '<br>';
 
-var_dump($_POST);
+//var_dump($_POST);
 if (isset($_POST['password']) && isset($_POST['user'])) {
     $password = $_POST['password'];
     $name = $_POST['user'];
