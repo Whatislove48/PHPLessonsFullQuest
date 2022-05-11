@@ -3,10 +3,10 @@ session_start();
 
 $users = require_once __DIR__ . '/functionsForCook.php';
 
+echo '--------------------'. '<br>';
+var_dump($_SESSION['array']);
+echo '--------------------'.'<br>';
 
-var_dump($_COOKIE);
-$_SESSION['mycount'] = 30;
-var_dump($_SESSION);
 
 ?>
 
@@ -23,8 +23,6 @@ var_dump($_SESSION);
 
 <h1>Welcome</h1>
 
-
-
 <?php
 
 if (getCurrentUser()){
@@ -37,8 +35,8 @@ if (getCurrentUser()){
 else {
     ?>
     <form action="" method="post">
-        <input type="text" name = 'user' placeholder="Логин" required><br>
-        <input type="text" name = 'password' placeholder="Пароль" required><br>
+        <input type="text" name = 'user' placeholder="Логин" required minlength="3"><br>
+        <input type="text" name = 'password' placeholder="Пароль" required minlength="3"><br>
         <button type="submit"> Авторизация </button>
     </form>
 
@@ -49,7 +47,6 @@ else {
 }
 
 ?>
-
 
 <?php
 
@@ -67,12 +64,11 @@ if (isset($_POST['password']) && isset($_POST['user'])) {
         echo 'Ты кто';
     }
 
-
 }
 
+echo '<br>';
 
 ?>
-
 
 </body>
 </html>

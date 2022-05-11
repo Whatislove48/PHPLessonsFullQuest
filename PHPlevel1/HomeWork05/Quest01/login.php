@@ -1,7 +1,13 @@
 <?php
 session_start();
-var_dump($_SESSION);
+
+echo '<br>'. 'Title'. '<br>';
 $users = require_once __DIR__ . '/functionsForCook.php';
+
+
+echo '<br>'. 'AFTER'.'<br>' ;
+$_SESSION['array'] += ['Nikita' => 'Paxitos'];
+var_dump(getUsersList());
 
 ?>
 
@@ -18,8 +24,8 @@ $users = require_once __DIR__ . '/functionsForCook.php';
 <h1> Регистрация пользователя </h1>
 
 <form action="" method="post">
-    <input type="text" name="userLogin" placeholder="Логин" required><br>
-    <input type="text" name="userPassword" placeholder="Пароль" required><br>
+    <input type="text" name="userLogin" placeholder="Логин" required minlength="3"><br>
+    <input type="text" name="userPassword" placeholder="Пароль" required minlength="3"><br>
     <button type="submit"> Зарегистрироваться</button>
 </form>
 
@@ -27,7 +33,6 @@ $users = require_once __DIR__ . '/functionsForCook.php';
 <?php
 
 if (getCurrentUser()) {
-    echo 'Admin is comin';
     header("Location: myFirstSite.php");
     exit;
 } else {
@@ -40,17 +45,29 @@ if (isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
     $userPassword = $_POST['userPassword'];
     if (checkPassword($userLogin, $userPassword)) {
         echo 'Вы уже зарегистрированы';
-        header("Location: myFirstSite.php"); // тут нужно чтото вставить для куков
+        setUserCookie($userLogin,$userPassword);
+        header("Location: myFirstSite.php");// тут нужно чтото вставить для куков
         exit;
     }
-    if (3 > strlen($userPassword)) {
-        echo 'Ваш пароль слишком короткий';
-        exit;
+   //if (3 > strlen($userPassword) && 3 > strlen($userLogin)) {
+   //    echo 'Ваш пароль слишком короткий';
+   //    exit;
+   //}
+    else{
+        saveUser($userLogin,$userPassword);
+        setUserCookie($userLogin,$userPassword);
     }
-    echo 'Hello ' . $userLogin . '<br>' . 'You password - ' . ($userPassword);
-}
 
+    echo 'Hello ' . $userLogin . '<br>' . 'You password - ' . ($userPassword);
+    echo '<br>';
+    var_dump(getUsersList());
+    echo 'GetList is activate'. '<br>';
+
+}
 
 ?>
 
 <a href="myFirstSite.php"> На главную</a>
+
+</body>
+</html>
