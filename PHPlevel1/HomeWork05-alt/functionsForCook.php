@@ -70,17 +70,6 @@ function checkPassword(string $login, string $password)// проверяет л�
 
 //________________________________________________________________________________________
 
-function saveUser(string $log, string $pass) // добавит новые данные пользователя в базу
-{
-    $fh = fopen($path, 'w+');
-    foreach ($userInfo as $lineRec) {
-        fwrite($rec, $lineRec);
-    }
-    fclose($rec);
-}
-
-
-
 //-----------------------------------------------------------------------------
 //                               COMPLETE
 //
@@ -124,5 +113,17 @@ function saveLog(string $path, array $userInfo)
 
 
 //-----------------------------------------------------------------------
+
+function saveUser(string $log, string $pass) // добавит новые данные пользователя в базу
+{
+    $fh = fopen($path, 'w+');
+    foreach ($userInfo as $lineRec) {
+        fwrite($rec, $lineRec);
+    }
+    fclose($rec);
+}
+
+//-----------------------------------------------------------------------
+
 
 

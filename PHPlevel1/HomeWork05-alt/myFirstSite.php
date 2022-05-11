@@ -6,13 +6,14 @@ require_once __DIR__ . '/functionsForCook.php';
 //Grisha Bebra
 setUserCookie('Grisha','Bebra');
 
-echo getCurrentUser(). 'GetCurrent';
-echo '<br>';
-echo checkPassword('Grisha','Bebra') . 'CheckPassword';
+
 echo '<br>';
 
+if (getCurrentUser() !== false && checkPassword('Grisha','Bebra')){
+
+}
+
 $normalList = getUserInfo();
-//var_dump($normalList);          // двумерный массив в [колличество строк count] [пара -> логин пароль]
 $len = count(getUsersList());
 
 echo '<br>';
@@ -25,7 +26,7 @@ for ($i = 0;$i<$len;$i++){
 
 echo '--------------------' . '<br>';
 
-die;
+
 
 ?>
 <!doctype html>
