@@ -26,8 +26,13 @@ echo '--------------------'.'<br>';
 <?php
 
 if (getCurrentUser()){
-    echo 'Добро пожаловать'. getCurrentUser() ;
+    echo 'Добро пожаловать'. getCurrentUser();
+
     ?>
+    <form action="downloadOfUsers.php" method="post" enctype="multipart/form-data">
+        <input type="file" name = "picture01">
+        <button type="submit">Отправить</button>
+    </form>
     <br>
     <img src="image/osharashen.jpg">
 <?php
