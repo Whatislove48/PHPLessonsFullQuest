@@ -1,15 +1,14 @@
 <?php
 session_start();
 
-$users = require_once __DIR__ . '/functionsForCook.php';
+require_once __DIR__ . '/functionsForCook.php';
 
-echo '--------------------'. '<br>';
+
+echo '--------------------' . '<br>';
 var_dump($_SESSION['array']);
-echo '--------------------'.'<br>';
-
+echo '--------------------' . '<br>';
 
 ?>
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -25,35 +24,36 @@ echo '--------------------'.'<br>';
 
 <?php
 
-if (getCurrentUser()){
-    echo 'Добро пожаловать'. getCurrentUser();
-
+if (getCurrentUser()) {
+    echo 'Добро пожаловать' . getCurrentUser();
+    //
     ?>
     <form action="downloadOfUsers.php" method="post" enctype="multipart/form-data">
-        <input type="file" name = "picture01">
+        <input type="file" name="picture01">
         <button type="submit">Отправить</button>
     </form>
     <br>
     <img src="image/osharashen.jpg">
-<?php
-}
-else {
+    <?php
+} else {
     ?>
     <form action="" method="post">
-        <input type="text" name = 'user' placeholder="Логин" required minlength="3"><br>
-        <input type="text" name = 'password' placeholder="Пароль" required minlength="3"><br>
-        <button type="submit"> Авторизация </button>
+        <input type="text" name='user' placeholder="Логин" required minlength="3"><br>
+        <input type="text" name='password' placeholder="Пароль" required minlength="3"><br>
+        <button type="submit"> Авторизация</button>
     </form>
 
-Не зарегистрированы? Тогда вам <br>
-<a href="login.php"> На страницу регистрации</a><br>
-<?php
+    Не зарегистрированы? Тогда вам <br>
+    <a href="login.php"> На страницу регистрации</a><br>
+    <?php
 
 }
 
 ?>
 
 <?php
+$path = __DIR__ . '/Userslog.txt';
+
 
 echo '<br>';
 
@@ -62,14 +62,14 @@ if (isset($_POST['password']) && isset($_POST['user'])) {
     $name = $_POST['user'];
     //echo password_hash($password, PASSWORD_DEFAULT); // Хэширует пароль указанный в аргументе
     if (checkPassword($name, $password)) {
-        setUserCookie($name,$password);
+        setUserCookie($name, $password);
         header("Location: myFirstSite.php");
         exit;
     } else {
         echo 'Ты кто';
     }
-
 }
+
 
 echo '<br>';
 

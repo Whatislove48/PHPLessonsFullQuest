@@ -35,7 +35,7 @@ for ($i = 2;$i<$len;$i++){
     echo '<br>';
 
     ?>
-    <img src= " pictures/<?php echo $image ?>" height="150" width="150" alt="чтото было">
+    <img src= " pictures/<?= $image ?>" height="150" width="150" alt="чтото было">
 
     <?php
 }

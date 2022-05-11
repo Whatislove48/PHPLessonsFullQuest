@@ -2,13 +2,13 @@
 
 session_start();
 
-static $userList = ['Grisha'=>'Aboba',
-    'Petya'=>'Bebra',
-    'Danil'=>'Biba',
+static $userList = ['Grisha' => 'Aboba',
+    'Petya' => 'Bebra',
+    'Danil' => 'Biba',
 ];                // начальная база пользователей
 
 
-if (!isset($_SESSION['array'])){
+if (!isset($_SESSION['array'])) {
     $_SESSION['array'] = $userList;
 }
 
@@ -21,17 +21,19 @@ function getUsersList()                  // вернет массив всех �
 function existsUser(string $login) // вернет есть ли пользователь с данным именем
 {
     $list = getUsersList();
-    foreach ($list as $name){
-        if ($name == $login) { return true; }
+    foreach ($list as $name => $pass) {
+        if ($name == $login) {
+            return true;
+        }
     }
     return false;
 }
 
-function checkPassword(string $login,string $password)// проверяет логин и пароль возвращает bool
+function checkPassword(string $login, string $password)// проверяет логин и пароль возвращает bool
 {
     $list = getUsersList();
-    foreach ($list as $name => $pass){
-        if ($name == $login && $password == $pass) {
+    foreach ($list as $name => $pass) {
+        if ($name == $login && sha1($password) == $pass) {
             return true;
         }
     }
@@ -39,19 +41,19 @@ function checkPassword(string $login,string $password)// проверяет ло
 }
 
 
-function saveUser(string $log,string $pass) // добавит новые данные пользователя в базу
+function saveUser(string $log, string $pass) // добавит новые данные пользователя в базу
 {
-    $_SESSION['array'] += [$log => $pass];
+    $_SESSION['array'] += [$log => sha1($pass)];
 }
 
-function getCurrentUser()
+function getCurrentUser()                                  // вернет имя или же нулл
 {
-    if (isset($_COOKIE['username'])&& $_COOKIE['secret']) {
+    if (isset($_COOKIE['username']) && isset($_COOKIE['secret'])) {
         $login = $_COOKIE['username'];
         $password = $_COOKIE['secret'];
         $list = getUsersList();
         foreach ($list as $name => $pass) {
-            if ($name == $login && $password == $pass) {
+            if ($name == $login && $password == ($pass)) {
                 return $login;
             }
         }
@@ -59,9 +61,22 @@ function getCurrentUser()
     return false;
 }
 
-function setUserCookie(string $login,string $password)
+function setUserCookie(string $login, string $password) // установит кук юзеру при успешной авторизации
 {
     setcookie('username', $login);
-    setcookie('secret', $password);
+    setcookie('secret', sha1($password));
 }
+
+
+function saveLog(string $path, array $userInfo)
+{  // сохраняет лог запросов
+    $rec = fopen($path, 'w+');
+    foreach ($userInfo as $lineRec) {
+        fwrite($rec, $lineRec);
+    }
+    fclose($rec);
+}
+
+
+
 

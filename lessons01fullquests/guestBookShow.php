@@ -46,12 +46,13 @@ if(isset($_POST['record'])) {
         $lines[] = $recLine . "\n";
         echo 'Запись внесена' . '<br>';
         addRecordGuestBook($path, $lines);
+        header('location: http://lessonshmsh/PHPLessonsFullQuest/lessons01fullquests/guestBookShow.php');
     }
     else echo 'Вы ничего не ввели!';
 }
 else {
     $recLine = 'Not found!';
-    echo 'ERROR - value not found!';
+    echo 'пока ничего!';
 }
 
 

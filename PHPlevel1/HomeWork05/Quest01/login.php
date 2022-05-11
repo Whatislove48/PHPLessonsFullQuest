@@ -49,16 +49,13 @@ if (isset($_POST['userLogin']) && isset($_POST['userPassword'])) {
         header("Location: myFirstSite.php");// тут нужно чтото вставить для куков
         exit;
     }
-   //if (3 > strlen($userPassword) && 3 > strlen($userLogin)) {
-   //    echo 'Ваш пароль слишком короткий';
-   //    exit;
-   //}
     else{
+        echo 'Added new user'.'<br>';
         saveUser($userLogin,$userPassword);
         setUserCookie($userLogin,$userPassword);
     }
 
-    echo 'Hello ' . $userLogin . '<br>' . 'You password - ' . ($userPassword);
+    echo 'Hello ' . $userLogin . '<br>' . 'You password - ' . sha1($userPassword);
     echo '<br>';
     var_dump(getUsersList());
     echo 'GetList is activate'. '<br>';

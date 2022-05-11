@@ -1,23 +1,37 @@
 <?php
 
+require_once __DIR__ . '/functionsForCook.php';
 
+$path = __DIR__ . '/Userslog.txt';
 $type = $_FILES['picture01']['type'];
 $error = $_FILES['picture01']['error'];
 $name = $_FILES['picture01']['name'];
 
+//if (isset($_FILES['picture01']) && $_FILES['picture01']['size'] !== 0) {
+//    if(existsUser($_COOKIE['username'])){
+//        $caseInfo = file($path);
+//        $caseInfo[] = date("Y-m-d H:i:s") . "\n";
+//        $caseInfo[] = 'User name ' . getCurrentUser() . "\n";
+//        $caseInfo[] =  'Download '.$_FILES['picture01']['name'] . "\n";
+//        saveLog($path, $caseInfo);
+//    }
+//}
 
 
-if (isset($_FILES['picture01'])){
-    if (0 == $error){
-        if ('image/jpeg'=== $type || 'image/png' === $type) {
+if (isset($_FILES['picture01']) && $_FILES['picture01']['size'] !== 0) {
+    if (0 == $error && existsUser($_COOKIE['username'])) {
+        if ('image/jpeg' === $type || 'image/png' === $type) {
             move_uploaded_file($_FILES['picture01']['tmp_name'],
                 __DIR__ . '/image/' . $name);
-        }
-        else{
+            $caseInfo = file($path);
+            $caseInfo[] = date("Y-m-d H:i:s") . "\n";
+            $caseInfo[] = 'User name ' . getCurrentUser() . "\n";
+            $caseInfo[] = 'Download ' . $_FILES['picture01']['name'] . "\n";
+            saveLog($path, $caseInfo);
+        } else {
             echo 'Неверный тип ';
         }
-    }
-    else {
+    } else {
         echo 'Error';
     }
 }
