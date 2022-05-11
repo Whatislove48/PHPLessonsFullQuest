@@ -4,9 +4,23 @@ session_start();
 require_once __DIR__ . '/functionsForCook.php';
 
 
+
+$normalList = getUserInfo();
+//var_dump($normalList);          // двумерный массив в [колличество строк count] [пара -> логин пароль]
+$len = count(getUsersList());
+
+echo '<br>';
+for ($i = 0;$i<$len;$i++){
+    for ($j = 0;$j<2;$j++){
+        echo $normalList[$i][$j];
+    }
+    echo '<br>';
+}
+
+
 echo '--------------------' . '<br>';
-var_dump($_SESSION['array']);
-echo '--------------------' . '<br>';
+
+die;
 
 ?>
 <!doctype html>
@@ -38,8 +52,8 @@ if (getCurrentUser()) {
 } else {
     ?>
     <form action="" method="post">
-        <input type="text" name='user' placeholder="Логин" required minlength="3"><br>
-        <input type="text" name='password' placeholder="Пароль" required minlength="3"><br>
+        <input type="text" name='user' placeholder="Логин" required minlength="3" maxlength="25"><br>
+        <input type="text" name='password' placeholder="Пароль" required minlength="3" maxlength="20"><br>
         <button type="submit"> Авторизация</button>
     </form>
 

@@ -1,13 +1,10 @@
 <?php
 session_start();
 
-echo '<br>'. 'Title'. '<br>';
 $users = require_once __DIR__ . '/functionsForCook.php';
 
-
 echo '<br>'. 'AFTER'.'<br>' ;
-$_SESSION['array'] += ['Nikita' => 'Paxitos'];
-var_dump(getUsersList());
+
 
 ?>
 
