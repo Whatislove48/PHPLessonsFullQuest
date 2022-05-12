@@ -1,21 +1,23 @@
 <?php
 
-function getGuestBook($path)
+function getGuestBook(string $path): array
 {
 
     //$res = [];
     //$fh = fopen($root, 'r');
-   // return file($path);
+    // return file($path);
     //fclose($fh);
-     return file($path);
+    return file($path);
 
 }
 
-function addRecordGuestBook(string $path,array $record)
+function addRecordGuestBook(string $path, array $record): void
 {
-    $rec = fopen($path,'w+');
-    foreach ($record as $lineRec){
-        fwrite($rec,$lineRec );
+    $rec = fopen($path, 'w+');
+    if ($rec != false) {
+        foreach ($record as $lineRec) {
+            fwrite($rec, $lineRec);
+        }
     }
     fclose($rec);
 }

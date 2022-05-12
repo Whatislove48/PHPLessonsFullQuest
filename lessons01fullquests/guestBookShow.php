@@ -27,7 +27,7 @@ $lines = getGuestBook($path);     // возвращает массив запи�
 
 
 foreach ($lines as $line){                    // отображает записи
-    ?><td>- <?php echo $line. '<br>';?></td>
+    ?><td>- <?= $line. '<br>';?></td>
     <?php
     }
     ?>
@@ -51,7 +51,6 @@ if(isset($_POST['record'])) {
     else echo 'Вы ничего не ввели!';
 }
 else {
-    $recLine = 'Not found!';
     echo 'пока ничего!';
 }
 

@@ -4,8 +4,8 @@
 
 class Item
 {
-    public $price;
-    public $color;
+    protected $price;
+    protected $color;
 
     public function __construct($price,$color)
     {

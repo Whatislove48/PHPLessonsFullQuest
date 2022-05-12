@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/classes/Table.php';
-require_once __DIR__ . '/classes/Cabinet.php';
+require_once __DIR__ . '/classes/GuestBook.php';
+
 
 ?>
 
@@ -17,25 +17,18 @@ require_once __DIR__ . '/classes/Cabinet.php';
 </head>
 <body>
 
-<h1>Welcome</h1>
+<h1>Testing.php</h1>
 
 <?php
 
-$table1 = new Table(2499,'Yellow');
-$table1->color = 'Yellow';
-$table1->legs = '6';
-$table1->price = '2499';
-echo $table1->show();
 
-echo '<br>';
+$path = __DIR__.'/GuestBook.txt';
 
-$cab1 = new Cabinet(5999,'Blue');
-$cab1->price = 5999;
-$cab1->doors = 5;
-$cab1->color = 'Blue';
+$test = 'awdawdawdawdad';
 
-echo $cab1->show();
+$book  = new GuestBook($test);
 
+var_dump($book->getData());
 
 
 ?>
