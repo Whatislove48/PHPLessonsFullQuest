@@ -158,7 +158,7 @@ function replaceEnVowels(string $text): array
 
 //==================================================================
 
-function replaceRusVowels(string $text): array
+function replaceRusVowels(string $text)
 {
     $enWords = ['b' => 'B', 'c' => 'C', 'd' => 'D',
         'f' => 'F', 'g' => 'G', 'h' => 'H', 'j' => 'J', 'k' => 'K',
@@ -184,37 +184,37 @@ function replaceRusVowels(string $text): array
     $count = 0;
 
     while (isset($text[$count])) {
-        $count += 2;
+        $count += 1;
     }
 
-   $mass = [];
-   for ($i = 0; $i < $count; $i += 2) {
-
-       //$mass[] = $text[$i] . $text[$i + 1];//если все плохо измени text на mass
-       if($text[$i] || $text[$i + 1] !=' '){
-           $mass[] = $text[$i] . $text[$i + 1];
-       }
-       else{
-           $mass[] = ' ';
-       }
-   }
+   //$mass = [];
+   //for ($i = 0; $i < $count; $i += 2) {
+//
+   //    //$mass[] = $text[$i] . $text[$i + 1];//если все плохо измени text на mass
+   //    if($text[$i] . $text[$i + 1] !=' '){
+   //        $mass[] = $text[$i] . $text[$i + 1];
+   //    }
+   //    else{
+   //        $mass[] = ' ';
+   //    }
+   //}
 
 // но только начни отсюда
     for ($i = 3; $i < $count; $i += 2) {
         foreach ($rusWordsVow as $small => $big) {
-            if ($small === $mass[$i - 1] . $mass[$i]) {
+            if ($small === $text[$i - 1] . $text[$i]) {
                 foreach ($rusWords as $smallW => $bigW) {
-                    if ($smallW === $mass[$i - 3] . $mass[$i-2] ||
-                        $bigW === $mass[$i - 3] . $mass[$i-2]) {
+                    if ($smallW === $text[$i - 3] . $text[$i-2] ||
+                        $bigW === $text[$i - 3] . $text[$i-2]) {
                         //$mass[$i] = $mass[$i - 2];
-                        $mass[$i - 1] . $mass[$i] = $mass[$i - 3]. $mass[$i-2];
+                        $text[$i - 1] . $text[$i] = $text[$i - 3]. $text[$i-2];
                     }
                 }
             }
         }
     }
 
-    return $mass;
+    return $text;
 }
 
 

@@ -45,16 +45,17 @@ $countEn = 0;
 $countRu = 0;
 
 var_dump($textRu);
-
+echo '<br>';
 
 while (isset($textRu[$countRu])) {
     $countRu += 1;
 }
+var_dump($countRu);
 for ($i = 0; $i < $countRu; $i += 2) {
-    if (($i + 2) == $countRu) {
+    if (($i + 2) == $countRu ||($i + 1) == $countRu) {
         echo '||||||||||||||||||||||||||||||||||';
         echo $textRu[$countRu-1] . $textRu[$countRu];
-        break;
+        //break;
     }
     echo $textRu[$i] . $textRu[$i+1];
 }
