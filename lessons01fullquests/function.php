@@ -104,8 +104,9 @@ function sumTwoElements(array $array): array
 }
 
 //==================================================================
+//------------------------COMPLETE---------------------------------
 
-function replaceEnVowels(string $text) :array
+function replaceEnVowels(string $text): array
 {
     $enWords = ['b' => 'B', 'c' => 'C', 'd' => 'D',
         'f' => 'F', 'g' => 'G', 'h' => 'H', 'j' => 'J', 'k' => 'K',
@@ -128,28 +129,24 @@ function replaceEnVowels(string $text) :array
         'ф' => 'Ф', 'х' => 'Х', 'ц' => 'Ц', 'ч' => 'Ч',
         'ш' => 'Ш', 'щ' => 'Щ',];
 
-    $countEn = 0;
-    $countRu = 0;
+    $count = 0;
 
-    while (isset($text[$countEn])) {
-        $countEn += 1;
-    }
-    while (isset($text[$countRu])) {
-        $countRu += 1;
+    while (isset($text[$count])) {
+        $count += 1;
     }
 
     $mass = [];
-    for ($i = 0; $i < $countEn; $i++) {
+    for ($i = 0; $i < $count; $i++) {
         $mass[] = $text[$i];
     }
 
-    for ($i = 1; $i < $countEn; $i++) {
+    for ($i = 1; $i < $count; $i++) {
         foreach ($enWordsVow as $small => $big) {
             if ($small === $mass[$i]) {
                 foreach ($enWords as $smallW => $bigW) {
-                    if ($smallW === $mass[$i-1] ||
-                        $bigW === $mass[$i-1]){
-                        $mass[$i] = $mass[$i-1];
+                    if ($smallW === $mass[$i - 1] ||
+                        $bigW === $mass[$i - 1]) {
+                        $mass[$i] = $mass[$i - 1];
                     }
                 }
             }
@@ -161,8 +158,64 @@ function replaceEnVowels(string $text) :array
 
 //==================================================================
 
+function replaceRusVowels(string $text): array
+{
+    $enWords = ['b' => 'B', 'c' => 'C', 'd' => 'D',
+        'f' => 'F', 'g' => 'G', 'h' => 'H', 'j' => 'J', 'k' => 'K',
+        'l' => 'L', 'm' => 'M', 'n' => 'N', 'p' => 'P', 'q' => 'Q',
+        'r' => 'R', 's' => 'S', 't' => 'T', 'v' => 'V', 'w' => 'W',
+        'Y' => 'Y', 'z' => 'Z',];
 
+    $enWordsVow = ['a' => 'A', 'e' => 'E', 'i' => 'I',
+        'o' => 'O', 'u' => 'U'];
 
+    $rusWordsVow = ['а' => 'А', 'и' => 'И', 'е' => 'Е',
+        'ё' => 'Ё', 'о' => 'О', 'у' => 'У',
+        'ы' => 'Ы', 'э' => 'Э', 'ю' => 'Ю',
+        'я' => 'Я'];
+
+    $rusWords = ['б' => 'Б', 'в' => 'В', 'г' => 'Г',
+        'д' => 'Д', 'ж' => 'Ж', 'з' => 'З', 'й' => 'Й',
+        'к' => 'К', 'л' => 'Л', 'м' => 'М', 'н' => 'Н',
+        'п' => 'П', 'р' => 'Р', 'с' => 'С', 'т' => 'Т',
+        'ф' => 'Ф', 'х' => 'Х', 'ц' => 'Ц', 'ч' => 'Ч',
+        'ш' => 'Ш', 'щ' => 'Щ',];
+
+    $count = 0;
+
+    while (isset($text[$count])) {
+        $count += 2;
+    }
+
+   $mass = [];
+   for ($i = 0; $i < $count; $i += 2) {
+
+       //$mass[] = $text[$i] . $text[$i + 1];//если все плохо измени text на mass
+       if($text[$i] || $text[$i + 1] !=' '){
+           $mass[] = $text[$i] . $text[$i + 1];
+       }
+       else{
+           $mass[] = ' ';
+       }
+   }
+
+// но только начни отсюда
+    for ($i = 3; $i < $count; $i += 2) {
+        foreach ($rusWordsVow as $small => $big) {
+            if ($small === $mass[$i - 1] . $mass[$i]) {
+                foreach ($rusWords as $smallW => $bigW) {
+                    if ($smallW === $mass[$i - 3] . $mass[$i-2] ||
+                        $bigW === $mass[$i - 3] . $mass[$i-2]) {
+                        //$mass[$i] = $mass[$i - 2];
+                        $mass[$i - 1] . $mass[$i] = $mass[$i - 3]. $mass[$i-2];
+                    }
+                }
+            }
+        }
+    }
+
+    return $mass;
+}
 
 
 //==================================================================
