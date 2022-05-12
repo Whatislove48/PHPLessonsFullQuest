@@ -20,27 +20,34 @@ require_once __DIR__ . '/classes/GuestBook.php';
     <button type="submit">Внести запись</button>
 </form>
 <br>
+
 <?php
 
-$path = __DIR__.'/GuestBook.txt';
-$book  = new GuestBook($path);
+$path = __DIR__ . '/GuestBook.txt';
+
+if ($path !== '') {
+    $book = new GuestBook($path);
+} else {
+    echo 'ERROR - undefined root';
+    exit;
+}
 
 var_dump($_POST);
 echo '<br>';
+foreach ($book->getData() as $line) {
+    echo $line . '<br>';
+}
+echo '<br>';
 
-if (isset($_POST['record'])&& trim($_POST['record']) !==''){
+if (isset($_POST['record']) && trim($_POST['record']) !== '') {
+
     $newRecord = trim($_POST['record']);
 
-    foreach ($book->getData() as $line){
-        echo $line . '<br>';
-    }
 
+    $book->append($newRecord);
+    $book->saveData();
+    header('Location: testing.php');
 }
-
-//$book->append($test);
-//if (isset($test) && trim($test) !== '') {
-//    $book->saveData();
-//}
 
 echo '--------------- <br>';
 
