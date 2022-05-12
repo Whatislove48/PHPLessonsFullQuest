@@ -16,3 +16,125 @@ function showGuestBook($root)
 
 
 <a href="lection04quest01.php" >Внести запись</a>
+
+
+
+
+
+
+<?php
+
+
+
+
+function arrayDiffAlt(array $arrayA, array $arrayB): array
+{
+    $arrayC = [];
+    $arrayD = [];
+    $lenA = count($arrayA);
+    $lenB = count($arrayB);
+    for ($i = 0; $i < $lenA; $i++) {
+        for ($j = 0; $j < $lenB; $j++) {
+            if ($arrayA[$i] != $arrayB[$j]) {
+                $arrayC[] = $arrayA[$i];
+                break;
+            }
+        }
+    }
+
+    for ($i = 0; $i < $lenB; $i++) {
+        for ($j = 0; $j < $lenA; $j++) {
+            if ($arrayA[$i] != $arrayB[$j]) {
+                $arrayD[] = $arrayB[$i];
+                break;
+            }
+        }
+    }
+    $lenD = count($arrayD);
+    for ($i = 0; $i < $lenD; $i++) {
+        $arrayC[] = $arrayD[$i];
+    }
+    return $arrayC;
+}
+
+function arrayConv()
+{
+
+}
+
+/*
+function arrayDiffExtra(array $arrayA, array $arrayB): array
+{
+    $arrayC = [];
+    $arrayD = $arrayB;
+    $flag = 0;
+    $index = 0;
+    $start = 0;
+    $lenA = count($arrayA);
+    $lenB = count($arrayB);
+    for ($i = 0; $i < $lenA; $i++) {
+        $arrayB = $arrayD;
+        $index = 0;
+        $lenD = count($arrayD);
+        for ($j = 0; $j < $lenD; $j++) {
+            $arrayD = [];
+            if ($arrayA[$i] != $arrayB[$j] && $index == 0) {
+                $arrayC[] = $arrayA[$i];
+                $index = 1;
+            } else {
+                $arrayD[] = $arrayB[$j];
+            }
+        }
+    }
+    return $arrayC;
+}
+
+*/
+
+
+function sortArray($array)
+{
+    $len = count($array);
+    $trash = 0;
+    $newArray = [];
+    $test = 0;
+    for ($i = 0; $i < $len; $i++) {
+        $test = $array[$i];
+        for ($j = 0; $j < $len; $j++) {
+            if ($test != $array[$i]) {
+                $newArray[] = $array[$j];
+            }
+        }
+
+
+    }
+
+}
+//------------------------COMPLETE---------------------------------
+function arrayDiffExtra(array $arrayA, array $arrayB): array
+{
+    $arrayC = [];
+    $lenA = count($arrayA);
+    $lenB = count($arrayB);
+    for ($i = 0; $i < $lenA; $i++) {
+        $flag = 0;
+        for ($j = 0; $j < $lenB; $j++) {
+            if ($arrayA[$i] == $arrayB[$j]) {
+                //echo '<br> ' . $arrayA[$i] . ' = ' . $arrayB[$j];
+                $flag = 0;
+                break;
+            } elseif ($arrayA[$i] != $arrayB[$j]) {
+                $flag = 1;
+                //echo '<br> ' . $arrayA[$i] . ' != Append   ' . $arrayB[$j];
+                //break ;
+            }
+        }
+        if ($flag == 1) {
+            $arrayC[] = $arrayA[$i];
+        }
+    }
+    return $arrayC;
+}
+
+
+?>
