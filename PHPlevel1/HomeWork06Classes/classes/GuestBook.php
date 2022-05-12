@@ -5,19 +5,23 @@ class GuestBook
 {
 
 //-----------------------------------------------------------------------
+//                          COMPLETE
     protected array $bookData = [];
     public $path = '';
+
     public function __construct(string $path)
     {
-        $this->path = $path;
-        //$this->bookData = file($path,FILE_IGNORE_NEW_LINES);
-        //$this->bookData[] = $path;
+        if (isset($path) && $path !== '') {
+            $this->path = $path;
+            $this->bookData = file($path);
+        }
     }
 
 //======================================================================
 
-//--------------------------COMPLETE-----------------------------
-    public function getData()
+//-----------------------------------------------------------------------
+//                          COMPLETE
+    public function getData(): array //    вернет массив с записями
     {
         return $this->bookData;
     }
@@ -25,19 +29,26 @@ class GuestBook
 //======================================================================
 
 //-----------------------------------------------------------------------
-    public function append($text)
+//                          COMPLETE
+    public function append($text): void
     {
-        $text = trim($text);
-        $this->bookData[] = $text;
+        if (isset($text) && $text !== '') {
+            $text = trim($text);
+            $this->bookData[] = "\n" . $text;
+        }
     }
 
 //======================================================================
 
 //-----------------------------------------------------------------------
-    public function save()
+//                          COMPLETE
+    public function saveData(): void
     {
-        file_put_contents($this->path,$this->bookData);
+        if (isset($this->bookData))
+            file_put_contents($this->path, $this->bookData);
     }
+
+//======================================================================
 
 }
 
