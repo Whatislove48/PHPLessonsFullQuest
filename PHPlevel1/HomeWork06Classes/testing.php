@@ -1,9 +1,6 @@
 <?php
-
 require_once __DIR__ . '/classes/GuestBook.php';
-
 ?>
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -18,32 +15,36 @@ require_once __DIR__ . '/classes/GuestBook.php';
 
 <h1>Testing.php</h1>
 
+<form action="" method="post">
+    <input type="text" name="record" placeholder="Введите запись" required>
+    <button type="submit">Внести запись</button>
+</form>
+<br>
 <?php
 
 $path = __DIR__.'/GuestBook.txt';
-
-$test = 'My Next Record';
-
 $book  = new GuestBook($path);
 
-var_dump($book->getData());
+var_dump($_POST);
+echo '<br>';
 
-foreach ($book->getData() as $line){
-    echo $line . '<br>';
+if (isset($_POST['record'])&& trim($_POST['record']) !==''){
+    $newRecord = trim($_POST['record']);
+
+    foreach ($book->getData() as $line){
+        echo $line . '<br>';
+    }
+
 }
 
-$book->append($test);
-if (isset($test) && trim($test) !== '') {
-    $book->saveData();
-}
+//$book->append($test);
+//if (isset($test) && trim($test) !== '') {
+//    $book->saveData();
+//}
 
 echo '--------------- <br>';
 
-var_dump($book->getData());
-
-
 ?>
-
 
 </body>
 </html>
