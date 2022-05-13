@@ -258,12 +258,13 @@ function replaceBigRusWords(string $text): string
         $count += 1;
     }
 
+
     for ($i = 0; $i < $count; $i++) {
         if (' ' === $text[$i]) {
             $spaces[] = $i;          // заполнение массива пробелов и длины слов
-            $long = 0;
+            //$long = 0;
         } else {
-            $long += 1;
+            //$long += 1;
         }
 
     }
