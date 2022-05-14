@@ -14,28 +14,28 @@ require_once __DIR__ . '/function.php';
           content="width=device-width, user-scalable=no,
           initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ShowBook</title>
+    <title>Friday</title>
 </head>
 <body>
 <h1>
-    Guest Book config
+    String conf
 </h1>
 <?php
 //echo '<br> ____START____ <br>';
 
 
-$arrayA = [8, -4, 0, 3, 1, 16, 42, 13, -41, 33, 61, 12];
-$arrayB = [11, -41, 33, 8, 2, 16, 14, 95, 11, 7];
+//$arrayA = [8, -4, 0, 3, 1, 16, 42, 13, -41, 33, 61, 12];
+//$arrayB = [11, -41, 33, 8, 2, 16, 14, 95, 11, 7];
 
 //$arrayA = [6, 13, 5];
 //$arrayB = [8, 10, 12];
 
 
-$test = arrayDiff($arrayA, $arrayB); //ar
-$test1 = arrayConver($arrayA, $arrayB); //ar
-$test2 = sortArray($arrayA, $arrayB);  //ar
-$test3 = sumElements($arrayA);  // fl
-$test4 = sumTwoElements($arrayB); // ar
+//$test = arrayDiff($arrayA, $arrayB); //ar
+//$test1 = arrayConver($arrayA, $arrayB); //ar
+//$test2 = sortArray($arrayA, $arrayB);  //ar
+//$test3 = sumElements($arrayA);  // fl
+//$test4 = sumTwoElements($arrayB); // ar
 
 //============================================
 //$textEn = 'Hello World!';
@@ -44,24 +44,80 @@ $textRu = 'Делу время потехе час';
 $countEn = 0;
 $countRu = 0;
 
+
+
+die;
+
+$rusWordsVow = ['а' => 'А', 'и' => 'И', 'е' => 'Е',
+    'ё' => 'Ё', 'о' => 'О', 'у' => 'У',
+    'ы' => 'Ы', 'э' => 'Э', 'ю' => 'Ю',
+    'я' => 'Я'];
+
+$rusWords = ['б' => 'Б', 'в' => 'В', 'г' => 'Г',
+    'д' => 'Д', 'ж' => 'Ж', 'з' => 'З', 'й' => 'Й',
+    'к' => 'К', 'л' => 'Л', 'м' => 'М', 'н' => 'Н',
+    'п' => 'П', 'р' => 'Р', 'с' => 'С', 'т' => 'Т',
+    'ф' => 'Ф', 'х' => 'Х', 'ц' => 'Ц', 'ч' => 'Ч',
+    'ш' => 'Ш', 'щ' => 'Щ',];
+
 var_dump($textRu);
+echo '<br>   ----------------TITLE--------------------------';
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+while (isset($textRu[$countRu])) { //подсчет массива (без пробелов он всегда четный)
+    $countRu++;
+}
+
+$testing = []; //        массив из строки
+$spaces = []; //         массив с позициями пробелов
+$arrayDontSpace = []; // массив без пробелов _____ ВСЕГДА ЧЕТНЫЙ _____
+$result = [];   //       Итоговый массив
+for ($i = 0;$i<$countRu;$i++){
+    if ($textRu[$i] == ' '){
+        $spaces[] = $i;          // заполнение массива пробелов
+    }
+    else{
+        $arrayDontSpace[] = $textRu[$i];  // заполнение массива без пробелов
+    }
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+for ($i = 0;$i<$countRu;$i++){
+    $testing[] = $textRu[$i];
+}
+
+var_dump($spaces);
+$word = '';
+for ($i = 0;$i<$countRu-1;$i+=2){
+    $flag = false;
+    for ($j=0;$j<count($spaces);$j++){
+        if($i = $spaces[$j]){
+            $result[] = ' ';
+            $i+=1;
+            $word = ''; // Индекс попал на пробел
+        }
+    }
+    foreach ($rusWords as $small => $big){
+        if($testing[$i].$testing[$i+1] === $small || $big){
+
+        }
+    }
+
+    if(!$flag){  //  если флаг истина то значит согласная была записана
+
+    }
+}
+
 echo '<br>';
 
-while (isset($textRu[$countRu])) {
-    $countRu += 1;
-}
-var_dump($countRu);
-for ($i = 0; $i < $countRu; $i += 2) {
-    if (($i + 2) == $countRu ||($i + 1) == $countRu) {
-        echo '||||||||||||||||||||||||||||||||||';
-        echo $textRu[$countRu-1] . $textRu[$countRu];
-        //break;
-    }
-    echo $textRu[$i] . $textRu[$i+1];
-}
 
+die;
+echo '<br>';
 $test = replaceRusVowels($textRu);
 
+echo '<br>';
 var_dump($test);
 
 ////var_dump(replaceRusVowels($textRu));
