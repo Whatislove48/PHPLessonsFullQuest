@@ -163,12 +163,13 @@ for ($i = 0; $i < $countRu; $i++) {
 //==================================================================================
 echo '<br>';
 $testRes = '';
-for ($i = 0; $i < $countRu - 1; $i += 2) {
+for ($i = 0; $i < $countRu ; $i += 2) {
     for ($j = 0; $j < count($spaces); $j++) {
         if ($i == $spaces[$j]) {
             $result[] = ' ';
             $testRes .= ' ';
             $i += 1;
+            $flag = false;
             //continue;
             $consWord = ''; // Индекс попал на пробел
             echo '<br>' . ($i - 1) . '=' . $spaces[$j] . '<br>';
@@ -202,7 +203,7 @@ for ($i = 0; $i < $countRu - 1; $i += 2) {
     }
 }
 //==================================================================================
-
+var_dump($textRu);
 var_dump($testRes);
 
 echo '<br>';
