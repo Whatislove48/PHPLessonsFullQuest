@@ -46,7 +46,6 @@ $countRu = 0;
 
 
 
-die;
 
 $rusWordsVow = ['а' => 'А', 'и' => 'И', 'е' => 'Е',
     'ё' => 'Ё', 'о' => 'О', 'у' => 'У',
@@ -73,42 +72,53 @@ $testing = []; //        массив из строки
 $spaces = []; //         массив с позициями пробелов
 $arrayDontSpace = []; // массив без пробелов _____ ВСЕГДА ЧЕТНЫЙ _____
 $result = [];   //       Итоговый массив
-for ($i = 0;$i<$countRu;$i++){
-    if ($textRu[$i] == ' '){
+for ($i = 0; $i < $countRu; $i++) {
+    if ($textRu[$i] == ' ') {
         $spaces[] = $i;          // заполнение массива пробелов
-    }
-    else{
+    } else {
         $arrayDontSpace[] = $textRu[$i];  // заполнение массива без пробелов
     }
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-for ($i = 0;$i<$countRu;$i++){
+var_dump($spaces);
+echo '<br> --space-- <br>';
+
+for ($i = 0; $i < $countRu; $i++) {
     $testing[] = $textRu[$i];
 }
 
 var_dump($spaces);
-$word = '';
-for ($i = 0;$i<$countRu-1;$i+=2){
+$consWord = '';
+for ($i = 0; $i < $countRu - 1; $i += 2) {
     $flag = false;
-    for ($j=0;$j<count($spaces);$j++){
-        if($i = $spaces[$j]){
+    for ($j = 0; $j < count($spaces); $j++) {
+        if ($i = $spaces[$j]) {
             $result[] = ' ';
-            $i+=1;
-            $word = ''; // Индекс попал на пробел
+            $i += 1;
+            $consWord = ''; // Индекс попал на пробел
         }
     }
-    foreach ($rusWords as $small => $big){
-        if($testing[$i].$testing[$i+1] === $small || $big){
-
+    foreach ($rusWords as $small => $big) {
+        if ($testing[$i] . $testing[$i + 1] === $small || $big) {
+            $flag = true;                             // открытие доступа к гласной
+            $consWord = $testing[$i] . $testing[$i + 1];  // Согласная записана
         }
     }
 
-    if(!$flag){  //  если флаг истина то значит согласная была записана
+    if ($flag) {  //  если согласная была записана
+        foreach ($rusWordsVow as $smallVow => $bigVow) {                //
+            if ($testing[$i] . $testing[$i + 1] === $smallVow || $bigVow) {
+                $testing[$i] . $testing[$i + 1] = $consWord;
 
+            }
+        }
     }
 }
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+var_dump($testing);
 
 echo '<br>';
 
