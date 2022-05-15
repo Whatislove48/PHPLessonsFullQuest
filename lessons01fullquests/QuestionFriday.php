@@ -26,10 +26,34 @@ require_once __DIR__ . '/function.php';
 //$textEn = 'Hello World!';
 $textEn = 'Everybody dance now!';
 //$textRu = 'Делу время потехе час';
-$textRu = 'Саша любит арбузы';
+//$textRu = 'Саша любит арбузы';
+$textRu = 'Гидроэлектроизолятор';
+
+$longWords = [];
+
+var_dump($longWords);
+echo '<br>';
+var_dump(count($longWords));
+if (count($longWords) === 0) {
+    echo 'ABOBA';
+}
+
+die;
+
+for ($i = 0; $i < 10; $i++) {
+    if (0 === $i % 2) {
+        $test[$i] = true;
+    } else {
+        $test[$i] = false;
+    }
+}
+
+var_dump($test);
 
 
+die;
 
+echo replaceBigRusWords($textRu);
 
 
 ?>

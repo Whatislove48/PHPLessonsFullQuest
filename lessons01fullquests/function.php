@@ -154,8 +154,8 @@ function replaceEnVowels(string $text): string
         }
     }
 
-    foreach ($mass as $str){
-       $result .=$str;
+    foreach ($mass as $str) {
+        $result .= $str;
     }
 
     return $result;
@@ -182,7 +182,7 @@ function replaceRusVowels(string $text): string
     $count = 0;
     $consWord = '';
     $flag = false;
-    $testRes = '';
+    $result = '';
     $spaces = [];
 
     while (isset($text[$count])) {
@@ -202,7 +202,7 @@ function replaceRusVowels(string $text): string
     for ($i = 0; $i < $count; $i += 2) {
         for ($j = 0; $j < count($spaces); $j++) {
             if ($i === $spaces[$j]) {
-                $testRes .= ' ';
+                $result .= ' ';
                 $i += 1;
                 $flag = false;
                 $consWord = ''; // Индекс попал на пробел
@@ -213,7 +213,7 @@ function replaceRusVowels(string $text): string
                 $givenText[$i] . $givenText[$i + 1] === $big) {
                 $flag = true;                             // открытие доступа к гласной
                 $consWord = $givenText[$i] . $givenText[$i + 1];  // Согласная записана
-                $testRes .= $consWord;
+                $result .= $consWord;
             }
         }
 
@@ -222,16 +222,93 @@ function replaceRusVowels(string $text): string
                 if ($givenText[$i] . $givenText[$i + 1] === $smallVow ||
                     $givenText[$i] . $givenText[$i + 1] === $bigVow) {
                     $givenText[$i] . $givenText[$i + 1] = $consWord;
-                    $testRes .= $consWord;
+                    $result .= $consWord;
                     $flag = false;
                 }
             }
         } else {
-            $testRes .= $givenText[$i] . $givenText[$i + 1];
+            $result .= $givenText[$i] . $givenText[$i + 1];
         }
     }
 
-    return $testRes;
+    return $result;
+}
+
+//==================================================================
+
+function replaceBigRusWords(string $text): string
+{
+
+    $rusWords = ['б' => 'Б', 'в' => 'В', 'г' => 'Г',
+        'д' => 'Д', 'ж' => 'Ж', 'з' => 'З', 'й' => 'Й',
+        'к' => 'К', 'л' => 'Л', 'м' => 'М', 'н' => 'Н',
+        'п' => 'П', 'р' => 'Р', 'с' => 'С', 'т' => 'Т',
+        'ф' => 'Ф', 'х' => 'Х', 'ц' => 'Ц', 'ч' => 'Ч',
+        'ш' => 'Ш', 'щ' => 'Щ',];
+
+    $result = '';
+    $count = 0;
+    $consWord = '';
+    $flag = false;
+    $spaces = [];
+    $longWords = [];
+    $long = 0;
+
+    while (isset($text[$count])) { // подсчет колличества байт (тип символов) в дано
+        $count += 1;
+    }
+
+    for ($i = 0; $i < $count; $i++) {
+        if (' ' === $text[$i]) {
+            $spaces[] = $i;          // заполнение массива пробелов и длины слов
+            $long = 0;
+        } else {
+            $long += 1;
+        }
+
+    }
+    if(0 === count($longWords)){
+        $index = $long;
+    }
+
+    for ($i = 0; $i < $count; $i++) {
+        $givenText[] = $text[$i];
+    }
+
+    for ($i = 0; $i < $count; $i += 2) {
+        for ($j = 0; $j < count($spaces); $j++) {
+            if ($i === $spaces[$j]) {
+                $result .= ' ';
+                $i += 1;
+                $flag = false;
+                $consWord = ''; // Индекс попал на пробел
+            }
+        }
+        foreach ($rusWords as $small => $big) {
+            if ($givenText[$i] . $givenText[$i + 1] === $small ||
+                $givenText[$i] . $givenText[$i + 1] === $big) {
+                $flag = true;                             // открытие доступа к гласной
+                $consWord = $givenText[$i] . $givenText[$i + 1];  // Согласная записана
+                $result .= $consWord;
+            }
+        }
+
+        if ($flag) {  //  если согласная была записана
+            foreach ($rusWordsVow as $smallVow => $bigVow) {
+                if ($givenText[$i] . $givenText[$i + 1] === $smallVow ||
+                    $givenText[$i] . $givenText[$i + 1] === $bigVow) {
+                    $givenText[$i] . $givenText[$i + 1] = $consWord;
+                    $result .= $consWord;
+                    $flag = false;
+                }
+            }
+        } else {
+            $result .= $givenText[$i] . $givenText[$i + 1];
+        }
+    }
+
+
+    return $result;
 }
 
 //==================================================================
