@@ -30,10 +30,27 @@ $textEn = 'Everybody dance now!';
 //$textRu = 'А я люблю дыни';
 $textRu = 'Гидроэлектроизолятор';
 
-$giveText = 'Everybody dance now!';
+$giveText = 'Делу время потехе час';
 //$giveText[1][] = 'hy';
 //$giveText[2][] = 'hello';
 //$giveText[3][] = 'Everybody dance';
+
+echo replaceBigRusWords($giveText);
+die;
+
+
+//echo replaceRusVowels($giveText);
+die;
+
+
+
+
+
+
+
+
+
+
 
 //======================================START of FUNCTION=================
 //======================================================================
@@ -45,16 +62,9 @@ $rusWords = ['б' => 'Б', 'в' => 'В', 'г' => 'Г',
     'ф' => 'Ф', 'х' => 'Х', 'ц' => 'Ц', 'ч' => 'Ч',
     'ш' => 'Ш', 'щ' => 'Щ',];
 
-$enWords = ['b' => 'B', 'c' => 'C', 'd' => 'D',
-    'f' => 'F', 'g' => 'G', 'h' => 'H', 'j' => 'J', 'k' => 'K',
-    'l' => 'L', 'm' => 'M', 'n' => 'N', 'p' => 'P', 'q' => 'Q',
-    'r' => 'R', 's' => 'S', 't' => 'T', 'v' => 'V', 'w' => 'W',
-    'Y' => 'Y', 'z' => 'Z',];
-
 
 $longWords = [];
 $testArr = [];
-var_dump($giveText);
 echo '<br>--------TEST------------<br>';
 $long = true;  //   это то же самое что и ФЛАГ
 $j = 0;
@@ -92,11 +102,11 @@ for ($j = 0; $j < count($testArr); $j++) {
             break;
         }
         //echo '<br> -iteration-<br>';
-        if ($long && 4 <= $count) {     // если слово длинное и не было записано
+        if ($long && 9 <= $count) {     // если слово длинное и не было записано
             $longWords[$j] = true;      // слово можно менять
             $long = false;
             //echo '<br>$long && 4 < $count<br>';
-        } elseif ($long && 4 > $count) {
+        } elseif ($long && 9 > $count) {
             $longWords[$j] = false;
         }
         //echo $testArr[$j][0][$count] . '<br>';
@@ -116,32 +126,44 @@ for ($j = 0; $j < count($testArr); $j++) {
 
 for ($j = 0; $j < count($testArr); $j++) {
 
-    for ($count = 0; $count < count($testArr[$j][0]); $count++) {
+    for ($count = 0; $count < count($testArr[$j][0]); $count += 2) {
         if ($longWords[$j]) {
-            foreach ($enWords as $small => $big) {
-                if ($small == $testArr[$j][0][$count]) {
+            foreach ($rusWords as $small => $big) {
+                if ($small == $testArr[$j][0][$count] .
+                    $testArr[$j][0][$count + 1]) {
                     $result .= $big;
-                    $count += 1;
+                    $count += 2;
                     continue;
                 }
             }
         }
-        $result .= $testArr[$j][0][$count];
+        $result .= $testArr[$j][0][$count] .
+            $testArr[$j][0][$count + 1];
     }
 }
+//$resultPlus = '';
+//
+//$spaces = [];
+//for ($i = 0; $i < count($testArr); $i++) {
+//    if (' ' === $testArr[$i]) {
+//        $spaces[] = $i;          // заполнение массива пробелов
+//    }
+//}
+//
+//for ($i = 0; $i < count($testArr); $i += 2) {
+//    for ($j = 0; $j < count($spaces); $j++) {
+//        $resultPlus .= ' ';
+//        $i += 1;
+//    }
+//    $resultPlus .= $result[$i] . $result[$i + 1];
+//}
+
+
 var_dump($result);
 
 var_dump($longWords);
-echo '== <br>+++++++++';
-
 
 die;
-
-$long = 0;
-$trash = 0;
-
-
-echo replaceBigRusWords($textRu);
 
 
 ?>
