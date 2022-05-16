@@ -29,22 +29,18 @@ require_once __DIR__.'/classes/Uploader.php';
 $root = __DIR__ . '/photoUpload';
 $upload = $_FILES['upload'];
 
-var_dump(!empty($upload));
 
-echo '<br>';
 
 $uploader = new Uploader($upload);
 echo $uploader->showAll();
-var_dump($uploader->isUploaded());
+
 echo '<br>-------------';
 
 if($uploader->isUploaded()){
     $uploader->upLoad();
 }
 
-echo '<br>-------------';
-
-
+echo '<br>-------END------';
 
 
 ?>
