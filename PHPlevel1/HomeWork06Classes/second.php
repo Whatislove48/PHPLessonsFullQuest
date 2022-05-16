@@ -26,19 +26,25 @@ require_once __DIR__.'/classes/Uploader.php';
 
 <?php
 
+$root = __DIR__ . '/photoUpload';
+$upload = $_FILES['upload'];
 
+var_dump(!empty($upload));
 
-echo isset($_POST);
 echo '<br>';
-var_dump(isset($_POST));
 
-var_dump($_POST);
-
-echo '<br>-------------';
-var_dump(empty($_POST));
+$uploader = new Uploader($upload);
+echo $uploader->showAll();
+var_dump($uploader->isUploaded());
 echo '<br>-------------';
 
-die;
+if($uploader->isUploaded()){
+    $uploader->upLoad();
+}
+
+echo '<br>-------------';
+
+
 
 
 ?>
