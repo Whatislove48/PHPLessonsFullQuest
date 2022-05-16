@@ -26,7 +26,13 @@ $newUser = new User();
 $newUser->email = '@Zeliboba.sru';
 
 $text = 'Одножды ночью я спал.';
-sendMessage($newUser,$text);
+//sendMessage($newUser,$text);
+
+foreach (getGuestBookRecords() as $line){?>
+    <?php echo $line;?>
+    <hr>
+<?php }
+
 
 ?>
 
