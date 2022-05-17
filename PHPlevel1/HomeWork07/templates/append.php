@@ -1,21 +1,19 @@
 <?php
 
-require_once __DIR__.'/classes/GuestBook.php';
-require_once __DIR__.'/classes/GuestBookRecord.php';
+require_once __DIR__.'/../classes/View.php';
+require_once __DIR__.'/../classes/News.php';
+require_once __DIR__.'/../classes/Article.php';
 
-$guestBook = new GuestBook();
 
+$news = new News();
+$view = new View();
+$number = (int)$_GET['id'];
 
-if ('' === trim($_POST['record'])) {
-    echo 'Запись не введена';
-    header("Location: firstTest.php");
-    exit;
-}
-else{
-    $record = new GuestBookRecord(trim($_POST['record']));
-    $guestBook->append($record);
-    $guestBook->saveRecord();
-}
+var_dump($_GET);
+$new = $news->getNews();
+echo $new[$number]->getTitle();
+echo '<br>-----------Title-----------';
+echo $new[$number]->getText();
 
 ?>
 

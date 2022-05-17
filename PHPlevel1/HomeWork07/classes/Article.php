@@ -40,5 +40,10 @@ class Article
 
     }
 
+    public function getArticle()
+    {
+        return $this;
+    }
+
 
 }

@@ -5,78 +5,24 @@ require_once __DIR__ . '/classes/View.php';
 require_once __DIR__ . '/classes/News.php';
 
 $news = new News();
-
-//var_dump($news);
-//var_dump($news->getNews());
-
-foreach ($news->getNews() as $new){
-    echo $new->showNews();
-    echo '<br>';
-}
-
-
-die;
-
-$j = -1;
-$flag = true;
-$index = false;
-for ($i = 0; isset($full[$i]); $i++) {
-    if (trim($full[$i]) === '') {
-        $j += 1;
-        $i+=1;
-        $flag = true;
-        continue;
-    }
-    echo '<br>--------iteration-------<br>';
-    if ($flag) {             // title
-        $data[$j]['title'] = $full[$i];
-        $flag = false;
-        echo '<br>-тема записана-<br>';
-        continue;
-    }
-    $data[$j][] = $full[$i];
-}
-
-$count = $j;
-for ($j = 0;$j<$count+1;$j++){
-    foreach ($data[$j]as $line){
-        echo $line;
-    }
-    echo '<br>';
-}
-
-var_dump($data);
-
-die;
-
 $view = new View();
-
 $temp = 'tempOne.php';
-//$temp = 'tempTwo.php';
 
-var_dump($view);
+foreach ($news->getNews() as $key => $new) {
+    $view->assign($key, $new);
+}
+
+
+//include __DIR__.'/templates/tempOne.php';
+$view->display($temp);
 
 ?>
 <div style="background-color: #d90f0f">
     <p>Проверка дива</p>
 </div>
 
-<a href="upload.php?id=45">
+<a href="upload.php?id=<?php  echo 25?>">
     <h1>
         First News
     </h1>
 </a>
-<?php
-die;
-
-include __DIR__ . '/templates/' . $temp;
-//$view->display($temp);
-//$view->render($temp);
-
-echo '<br>-------------------------<br>';
-
-echo 'var ====';
-var_dump($_GET);
-
-?>
-

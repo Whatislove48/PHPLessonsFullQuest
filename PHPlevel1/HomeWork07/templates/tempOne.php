@@ -13,9 +13,10 @@
 ?>
 
 <?php
-foreach ($this->getRecords() as $record) {?>
-<article style="border: 2px dotted #199ab4; margin-bottom: 20px">
-<?php  echo $record;?>
+foreach ($this->data as $key => $new) {?>
+<article style="border: 2px dotted #199ab4; margin-bot">
+<a href="append.php?id=<?php echo $key?>">
+    <?php  echo $new->getTitle(); ?></a>
 </article>
 <?php }
 
@@ -24,10 +25,6 @@ foreach ($this->getRecords() as $record) {?>
 
 
 <hr>
-<form action="append.php" method="post">
-    <textarea name="record"></textarea>
-    <button type="submit">Записать в книгу</button>
-</form>
 
 
 </body>
