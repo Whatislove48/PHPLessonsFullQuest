@@ -32,5 +32,13 @@ class Article
         return $this->number;
     }
 
+    public function showNews()
+    {
+        return $this->number . "\n" .
+            $this->title . "\n" .
+            $this->text;
+
+    }
+
 
 }

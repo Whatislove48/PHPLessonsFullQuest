@@ -6,9 +6,13 @@ require_once __DIR__ . '/classes/News.php';
 
 $news = new News();
 
-var_dump($news);
+//var_dump($news);
+//var_dump($news->getNews());
 
-
+foreach ($news->getNews() as $new){
+    echo $new->showNews();
+    echo '<br>';
+}
 
 
 die;

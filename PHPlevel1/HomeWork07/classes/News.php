@@ -7,8 +7,6 @@ class News
 {
 
     protected $path = __DIR__ . '/../datafiles/testNews.txt';
-    protected $data = [];
-    public $test = 25;
     protected $news = [];
 
     public function __construct()
