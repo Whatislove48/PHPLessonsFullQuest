@@ -6,11 +6,8 @@
 </head>
 <body>
 
-<h1> Test One</h1>
+<h1> Шаблон для ДЗ 07 №3</h1>
 
-<?php
-
-?>
 
 <?php
 foreach ($this->data as $key => $new) {?>
@@ -18,10 +15,7 @@ foreach ($this->data as $key => $new) {?>
 <a href="templates/append.php?id=<?php echo $key?>"><br>
     <?php  echo $new->getTitle(); ?></a>
 </article>
-<?php }
-
-
-?>
+<?php } ?>
 
 
 <hr>

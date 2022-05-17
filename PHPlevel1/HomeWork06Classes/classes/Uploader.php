@@ -14,7 +14,6 @@ class Uploader
     {
         if (isset($upload) && $upload['error'] === 0) {
             $this->upload = $upload;
-            echo 'CONSTRUCT';
         }
     }
 

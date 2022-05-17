@@ -13,16 +13,10 @@ foreach ($news->getNews() as $key => $new) {
 }
 
 
-//include __DIR__.'/templates/tempOne.php';
 $view->display($temp);
 
 ?>
-<div style="background-color: #d90f0f">
-    <p>Проверка дива</p>
+<div style="background-color: #0f71d9">
+    <p>Синий текст</p>
 </div>
 
-<a href="upload.php?id=<?php  echo 25?>">
-    <h1>
-        First News
-    </h1>
-</a>

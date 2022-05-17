@@ -18,7 +18,7 @@ class News
         $text = $title = '';
 
         for ($i = 1; isset($full[$i]); $i++) {
-            if (trim($full[$i]) === '') {
+            if (trim($full[$i]) === '') {  // number
                 $this->news[] = new Article($j,$title,$text);
                 $text = '';
                 $j += 1;
@@ -31,12 +31,12 @@ class News
                 $flag = false;
                 continue;
             }
-            $text .= $full[$i];
+            $text .= $full[$i];     // Text
         }
     }
 
 
-    public function getNews()
+    public function getNews(): array
     {
         return $this->news;
     }

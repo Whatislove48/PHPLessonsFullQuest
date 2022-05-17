@@ -17,22 +17,22 @@ class Article
         $this->number = $number;
     }
 
-    public function getText()
+    public function getText():string
     {
         return $this->text;
     }
 
-    public function getTitle()
+    public function getTitle():string
     {
         return $this->title;
     }
 
-    public function getNumber()
+    public function getNumber():int
     {
         return $this->number;
     }
 
-    public function showNews()
+    public function showNews():string
     {
         return $this->number . "\n" .
             $this->title . "\n" .
@@ -40,10 +40,7 @@ class Article
 
     }
 
-    public function getArticle()
-    {
-        return $this;
-    }
+
 
 
 }

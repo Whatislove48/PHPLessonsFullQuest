@@ -23,10 +23,6 @@ require_once __DIR__ . '/classes/GuestBook.php';
 
 <?php
 
-
-var_dump($_POST);
-
-
 $path = __DIR__ . '/GuestBook.txt';
 
 if ($path !== '') {
@@ -35,24 +31,17 @@ if ($path !== '') {
     echo 'ERROR - undefined root';
     exit;
 }
-die;
-//var_dump($_POST);
-echo '<br>';
+
 foreach ($book->getData() as $line) {
     echo $line . '<br>';
 }
-echo '<br>';
 
 if (isset($_POST['record']) && trim($_POST['record']) !== '') {
 
     $newRecord = trim($_POST['record']);
-
-    $book->append($newRecord);
-    $book->saveData();
+    $book->append($newRecord)->saveData();
     header('Location: testing.php');
 }
-
-echo '--------------- <br>';
 
 ?>
 

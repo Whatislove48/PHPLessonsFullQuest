@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/classes/Uploader.php';
+require_once __DIR__ . '/classes/Uploader.php';
 
 ?>
 
@@ -29,16 +29,23 @@ require_once __DIR__.'/classes/Uploader.php';
 $root = __DIR__ . '/photoUpload';
 $upload = $_FILES['upload'];
 
+if (!empty($upload) &&
+    0 === $upload['error'] &&
+    0 !== $upload['size']) {
 
+    $uploader = new Uploader($upload);
+    echo $uploader->showAll();
 
-$uploader = new Uploader($upload);
-echo $uploader->showAll();
+    echo '<br>-------------';
 
-echo '<br>-------------';
-
-if($uploader->isUploaded()){
-    $uploader->upLoad();
+    if ($uploader->isUploaded()) {
+        $uploader->upLoad();
+    }
 }
+else{
+    echo 'Фото не загружено';
+}
+
 
 echo '<br>-------END------';
 

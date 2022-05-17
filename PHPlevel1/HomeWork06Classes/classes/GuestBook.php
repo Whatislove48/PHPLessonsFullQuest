@@ -30,11 +30,12 @@ class GuestBook
 
 //-----------------------------------------------------------------------
 //                          COMPLETE
-    public function append($text): void            // добавляет запись в массив записей
+    public function append($text)             // добавляет запись в массив записей
     {
         if (isset($text) && $text !== '' && isset($this->bookData)) {
             $text = trim($text);
             $this->bookData[] = "\n" . $text;
+            return $this;
         }
     }
 

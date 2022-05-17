@@ -14,8 +14,9 @@ $number = (int)$_GET['id'];
 
 
 $new = $news->getNews();
+echo '<br>--Title--<br>';
 echo $new[$number]->getTitle();
-echo '<br>-----------Title-----------';
+echo '<br>--Text--<br>';
 echo $new[$number]->getText();
 
 ?>

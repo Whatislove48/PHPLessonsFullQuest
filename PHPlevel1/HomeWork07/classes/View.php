@@ -12,12 +12,12 @@ class View
 
 
     //                     назначить, присвоить, приписать
-    public function assign($name, $value)
+    public function assign($name, $value):void
     {
         $this->data[$name] = $value;
     }
 
-    public function getData()
+    public function getData():array
     {
         return $this->data;
     }
@@ -29,7 +29,7 @@ class View
     //    include __DIR__ . '/../templates/' . $template;
     //}
 
-    public function display($template)
+    public function display(string $template):void
     {
         include __DIR__ . '/../templates/' . $template;
     }
