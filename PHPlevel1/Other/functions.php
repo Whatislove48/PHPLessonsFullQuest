@@ -1,15 +1,10 @@
 <?php
 
+require_once __DIR__. '/classes/GuestBookRecord.php';
 
-function sendMessage(User $name ,string $message)
+function sendMessage(User $name, string $message)
 {
 
-    echo $name->email . ' сооб отправлено -->'. $message;
+    echo $name->email . ' сооб отправлено -->' . $message;
 }
 
-function getGuestBookRecords()
-{
-    return file(__DIR__.'/GuestBookClasses.txt',
-        FILE_IGNORE_NEW_LINES);
-
-}
