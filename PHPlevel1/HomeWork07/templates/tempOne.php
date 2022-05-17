@@ -15,7 +15,7 @@
 <?php
 foreach ($this->data as $key => $new) {?>
 <article style="border: 2px dotted #199ab4; margin-bot">
-<a href="append.php?id=<?php echo $key?>">
+<a href="templates/append.php?id=<?php echo $key?>"><br>
     <?php  echo $new->getTitle(); ?></a>
 </article>
 <?php }

@@ -7,9 +7,12 @@ require_once __DIR__.'/../classes/Article.php';
 
 $news = new News();
 $view = new View();
+if (!isset($_GET['id'])) {
+    header('location: http://lessonshmsh/PHPLessonsFullQuest/PHPlevel1/HomeWork07/first.php');
+}
 $number = (int)$_GET['id'];
 
-var_dump($_GET);
+
 $new = $news->getNews();
 echo $new[$number]->getTitle();
 echo '<br>-----------Title-----------';
