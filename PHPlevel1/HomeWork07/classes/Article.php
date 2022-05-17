@@ -7,15 +7,30 @@ class Article
 {
 
     protected $text;
+    protected $title;
+    protected $number;
 
-    public function __construct($value)
+    public function __construct($number, $title, $text)
     {
-        $this->text = $value;
+        $this->text = $text;
+        $this->title = $title;
+        $this->number = $number;
     }
 
     public function getText()
     {
         return $this->text;
     }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
 
 }

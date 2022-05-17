@@ -7,7 +7,7 @@ require_once __DIR__ . '/News.php';
 class View
 {
 
-    protected $path = __DIR__ . '/../datafiles/data.txt';
+    protected $path = __DIR__ . '/../datafiles/testNews.txt';
     protected $data = [];
     public $test = 25;
 

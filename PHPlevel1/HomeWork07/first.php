@@ -4,11 +4,14 @@ require_once __DIR__ . '/classes/Article.php';
 require_once __DIR__ . '/classes/View.php';
 require_once __DIR__ . '/classes/News.php';
 
-$data = [];
-$text = __DIR__ . '/datafiles/testNews.txt';
-$full = file($text, FILE_IGNORE_NEW_LINES);
+$news = new News();
+
+var_dump($news);
 
 
+
+
+die;
 
 $j = -1;
 $flag = true;
