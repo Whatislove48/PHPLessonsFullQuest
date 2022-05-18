@@ -11,7 +11,7 @@ class GuestBook
 
     public function __construct(string $path)
     {
-        if ($path !== '' && is_file($path)) {
+        if ('' !== $path && is_file($path)) {
             $this->path = $path;
         }
     }
@@ -28,7 +28,7 @@ class GuestBook
 
 //-----------------------------------------------------------------------
 
-    public function append(string $text):GuestBook|bool
+    public function append(string $text): GuestBook|bool
     {
         if ('' !== trim($text)) {
             $text = trim($text);
@@ -41,7 +41,7 @@ class GuestBook
 
 //-----------------------------------------------------------------------
 
-    public function saveData(): bool       //  записывает в файл массив записей
+    public function saveData(): bool
     {
         if (false !== file_put_contents($this->path, $this->record, FILE_APPEND)) {
             return true;
