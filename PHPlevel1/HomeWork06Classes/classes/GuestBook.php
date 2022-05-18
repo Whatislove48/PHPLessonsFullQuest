@@ -4,52 +4,51 @@
 class GuestBook
 {
 
-//-----------------------------------------------------------------------
-//                          COMPLETE
-    protected array $bookData = [];
-    public $path = '';
 
-    public function __construct(string $path)    // конструктор задает путь и заполняет массив записей
+    protected array $bookData = [];
+    protected array $record = [];
+    protected string $path;
+
+    public function __construct(string $path)
     {
-        if (isset($path) && $path !== '') {
+        if ($path !== '' && is_file($path)) {
             $this->path = $path;
-            $this->bookData = file($path);
         }
     }
 
-//======================================================================
 
 //-----------------------------------------------------------------------
-//                          COMPLETE
-    public function getData(): array               //  вернет массив с записями
+
+    public function getData(): array
     {
+        $this->bookData = file($this->path);
         return $this->bookData;
     }
 
-//======================================================================
 
 //-----------------------------------------------------------------------
-//                          COMPLETE
-    public function append($text)             // добавляет запись в массив записей
+
+    public function append(string $text):GuestBook|bool
     {
-        if (isset($text) && $text !== '' && isset($this->bookData)) {
+        if ('' !== trim($text)) {
             $text = trim($text);
-            $this->bookData[] = "\n" . $text;
+            $this->record[] = "\n" . $text;
             return $this;
         }
+        return false;
     }
 
-//======================================================================
 
 //-----------------------------------------------------------------------
-//                          COMPLETE
-    public function saveData(): void       //  записывает в файл массив записей
+
+    public function saveData(): bool       //  записывает в файл массив записей
     {
-        if (isset($this->bookData))
-            file_put_contents($this->path, $this->bookData);
+        if (false !== file_put_contents($this->path, $this->record, FILE_APPEND)) {
+            return true;
+        }
+        return false;
     }
 
-//======================================================================
 
 }
 

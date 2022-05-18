@@ -25,12 +25,9 @@ require_once __DIR__ . '/classes/GuestBook.php';
 
 $path = __DIR__ . '/GuestBook.txt';
 
-if ($path !== '') {
-    $book = new GuestBook($path);
-} else {
-    echo 'ERROR - undefined root';
-    exit;
-}
+
+$book = new GuestBook($path);
+
 
 foreach ($book->getData() as $line) {
     echo $line . '<br>';
