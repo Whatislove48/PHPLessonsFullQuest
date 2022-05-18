@@ -55,10 +55,10 @@ class Uploader
 
 //-----------------------------------------------------------------------
 
-    public function upLoad()
+    public function upLoad():bool
     {
         $photoFolder = __DIR__ . '/../photoUpload/';
-        move_uploaded_file($this->tmpName, $photoFolder . $this->name);
+        return move_uploaded_file($this->tmpName, $photoFolder . $this->name);
     }
 
 
