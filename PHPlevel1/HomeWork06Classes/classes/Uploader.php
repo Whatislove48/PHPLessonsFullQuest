@@ -13,13 +13,21 @@ class Uploader
 
     public function __construct(array $upload)  //   получает имя поля формы
     {
-        if (0 === $upload['error'] &&
-            0 !== $upload['size'] &&
-            '' !== $upload['name'] &&
-            '' !== $upload['tmp_name']) {
-            $this->isUploaded = true;
-            $this->upload = $upload;
-            $this->tmpName = $upload['tmp_name'];
+        try {
+            if (0 === $upload['error'] &&
+                0 !== $upload['size'] &&
+                '' !== $upload['name'] &&
+                '' !== $upload['tmp_name']) {
+                $this->isUploaded = true;
+                $this->upload = $upload;
+                $this->tmpName = $upload['tmp_name'];
+            }
+            else{
+                throw new Exception('ERROR - file not uploaded');
+            }
+        }
+        catch (Exception $ex){
+            echo $ex->getMessage();
         }
     }
 
