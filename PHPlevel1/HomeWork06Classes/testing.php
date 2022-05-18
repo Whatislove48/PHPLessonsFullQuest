@@ -21,13 +21,14 @@ require_once __DIR__ . '/classes/GuestBook.php';
 
 $path = __DIR__ . '/GuestBook.txt';
 
+
 $book = new GuestBook($path);
 
 foreach ($book->getData() as $line) {
     echo $line . '<br>';
 }
 
-if (isset($_POST['record']) && trim($_POST['record']) !== '') {
+if (trim($_POST['record']) !== '') {
 
     $newRecord = trim($_POST['record']);
     $book->append($newRecord)->saveData();
