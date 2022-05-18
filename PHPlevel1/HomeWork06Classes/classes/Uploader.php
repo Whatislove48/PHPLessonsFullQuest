@@ -4,64 +4,61 @@
 class Uploader
 {
 
-    protected $upload;
-    protected $info;
+    protected array $upload;
+    protected string $info = '';
+    protected string $tmpName;
+    protected string $name;
+    protected string $type;
+    protected int $size;
 
-//================================================================
+
 //-----------------------------------------------------------------------
-//                          COMPLETE
-    public function __construct($upload)  //   получает имя поля формы
+
+    public function __construct(array $upload)  //   получает имя поля формы
     {
-        if (isset($upload) && $upload['error'] === 0) {
+        if (0 === $upload['error'] &&
+            0 !== $upload['size'] &&
+            '' !== $upload['name'] &&
+            '' !== $upload['tmp_name']) {
             $this->upload = $upload;
+            $this->name = $upload['name'];
+            $this->size = $upload['size'];
+            $this->tmpName = $upload['tmp_name'];
+            $this->type = $upload['type'];
+        } else {
+            return exit;
         }
     }
 
-//================================================================
+
 //-----------------------------------------------------------------------
-//                          COMPLETE
+
     public function isUploaded(): bool // вернет существует ли поле
     {
-        if (!empty($this->upload) &&
-            0 === $this->upload['error'] &&
-            0 !== $this->upload['size']) {
+        if (0 !== $this->size) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
-//================================================================
+
 //-----------------------------------------------------------------------
-//                          COMPLETE
+
     public function showAll(): string
     {
-        if (!empty($this->upload)) {
-            $this->info .= '<br>' . $this->upload['name'];
-            $this->info .= '<br>' . $this->upload['type'];
-            $this->info .= '<br>' . $this->upload['size'];
-            return $this->info;
-        } else {
-            return 'ERROR';
-        }
-
+        $this->info .= '<br>' . $this->name;
+        $this->info .= '<br>' . $this->type;
+        $this->info .= '<br>' . $this->size;
+        return $this->info;
     }
 
-    //================================================================
+
 //-----------------------------------------------------------------------
 
-    public function upLoad() :void
+    public function upLoad()
     {
-        $root = __DIR__ . '/../photoUpload/';
-        if (!empty($this->upload) &&
-            0 === $this->upload['error'] &&
-            0 !== $this->upload['size']){
-            if(isset($this->upload['tmp_name'])){
-                $tmp_name = $this->upload['tmp_name'];
-                $name = $this->upload['name'];
-                move_uploaded_file($tmp_name, $root .$name);
-            }
-        }
+        $photoFolder = __DIR__ . '/../photoUpload/';
+        move_uploaded_file($this->tmpName, $photoFolder . $this->name);
     }
 
 
