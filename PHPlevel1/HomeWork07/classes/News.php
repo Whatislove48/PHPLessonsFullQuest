@@ -6,20 +6,23 @@ require_once __DIR__ . '/View.php';
 class News
 {
 
-    protected $path = __DIR__ . '/../datafiles/testNews.txt';
-    protected $news = [];
+    protected string $path = __DIR__ . '/../datafiles/testNews.txt';
+    protected array $news = [];
 
     public function __construct()
     {
         $j = 0;
         $flag = true;
         $start = false;
-        $full = file($this->path, FILE_IGNORE_NEW_LINES);
         $text = $title = '';
+        if (is_file($this->path) === false) {
+            return exit;
+        }
+        $full = file($this->path, FILE_IGNORE_NEW_LINES);
 
         for ($i = 1; isset($full[$i]); $i++) {
             if (trim($full[$i]) === '') {  // number
-                $this->news[] = new Article($j,$title,$text);
+                $this->news[] = new Article($j, $title, $text);
                 $text = '';
                 $j += 1;
                 $i += 1;

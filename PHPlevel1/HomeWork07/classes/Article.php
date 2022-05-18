@@ -6,9 +6,9 @@ require_once __DIR__ . '/View.php';
 class Article
 {
 
-    protected $text;
-    protected $title;
-    protected $number;
+    protected string $text;
+    protected string $title;
+    protected int $number;
 
     public function __construct($number, $title, $text)
     {
@@ -17,30 +17,28 @@ class Article
         $this->number = $number;
     }
 
-    public function getText():string
+    public function getText(): string
     {
         return $this->text;
     }
 
-    public function getTitle():string
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getNumber():int
+    public function getNumber(): int
     {
         return $this->number;
     }
 
-    public function showNews():string
+    public function showNews(): string
     {
         return $this->number . "\n" .
             $this->title . "\n" .
             $this->text;
 
     }
-
-
 
 
 }

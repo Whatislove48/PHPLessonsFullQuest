@@ -12,7 +12,6 @@ foreach ($news->getNews() as $key => $new) {
     $view->assign($key, $new);
 }
 
-
 $view->display($temp);
 
 ?>
