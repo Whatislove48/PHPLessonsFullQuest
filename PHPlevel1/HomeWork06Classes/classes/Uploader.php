@@ -7,10 +7,6 @@ class Uploader
     protected array $upload;
     protected string $info = '';
     protected string $tmpName;
-    protected string $name;
-    protected string $type;
-    protected int $size;
-
 
 //-----------------------------------------------------------------------
 
@@ -21,10 +17,7 @@ class Uploader
             '' !== $upload['name'] &&
             '' !== $upload['tmp_name']) {
             $this->upload = $upload;
-            $this->name = $upload['name'];
-            $this->size = $upload['size'];
             $this->tmpName = $upload['tmp_name'];
-            $this->type = $upload['type'];
         } else {
             return exit;
         }
@@ -35,7 +28,7 @@ class Uploader
 
     public function isUploaded(): bool // вернет существует ли поле
     {
-        if (0 !== $this->size) {
+        if (0 !== $this->upload['size']) {
             return true;
         }
         return false;
@@ -46,9 +39,9 @@ class Uploader
 
     public function showAll(): string
     {
-        $this->info .= '<br>' . $this->name;
-        $this->info .= '<br>' . $this->type;
-        $this->info .= '<br>' . $this->size;
+        $this->info .= '<br>' . $this->upload['name'];
+        $this->info .= '<br>' . $this->upload['type'];
+        $this->info .= '<br>' . $this->upload['size'];
         return $this->info;
     }
 
@@ -58,7 +51,7 @@ class Uploader
     public function upLoad():bool
     {
         $photoFolder = __DIR__ . '/../photoUpload/';
-        return move_uploaded_file($this->tmpName, $photoFolder . $this->name);
+        return move_uploaded_file($this->tmpName, $photoFolder . $this->upload['name']);
     }
 
 
