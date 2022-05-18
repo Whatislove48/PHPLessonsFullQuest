@@ -7,6 +7,7 @@ class Uploader
     protected array $upload;
     protected string $info = '';
     protected string $tmpName;
+    protected bool $isUploaded = false;
 
 //-----------------------------------------------------------------------
 
@@ -16,10 +17,9 @@ class Uploader
             0 !== $upload['size'] &&
             '' !== $upload['name'] &&
             '' !== $upload['tmp_name']) {
+            $this->isUploaded = true;
             $this->upload = $upload;
             $this->tmpName = $upload['tmp_name'];
-        } else {
-            return exit;
         }
     }
 
@@ -28,10 +28,7 @@ class Uploader
 
     public function isUploaded(): bool // вернет существует ли поле
     {
-        if (0 !== $this->upload['size']) {
-            return true;
-        }
-        return false;
+        return $this->isUploaded;
     }
 
 
@@ -39,10 +36,14 @@ class Uploader
 
     public function showAll(): string
     {
-        $this->info .= '<br>' . $this->upload['name'];
-        $this->info .= '<br>' . $this->upload['type'];
-        $this->info .= '<br>' . $this->upload['size'];
-        return $this->info;
+        if ($this->isUploaded) {
+            $this->info .= '<br>' . $this->upload['name'];
+            $this->info .= '<br>' . $this->upload['type'];
+            $this->info .= '<br>' . $this->upload['size'];
+            return $this->info;
+        }
+
+        return '';
     }
 
 

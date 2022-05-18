@@ -28,14 +28,12 @@ class GuestBook
 
 //-----------------------------------------------------------------------
 
-    public function append(string $text): GuestBook|bool
+    public function append(string $text): void
     {
         if ('' !== trim($text)) {
             $text = trim($text);
             $this->record[] = "\n" . $text;
-            return $this;
         }
-        return false;
     }
 
 

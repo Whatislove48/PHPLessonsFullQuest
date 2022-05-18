@@ -12,7 +12,7 @@ require_once __DIR__ . '/classes/GuestBook.php';
 <h1>Testing.php</h1>
 
 <form action="" method="post">
-    <input type="text" name="record" placeholder="Введите запись" required>
+    <input type="text" name="record" placeholder="Введите запись">
     <button type="submit">Внести запись</button>
 </form>
 <br>
@@ -30,8 +30,9 @@ foreach ($book->getData() as $line) {
 
 if (trim($_POST['record']) !== '') {
 
-    $newRecord = trim($_POST['record']);
-    $book->append($newRecord)->saveData();
+    $newRecord = $_POST['record'];
+    $book->append($newRecord);
+    $book->saveData();
     header('Location: testing.php');
 }
 

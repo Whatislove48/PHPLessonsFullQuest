@@ -16,7 +16,7 @@ class News
         $start = false;
         $text = $title = '';
         if (is_file($this->path) === false) {
-            return exit;
+            return exit;  // здесь должно быть исключение
         }
         $full = file($this->path, FILE_IGNORE_NEW_LINES);
 
