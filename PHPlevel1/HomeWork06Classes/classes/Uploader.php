@@ -13,24 +13,17 @@ class Uploader
 
     public function __construct(array $upload)  //   получает имя поля формы
     {
-        try {
-            if (0 === $upload['error'] &&
-                0 !== $upload['size'] &&
-                '' !== $upload['name'] &&
-                '' !== $upload['tmp_name']) {
-                $this->isUploaded = true;
-                $this->upload = $upload;
-                $this->tmpName = $upload['tmp_name'];
-            }
-            else{
-                throw new Exception('ERROR - file not uploaded');
-            }
-        }
-        catch (Exception $ex){
-            echo $ex->getMessage();
+        if (0 === $upload['error'] &&
+            0 !== $upload['size'] &&
+            '' !== $upload['name'] &&
+            '' !== $upload['tmp_name']) {
+            $this->isUploaded = true;
+            $this->upload = $upload;
+            $this->tmpName = $upload['tmp_name'];
+        } else {
+            throw new Exception('ERROR - file not uploaded');
         }
     }
-
 
 //-----------------------------------------------------------------------
 
@@ -38,7 +31,6 @@ class Uploader
     {
         return $this->isUploaded;
     }
-
 
 //-----------------------------------------------------------------------
 
@@ -54,14 +46,12 @@ class Uploader
         return '';
     }
 
-
 //-----------------------------------------------------------------------
 
-    public function upLoad():bool
+    public function upLoad(): bool
     {
         $photoFolder = __DIR__ . '/../photoUpload/';
         return move_uploaded_file($this->tmpName, $photoFolder . $this->upload['name']);
     }
-
 
 }

@@ -4,18 +4,17 @@
 class GuestBook
 {
 
-
     protected array $bookData = [];
     protected array $record = [];
     protected string $path;
 
     public function __construct(string $path)
     {
-        if ('' !== $path && is_file($path)) {
-            $this->path = $path;
+        if (!(is_file($path))) {
+            throw new Exception('File not found');
         }
+        $this->path = $path;
     }
-
 
 //-----------------------------------------------------------------------
 
@@ -28,14 +27,15 @@ class GuestBook
 
 //-----------------------------------------------------------------------
 
-    public function append(string $text): void
+    public function append(string $text): bool
     {
         if ('' !== trim($text)) {
             $text = trim($text);
             $this->record[] = "\n" . $text;
+            return true;
         }
+        return false;
     }
-
 
 //-----------------------------------------------------------------------
 
@@ -46,7 +46,6 @@ class GuestBook
         }
         return false;
     }
-
 
 }
 

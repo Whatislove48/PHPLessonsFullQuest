@@ -21,21 +21,23 @@ require_once __DIR__ . '/classes/GuestBook.php';
 
 $path = __DIR__ . '/GuestBook.txt';
 
-
-$book = new GuestBook($path);
+try {
+    $book = new GuestBook($path);
+} catch (Exception $ex) {
+    echo $ex->getMessage();
+}
 
 foreach ($book->getData() as $line) {
     echo $line . '<br>';
 }
 
 if (trim($_POST['record']) !== '') {
-
     $newRecord = $_POST['record'];
-    $book->append($newRecord);
-    $book->saveData();
-    header('Location: testing.php');
+    if ($book->append($newRecord)) {
+        $book->saveData();
+        header('Location: testing.php');
+    }
 }
-
 ?>
 
 </body>

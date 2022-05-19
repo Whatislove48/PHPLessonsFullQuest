@@ -13,10 +13,9 @@ class News
     {
         $j = 0;
         $flag = true;
-        $start = false;
         $text = $title = '';
         if (is_file($this->path) === false) {
-            return exit;  // здесь должно быть исключение
+            throw new Exception('Неверный путь до файла');
         }
         $full = file($this->path, FILE_IGNORE_NEW_LINES);
 

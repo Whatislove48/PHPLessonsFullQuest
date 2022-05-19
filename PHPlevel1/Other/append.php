@@ -1,21 +1,21 @@
 <?php
 
-require_once __DIR__.'/classes/GuestBook.php';
-require_once __DIR__.'/classes/GuestBookRecord.php';
-
-$guestBook = new GuestBook();
 
 
-if ('' === trim($_POST['record'])) {
-    echo 'Запись не введена';
-    header("Location: firstTest.php");
-    exit;
+$biba = 25;
+$boba = 13;
+
+try {
+    if($boba !== 12){
+        throw new Exception('Boba is dont 12');
+    }
 }
-else{
-    $record = new GuestBookRecord(trim($_POST['record']));
-    $guestBook->append($record);
-    $guestBook->saveRecord();
+catch (Exception $ex){
+    echo 'Boba ne raven 12';
+} finally {
+    echo 'End';
 }
+
 
 ?>
 

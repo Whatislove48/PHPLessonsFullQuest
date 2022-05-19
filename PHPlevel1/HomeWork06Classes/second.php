@@ -29,9 +29,15 @@ require_once __DIR__ . '/classes/Uploader.php';
 
 $upload = $_FILES['upload'];
 
+try {
+    $uploader = new Uploader($upload);
+    echo $uploader->showAll();
+}
+catch (Exception $ex){
+    echo $ex->getMessage();
+}
 
-$uploader = new Uploader($upload);
-echo $uploader->showAll();
+
 
 if ($uploader->isUploaded()) {
     $uploader->upLoad();

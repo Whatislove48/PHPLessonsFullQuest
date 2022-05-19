@@ -9,7 +9,6 @@ class View
 
     protected array $data = [];
 
-
     public function assign(int $name, Article $value): void
     {
         $this->data[$name] = $value;
