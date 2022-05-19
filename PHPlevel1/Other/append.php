@@ -1,21 +1,15 @@
 <?php
 
+//require_once __DIR__.'/Age.php';
+//require_once __DIR__.'/Animal.php';
+//require_once __DIR__.'/Type.php';
+require_once __DIR__.'/classes/Pig.php';
 
+$pig = new Pig(85,new Age(9));
 
-$biba = 25;
-$boba = 13;
-
-try {
-    if($boba !== 12){
-        throw new Exception('Boba is dont 12');
-    }
+if($pig->isPeppa() && $pig->isNeedKill()){
+    echo 'Шаурма готова к разработке';
 }
-catch (Exception $ex){
-    echo 'Boba ne raven 12';
-} finally {
-    echo 'End';
-}
-
 
 ?>
 
