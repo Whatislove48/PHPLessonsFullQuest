@@ -5,7 +5,7 @@ class Animal
 
     protected Type $type;
 
-    protected function setType(Type $type)
+    protected function __construct(Type $type)
     {
         $this->type = $type;
     }
@@ -19,5 +19,6 @@ class Animal
     {
         return $this->type->isPig();
     }
+
 
 }

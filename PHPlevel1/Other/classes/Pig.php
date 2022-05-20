@@ -13,7 +13,8 @@ class Pig extends Animal
 
     public function __construct(int $weight, Age $age)
     {
-        $this->setType(new Type('pig'));
+        //parent (new Type('pig'));
+        parent::__construct(new Type('pig'));
         $this->age = $age;
         $this->weight = $weight;
     }
