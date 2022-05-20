@@ -32,9 +32,18 @@ class ConnectBase
     {
         $this->sql = $sql;
         if (false === $this->dbh->prepare($this->sql)) {
-            throw new Exception('Чтение не удалось');
+            throw new Exception('Запрос не удался');
             //return false;
         }
         return true;
     }
+
+    public function query(string $sql, array $data)
+    {
+        $this->sql = $sql;
+        $prepare = $this->dbh->prepare($this->sql);
+        $prepare->execute([':id'=>$data['id']]);
+        return $prepare->fetchAll();
+    }
+
 }

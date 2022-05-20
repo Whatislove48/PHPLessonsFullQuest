@@ -4,23 +4,29 @@ require_once __DIR__.'/../classes/View.php';
 require_once __DIR__.'/../classes/News.php';
 require_once __DIR__.'/../classes/Article.php';
 
+$dataBase = new ConnectBase();
+$sql = 'SELECT * FROM news WHERE id=:id';
 
-$news = new News();
-$view = new View();
 if (!isset($_GET['id'])) {
     header('location: http://lessonshmsh/PHPLessonsFullQuest/PHPlevel1/HomeWork07/first.php');
 }
-$number = (int)$_GET['id'];
 
+$data = $dataBase->query($sql,$_GET);
 
-$new = $news->getNews();
-echo '<br>--Title--<br>';
-echo $new[$number]->getTitle();
-echo '<br>--Text--<br>';
-echo $new[$number]->getText();
+$article = new Article($data[0]['id'],
+                        $data[0]['author'],
+                        $data[0]['title'],
+                        $data[0]['text']);
+
+echo '<br>Author: ';
+echo $article->getAuthor();
+echo '<br>Title: ';
+echo $article->getTitle();
+echo '<br>Text<br>';
+echo $article->getText();
 
 ?>
 
 <html lang="ru">
-<a href="../first.php">На главную</a>
+<a href="../testDB.php">На главную</a>
 </html>

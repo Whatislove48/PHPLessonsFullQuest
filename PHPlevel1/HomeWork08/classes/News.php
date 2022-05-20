@@ -13,7 +13,8 @@ class News
     public function __construct(array $news)
     {
         for ($i = 0; $i < count($news); $i++) {
-            $this->news[] = new Article($news[$i]['author'],
+            $this->news[] = new Article( (int) $news[$i]['id'],
+                                        $news[$i]['author'],
                                         $news[$i]['title'],
                                         $news[$i]['text']);
         }

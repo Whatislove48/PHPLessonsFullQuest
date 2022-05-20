@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1> Шаблон для ДЗ 07 №3</h1>
+<h1> Шаблон ДЗ 08 Full</h1>
 
 
 <?php
@@ -19,7 +19,6 @@ foreach ($this->data as $key => $new) {?>
 
 
 <hr>
-
 
 </body>
 </html>
