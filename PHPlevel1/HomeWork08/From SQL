@@ -1,8 +1,0 @@
-Запросы в базу
-
-INSERT INTO persons
-    (firstName,lastName,age)
-VALUE (
-    'Andrey','Kuznecov',34);
-
-// вставка в таблицу

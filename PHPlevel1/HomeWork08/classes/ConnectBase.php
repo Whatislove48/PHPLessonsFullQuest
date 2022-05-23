@@ -7,15 +7,16 @@ require_once __DIR__ . '/View.php';
 class ConnectBase
 {
     protected PDO $dbh;
-    protected string $sql;// = 'SELECT * FROM persons';
+    protected string $sql;
     protected array $data;
     protected string $title;
     protected string $text;
 
-    public function __construct() //получает обьект
+    public function __construct()
     {
-        $this->dbh = new PDO('mysql:host=localhost;dbname=testing',
-            'root', '');
+        $config = file(__DIR__ . '/../config.txt', FILE_IGNORE_NEW_LINES);
+        $this->dbh = new PDO($config[0],
+            $config[1], $config[2]);
     }
 
     public function getTable(): array
@@ -32,17 +33,20 @@ class ConnectBase
     {
         $this->sql = $sql;
         if (false === $this->dbh->prepare($this->sql)) {
-            throw new Exception('Запрос не удался');
-            //return false;
+            //throw new Exception('Запрос не удался');
+            return false;
         }
         return true;
     }
 
-    public function query(string $sql, array $data)
+    public function query(string $sql, array $data): array|bool
     {
         $this->sql = $sql;
+        if (false === $this->dbh->prepare($this->sql)) {
+            return false;
+        }
         $prepare = $this->dbh->prepare($this->sql);
-        $prepare->execute([':id'=>$data['id']]);
+        $prepare->execute([':id' => $data['id']]);
         return $prepare->fetchAll();
     }
 

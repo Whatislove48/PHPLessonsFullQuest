@@ -6,8 +6,7 @@
 </head>
 <body>
 
-<h1> Шаблон ДЗ 08 Full</h1>
-
+<h1> Полный список новостей</h1>
 
 <?php
 foreach ($this->data as $key => $new) {?>
