@@ -1,30 +1,18 @@
 <?php
 
-//require_once __DIR__.'/Age.php';
-//require_once __DIR__.'/Animal.php';
-//require_once __DIR__.'/Type.php';
-require_once __DIR__.'/classes/TestOne.php';
-//require_once __DIR__.'/classes/TestInterface.php';
-require_once __DIR__.'/classes/IntClass.php';
-require_once __DIR__.'/classes/Baby.php';
-require_once __DIR__.'/classes/SmallBaby.php';
 
-$aboba = new SmallBaby('Ziliboba',1337);
+require_once __DIR__ . '/autoload.php';
+spl_autoload_register('autoload');
 
-echo $aboba->getAll();  // TestOne
-echo'<br>';
-//echo $aboba->someMethod(); // interface
-echo $aboba->getSmall(); //   abstract
 
-die;
 
-require_once __DIR__.'/classes/Pig.php';
+$article = new \classes\Article('Boba','Obosralsya','Fuking sheet');
 
-$pig = new Pig(85,new Age(9));
+echo $article->getAll();
 
-if($pig->isPeppa() && $pig->isNeedKill()){
-    echo 'Шаурма готова к разработке';
-}
+echo '<br>';
+echo $article->getAll();
+
 
 ?>
 
