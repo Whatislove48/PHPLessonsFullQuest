@@ -1,18 +1,16 @@
 <?php
 
+// Пример подключения автозагрузки
 
 require_once __DIR__ . '/autoload.php';
 spl_autoload_register('autoload');
 
 
+$test = new \classes\Db();
 
-$article = new \classes\Article('Boba','Obosralsya','Fuking sheet');
+var_dump($test->getAll());
 
-echo $article->getAll();
-
-echo '<br>';
-echo $article->getAll();
-
+echo '<br> -- END';
 
 ?>
 

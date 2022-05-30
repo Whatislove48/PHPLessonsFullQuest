@@ -14,6 +14,7 @@ class ConnectBase
 
     public function __construct()
     {
+        // тут проверка файла
         $config = file(__DIR__ . '/../config.txt', FILE_IGNORE_NEW_LINES);
         $this->dbh = new PDO($config[0],
             $config[1], $config[2]);
@@ -31,8 +32,7 @@ class ConnectBase
 
     public function execute(string $sql): bool
     {
-        $this->sql = $sql;
-        if (false === $this->dbh->prepare($this->sql)) {
+        if (false === $this->dbh->prepare($sql)) {
             //throw new Exception('Запрос не удался');
             return false;
         }
@@ -41,11 +41,10 @@ class ConnectBase
 
     public function query(string $sql, array $data): array|bool
     {
-        $this->sql = $sql;
-        if (false === $this->dbh->prepare($this->sql)) {
+        if (false === $this->dbh->prepare($sql)) {
             return false;
         }
-        $prepare = $this->dbh->prepare($this->sql);
+        $prepare = $this->dbh->prepare($sql);
         $prepare->execute([':id' => $data['id']]);
         return $prepare->fetchAll();
     }

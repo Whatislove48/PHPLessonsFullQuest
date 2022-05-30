@@ -2,7 +2,7 @@
 
 namespace classes;
 
-class Article
+class OldArticle
 {
 
     protected string $title;
