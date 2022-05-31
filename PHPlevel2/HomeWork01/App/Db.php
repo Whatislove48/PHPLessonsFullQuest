@@ -1,6 +1,6 @@
 <?php
 
-namespace classes;
+namespace App;
 
 use App\Models\Article;
 
@@ -29,7 +29,6 @@ class Db
     }
 
 
-
     public function query(string $sql, $data = []): array
     {
 
@@ -38,10 +37,10 @@ class Db
         $data = $sth->fetchAll();
         $res = [];
         foreach ($data as $row) {
-            $res[] = new Article($row['id'],
-                                 $row['author'],
-                                 $row['title'],
-                                 $row['text']);
+            $res[] = new \classes\Models\Article($row['id'],
+                                                 $row['author'],
+                                                 $row['title'],
+                                                 $row['text']);
 
         }
         return $res;
@@ -50,7 +49,6 @@ class Db
 
     public function UpQuery(string $sql, $class, $data = []): array
     {
-
         $sth = $this->dbh->prepare($sql);
         $sth->execute($data);
         return $sth->fetchAll(\PDO::FETCH_CLASS,$class);

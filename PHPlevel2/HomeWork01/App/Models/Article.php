@@ -1,7 +1,9 @@
 <?php
 
-namespace classes\Models;
+namespace App\Models;
 
+
+use App\Db;
 
 class Article
 {
@@ -32,13 +34,22 @@ class Article
 
     public function findAll(): array
     {
+
         $sql = 'SELECT * FROM news';
-        $db = new \classes\Db();
-        return $db->query($sql);
+        $db = new Db();
+        return $db->UpQuery($sql,static::class);
 
     }
 
+    public function getId():int
+    {
+        return $this->id;
+    }
 
+    public function getTitle():string
+    {
+        return $this->title;
+    }
 
 
 }
