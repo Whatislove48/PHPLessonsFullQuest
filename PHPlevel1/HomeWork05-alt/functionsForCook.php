@@ -40,7 +40,7 @@ function getUserInfo()
     foreach ($list as $line) {      // обрезает пробелы в начале и конце строк массива
         $trimLine[] = trim($line);
     }
-    $len = count($trimLine);
+
     $normalList = [];
     foreach ($trimLine as $lines) {
         $normalList[] = explode(' ', $lines);
