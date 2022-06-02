@@ -37,7 +37,7 @@ class Article
 
         $sql = 'SELECT * FROM news';
         $db = new Db();
-        return $db->UpQuery($sql,static::class);
+        return $db->upQuery($sql,static::class);
 
     }
 

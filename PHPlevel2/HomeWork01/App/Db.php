@@ -47,7 +47,7 @@ class Db
     }
 
 
-    public function UpQuery(string $sql, $class, $data = []): array
+    public function upQuery(string $sql, $class, $data = []): array
     {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($data);
