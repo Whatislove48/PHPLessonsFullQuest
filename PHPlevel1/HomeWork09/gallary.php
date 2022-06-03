@@ -21,10 +21,17 @@ foreach ($allImage as $image) {
 
 <?php
 
-if(!empty($_FILES)){
-    $gallary->addImage($_FILES['image']);
+try {
+    if(!empty($_FILES)){
+        $gallary->addImage($_FILES['image']);
+    }
+}
+catch (Exception $ex){
+    echo $ex->getMessage();
 }
 
 
 ?>
+
+<a href="index.php"> На главную </a>
 

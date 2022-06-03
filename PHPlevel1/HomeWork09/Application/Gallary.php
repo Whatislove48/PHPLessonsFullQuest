@@ -27,7 +27,7 @@ class Gallary
             throw new \Exception('Ошибка загрузки');
         }
 
-        move_uploaded_file($image['tmpName'],
+        move_uploaded_file($image['tmp_name'],
             $this->path . '/' . $image['name']);
         return true;
     }

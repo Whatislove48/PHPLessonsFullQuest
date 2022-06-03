@@ -9,11 +9,12 @@ class Cookie
 {
 
     // public function getUsersList()   вернет массив строк пользователей
-   // protected $user;
+    protected string $login;
+    protected string $password;
     protected string $table = 'users';
 
 
-    public function checkPassword(string $login, string $password):bool //WORK!!
+    public function checkPassword(string $login, string $password): bool //WORK!!
     {
         $db = new Db();
         $data = [':login' => $login,
@@ -37,7 +38,10 @@ class Cookie
             $db = new Db();
             $sql = 'SELECT login FROM ' . $this->table . ' WHERE login =:login';
             $res = $db->query($sql, Cookie::class, $data);
-            return $res[0]['login'];
+            if (empty($res)) {
+                return 'Unknown user';
+            }
+            return $res[0]->login;
         }
         return 'Unknown user';
     }
@@ -54,10 +58,22 @@ class Cookie
         return true;
     }
 
-    public function setCookie(string $log,string $pass):void // WORK
+    public function setCookie(string $log, string $pass): void // WORK
     {
         setcookie('user', $log);
         setcookie('pass', ($pass));
+    }
+
+    public function saveUser(string $log, string $pass)
+    {
+        if ('' === $log || '' === $pass) {
+            throw new \Exception('Empty field');
+        }
+        $sql = "INSERT INTO users (login,password) VALUES (
+                                             :login,:pass)";
+        $data = [':login' => $log,':pass' => $pass];
+        $db = new Db();
+        $db->insert($sql,$data);
     }
 
 
