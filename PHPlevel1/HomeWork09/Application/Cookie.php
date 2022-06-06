@@ -8,13 +8,12 @@ use Application\Db;
 class Cookie
 {
 
-    // public function getUsersList()   вернет массив строк пользователей
     protected string $login;
     protected string $password;
     protected string $table = 'users';
 
 
-    public function checkPassword(string $login, string $password): bool //WORK!!
+    public function checkPassword(string $login, string $password): bool //W
     {
         $db = new Db();
         $data = [':login' => $login,
@@ -23,7 +22,6 @@ class Cookie
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE login =:login and 
         password =:password';
         $test = $db->query($sql, Cookie::class, $data);
-
         if (!empty($test)) {
             return true;
         }
@@ -31,7 +29,7 @@ class Cookie
     }
 
 
-    public function getCurrentUser(): string   //  WORK!!!
+    public function getCurrentUser(): string   //  W
     {
         if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
             $data[':login'] = $_COOKIE['user'];
@@ -47,7 +45,7 @@ class Cookie
     }
 
 
-    public function existsUser(string $login): bool // WORK!!!
+    public function existsUser(string $login): bool // W
     {
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE login =:login';
         $data = [':login' => $login];
@@ -58,13 +56,13 @@ class Cookie
         return true;
     }
 
-    public function setCookie(string $log, string $pass): void // WORK
+    public function setCookie(string $log, string $pass): void // W
     {
         setcookie('user', $log);
         setcookie('pass', ($pass));
     }
 
-    public function saveUser(string $log, string $pass)
+    public function saveUser(string $log, string $pass):void  //W
     {
         if ('' === $log || '' === $pass) {
             throw new \Exception('Empty field');

@@ -10,7 +10,7 @@ class Gallary
     protected string $path = __DIR__ . '/../image';
     protected array $photo = [];
 
-    public function getAllPhotoName(): array
+    public function getAllPhotoName(): array   // W
     {
         $root = scandir($this->path);
 
@@ -21,7 +21,7 @@ class Gallary
     }
 
 
-    public function addImage(array $image): bool
+    public function addImage(array $image): bool  //W
     {
         if (0 !== $image['error'] || 0 === $image['size']) {
             throw new \Exception('Ошибка загрузки');

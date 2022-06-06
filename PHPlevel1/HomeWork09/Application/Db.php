@@ -21,7 +21,7 @@ class Db
             $config['user'], $config['password']);
     }
 
-    public function insert(string $sql, $data = []): bool  // WORK!
+    public function insert(string $sql, $data = []): bool  // W
     {
         $sth = $this->dbh->prepare($sql);
         if (true === $sth->execute($data)) {
@@ -32,14 +32,13 @@ class Db
     }
 
 
-    public function query(string $sql, string $class, $data = []): array
+    public function query(string $sql, string $class, $data = []): array //W
     {
         $sth = $this->dbh->prepare($sql);
         if (false === $sth->execute($data)) {
             throw new Exception('ERROR QUERY');
         }
         return $sth->fetchAll(\PDO::FETCH_CLASS,$class);
-        //return $sth->fetchAll();
     }
 
 

@@ -8,15 +8,26 @@ $train = new \Application\Trains();
 $gallary = new \Application\Gallary();
 
 //$cook->setCookie('ABOBA','12345678');
+$log = ' ';
+$pass = ' ';
 
-$log = $_COOKIE['user'];
-$pass = $_COOKIE['pass'];
+if (!empty($_COOKIE)) {
+    $log = $_COOKIE['user'] ?? ' ';
+    $pass = $_COOKIE['pass'] ?? ' ';
+}
+
 $access = false;
 $admin = false;
 
-if ($cook->checkPassword($log, $pass)){
+if (isset($_POST['out']) && 1 == $_POST['out']) {
+    setcookie('user', '', -3600);
+    setcookie('pass', '', -3600);
+    header('Location: index.php');
+}
+
+if ($cook->checkPassword($log, $pass)) {
     $access = true;
-    if('Boss' === $log || 'Admin' === $log){
+    if ('Boss' === $log || 'Admin' === $log) {
         $admin = true;
     }
 } ?>
@@ -51,22 +62,25 @@ if ($admin) { ?><br>
 
 <?php
 
-if(!$access){?>
-<hr> Авторизация <br>
-<form action="login.php" method="post">
-    <input type="text" name='user' placeholder="Логин" required minlength="3"><br>
-    <input type="text" name='pass' placeholder="Пароль" required minlength="3"><br>
-    <button type="submit"> Авторизация</button>
-</form>
 
-Не зарегистрированы? Тогда вам <br>
-<a href="login.php"> На страницу регистрации</a><br>
+if (!$access) {
+    ?>
+    <hr> Авторизация <br>
+    <form action="login.php" method="post">
+        <input type="text" name='user' placeholder="Логин" required minlength="3"><br>
+        <input type="text" name='pass' placeholder="Пароль" required minlength="3"><br>
+        <button type="submit"> Авторизация</button>
+    </form>
+
+    Не зарегистрированы? Тогда вам <br>
+    <a href="login.php"> На страницу регистрации</a><br>
 
 <?php } ?>
 
-
-
-
+<form action="index.php" method="post">
+    <input type="hidden" name="out" value="1">
+    <button type="submit"> Выйти</button>
+</form>
 
 
 </body>

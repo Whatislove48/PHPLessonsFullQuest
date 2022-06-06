@@ -11,23 +11,16 @@ class Trains
     protected string $route;
     protected int $id;
 
-//    public function __construct(string $time, string $way)
-//    {
-//        if ('' === $time || '' === $way) {
-//            throw new \Exception('Неверное расписание');
-//        }
-//        $this->time = $time;
-//        $this->way = $way;
-//    }
 
-    public function getRoute(): string    // WORK!!!
+    public function getRoute(): string    // W
     {
         return '# -> ' . $this->id . '<br>' .
             'Время отправления -> ' . $this->timeRoute . '<br>' .
             'Путь -> ' . $this->route;
     }
 
-    public function getAllWay(): array          //WORK
+
+    public function getAllWay(): array          //W
     {
         $db = new Db();
         $sql = 'SELECT * FROM ' . $this->table;
@@ -36,8 +29,12 @@ class Trains
 
     }
 
-    public function addTrain(string $route, string $time) // WORK
+
+    public function addTrain(string $route, string $time):bool // W
     {
+        if ('' === trim($route) && '' === trim($time)) {
+            throw new \Exception('Empty Info');
+        }
         $db = new Db();
         $data = [':route' => $route, ':timeRoute' => $time];
         $sql = "INSERT INTO trains (route,timeRoute) VALUES (
@@ -46,7 +43,7 @@ class Trains
     }
 
 
-    public function editTrain(int $id, string $route, string $time) //WORK
+    public function editTrain(int $id, string $route, string $time):bool //W
     {
         if (0 === $id && '' === trim($route) && '' === trim($time)) {
             throw new \Exception('Empty Info');
@@ -61,7 +58,7 @@ class Trains
     }
 
 
-    public function deleteTrain(int $id): bool  // WORK!!
+    public function deleteTrain(int $id): bool  // W
     {
         if (0 === $id ) {
             throw new \Exception('Empty ID');

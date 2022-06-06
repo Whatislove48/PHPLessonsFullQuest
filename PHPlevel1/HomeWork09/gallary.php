@@ -13,7 +13,6 @@ foreach ($allImage as $image) {
 
 <?php }?>
 
-
 <form action="" method="post" enctype="multipart/form-data">
     <input type="file" name="image">
     <button type="submit"> Загрузить новое фото </button>
@@ -29,7 +28,6 @@ try {
 catch (Exception $ex){
     echo $ex->getMessage();
 }
-
 
 ?>
 

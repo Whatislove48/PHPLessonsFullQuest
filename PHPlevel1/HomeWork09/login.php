@@ -6,34 +6,59 @@ spl_autoload_register('autoload');
 $cook = new \Application\Cookie();
 
 $access = false;
-$log = $_COOKIE['user'];
-$pass = $_COOKIE['pass'];
+$log = ' ';
+$pass = ' ';
+$user = '';
+$secret = '';
 
-if ($cook->checkPassword($log,$pass)){
+if (!empty($_COOKIE)) {
+    $log = $_COOKIE['user'] ?? ' ';
+    $pass = $_COOKIE['pass'] ?? ' ';
+}
+
+if ($cook->checkPassword($log, $pass)) {
     header('Location: index.php');
+    exit;
 }
-//     главная проблема в том, что поля поста (массив пост) имеют значение нулл
-//     либо сделать проверку авторизации на главной странице
-//     либо поставить по умолчанию
-//
 
-if (empty($_POST)){
+if (isset($_POST['user']) && isset($_POST['pass'])) {
+    $user = trim($_POST['user']) ?? '';
+    $secret = trim($_POST['pass']) ?? '';
+    $access = true;
+}
+
+if (empty($user) || empty($secret)) {
+    echo 'Заполните поля!';
+}
+
+if ($cook->checkPassword($user, $secret)) {
+    $cook->setCookie($user, $secret);
     header('Location: index.php');
+    exit;
 }
 
-if (empty(trim($_POST['user'])) && empty(trim($_POST['pass']))){
-    echo 'Заполните поля';
+if ($access && isset($_POST['out'])){
+    try {
+        if ($user !== 'Boss' && $user !== 'Admin'){
+            $cook->saveUser($user,$secret);
+            $cook->setCookie($user,$secret);
+            header('Location: login.php');
+            exit;
+        }
+        echo 'Недопустимое имя';
+    }
+    catch (Exception $ex){
+        echo $ex->getMessage();
+    }
 }
-if($cook->checkPassword(trim($_POST['user']),trim($_POST['pass']))){
-    $cook->setCookie(trim($_POST['user']),trim($_POST['pass']));
-    header('Location: index.php');
-}
-
 ?>
 
 <hr> Регистрация <br>
 <form action="" method="post">
-    <input type="text" name='user' placeholder="Логин" required minlength="3"><br>
-    <input type="text" name='pass' placeholder="Пароль" required minlength="3"><br>
-    <button type="submit"> Зарегаться </button>
+    <input type="text" name='user' placeholder="Логин" required><br>
+    <input type="text" name='pass' placeholder="Пароль" required><br>
+    <input type="hidden" name="out" value="1">
+    <button type="submit"> Зарегаться</button>
 </form>
+
+<a href="index.php"> Main </a>
