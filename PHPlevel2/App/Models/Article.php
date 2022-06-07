@@ -5,13 +5,14 @@ namespace App\Models;
 
 use App\Db;
 
-class Article
+class Article extends \App\Model
 {
 
     protected int $id;
-    protected string $title;
+    public string $title;
     protected string $author;
     protected string $text;
+    public const TABLE = 'news';
 
 //    public function __construct(int $id,
 //                                string $author,
@@ -23,6 +24,14 @@ class Article
 //        $this->title = $title;
 //        $this->text = $text;
 //    }
+
+    public function setArticle(string $author,string $title, string $text):void
+    {
+        $this->author = $author;
+        $this->title = $title;
+        $this->text = $text;
+    }
+
 
     public function getAll():string
     {

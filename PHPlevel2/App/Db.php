@@ -9,6 +9,7 @@ use mysql_xdevapi\Exception;
 class Db
 {
 
+    protected string $test;
     protected array $data = [];
     protected \PDO $dbh;
 
