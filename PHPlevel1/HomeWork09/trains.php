@@ -31,7 +31,7 @@ foreach ($ways as $way) {
 </form>
 <hr>
 
-<h4>Удалить расписания</h4>
+<h4>Удалить расписание</h4>
 <form action="trains.php" method="post">
     <input type="number" name="delete"> Номер отправления <br>
     <button type="submit"> Delete train</button>
@@ -41,12 +41,15 @@ foreach ($ways as $way) {
 try {
     if (!empty($_POST['id'])) {
         $trains->editTrain($_POST['id'], $_POST['route'], $_POST['time']);
+        header('Location: trains.php');
     }
     if (!empty($_POST['addRoute'])) {
         $trains->addTrain($_POST['addRoute'], $_POST['addTime']);
+        header('Location: trains.php');
     }
     if (!empty($_POST['delete'])) {
         $trains->deleteTrain($_POST['delete']);
+        header('Location: trains.php');
     }
 } catch (Exception $ex) {
     echo $ex->getMessage();
