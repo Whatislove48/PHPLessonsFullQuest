@@ -21,7 +21,7 @@ class Views
 
     public function display(string $template): void
     {
-        include __DIR__ . '/../../temp/' . $template;
+        include __DIR__ . '/../../HomeWork01/temp/' . $template;
     }
 
 

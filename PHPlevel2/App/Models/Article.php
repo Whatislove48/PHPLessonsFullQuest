@@ -32,12 +32,12 @@ class Article
             'text -> '.$this->text.'<br>';
     }
 
-    public function findAll(): array
+    public static function findAll(): array
     {
 
-        $sql = 'SELECT * FROM news';
-        $db = new Db();
-        return $db->upQuery($sql,static::class);
+        $sql = 'SELECT * FROM news LIMIT 4';
+        $db = new Db;
+        return $db->query($sql,static::class);
 
     }
 

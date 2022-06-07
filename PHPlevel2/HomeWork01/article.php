@@ -15,12 +15,11 @@ $id = $_GET['id'];
 $sql = 'SELECT * FROM news WHERE id=:id';
 $data[':id'] = $id;
 
-$view->assign(0, ($bd->upQuery($sql, '\App\Models\Article', $data)[0]));
+$view->assign(0, ($bd->query($sql, '\App\Models\Article', $data)[0]));
 
 $view->display('tempOneNew.php');
 
 ?>
-
 
 <html lang="ru">
 <a href="index.php">На главную</a>

@@ -3,31 +3,25 @@
 require_once __DIR__.'/autoload.php';
 spl_autoload_register('autoload');
 
-var_dump($_POST);
-$data = $_POST;
+$data = [':author'=> $_POST['author'],
+        ':title'=> $_POST['title'],
+        ':text'=> $_POST['text']];
 
 if (empty($_POST)){
     echo 'Абоба ты ничего не ввел';
-    //header('location: http://localhost/PHPlevel2/HomeWork01/index.php');
 }
 else{
     $sql = "INSERT INTO news (author, title, text)
-        VALUES ("."'".$data['author']."'".",
-        "."'".$data['title']."'".",
-        "."'".$data['text']."'".")";
+        VALUES (:author,:title,:text)";
 
     $db = new \App\Db();
-    if(true === $db->execute($sql)){
+    if(true === $db->insert($sql,$data)){
         echo 'Success';
     }
 
-
 }
 
-
 ?>
-
-
 
 <html lang="ru">
 <a href="index.php">На главную</a>
