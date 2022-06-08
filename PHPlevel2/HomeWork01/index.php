@@ -3,7 +3,7 @@
 require_once __DIR__.'/autoload.php';
 spl_autoload_register('autoload');
 
-$all = \App\Models\Article::findAll(); // массив артикулов Object
+$all = \App\Models\Article::findAllArticle(); // массив артикулов Object
 
 ?>
 
