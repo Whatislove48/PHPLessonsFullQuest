@@ -9,7 +9,7 @@ class Article extends \App\Model
 {
 
     protected int $id;
-    public string $title;
+    protected string $title;
     protected string $author;
     protected string $text;
     public const TABLE = 'news';
@@ -25,6 +25,12 @@ class Article extends \App\Model
 //        $this->text = $text;
 //    }
 
+
+    /**
+     * @param string $author
+     * @param string $title
+     * @param string $text
+     */
     public function setArticle(string $author,string $title, string $text):void
     {
         $this->author = $author;
@@ -41,10 +47,10 @@ class Article extends \App\Model
             'text -> '.$this->text.'<br>';
     }
 
-    public static function findAll(): array
+    public static function findAllArticle(): array
     {
 
-        $sql = 'SELECT * FROM news LIMIT 4';
+        $sql = 'SELECT * FROM news';
         $db = new Db;
         return $db->query($sql,static::class);
 

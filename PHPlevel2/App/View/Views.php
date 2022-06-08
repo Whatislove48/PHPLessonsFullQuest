@@ -1,6 +1,7 @@
 <?php
 
 namespace App\View;
+
 use \App\Models\Article;
 
 class Views
@@ -8,7 +9,7 @@ class Views
 
     protected array $data = [];
 
-    public function assign(int $name, Article $value): void
+    public function assign(string $name, $value): void
     {
         $this->data[$name] = $value;
     }
@@ -21,7 +22,7 @@ class Views
 
     public function display(string $template): void
     {
-        include __DIR__ . '/../../HomeWork01/temp/' . $template;
+        include __DIR__ . '/../../templates/' . $template;
     }
 
 

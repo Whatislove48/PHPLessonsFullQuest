@@ -15,10 +15,9 @@ class Db
 
     public function __construct()
     {
-        $config = include __DIR__ . '/../config.php';
-        $this->dbh = new \PDO('mysql:host=' . $config['db']['host'] .
-            ';dbname=' . $config['db']['dbname'],
-            $config['db']['user'], $config['db']['password']);
+        $config = new Config();
+        $this->dbh = new \PDO($config->getHost() . $config->getDbName(),
+            $config->getUser(), $config->getUserPass());
     }
 
     public function insert(string $sql, $data = []): bool  // W
@@ -38,7 +37,7 @@ class Db
         if (false === $sth->execute($data)) {
             throw new Exception('ERROR QUERY');
         }
-        return $sth->fetchAll(\PDO::FETCH_CLASS,$class);
+        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
 
