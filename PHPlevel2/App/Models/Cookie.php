@@ -28,19 +28,17 @@ class Cookie
     }
 
 
-    public function getCurrentUser(): string   //  W
+    public function getCurrentUser(string $log, string $pass): string   //  W
     {
-        if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])) {
-            $data[':login'] = $_COOKIE['user'];
-            $db = new Db();
-            $sql = 'SELECT login FROM ' . $this->table . ' WHERE login =:login';
-            $res = $db->query($sql, Cookie::class, $data);
-            if (empty($res)) {
-                return 'Unknown user';
-            }
-            return $res[0]->login;
+        $data[':login'] = $log;
+        $db = new Db();
+        $sql = 'SELECT login FROM ' . $this->table . ' WHERE login =:login';
+        $res = $db->query($sql, Cookie::class, $data);
+        if (empty($res)) {
+            return 'Unknown user';
         }
-        return 'Unknown user';
+        return $res[0]->login;
+
     }
 
 
@@ -57,21 +55,27 @@ class Cookie
 
     public function setCookie(string $log, string $pass): void // W
     {
-        setcookie('user', $log);
+        setcookie('log', $log);
         setcookie('pass', ($pass));
     }
 
-    public function saveUser(string $log, string $pass):void  //W
+    public function saveUser(string $log, string $pass): void  //W
     {
         if ('' === $log || '' === $pass) {
             throw new \Exception('Empty field');
         }
         $sql = "INSERT INTO users (login,password) VALUES (
                                              :login,:pass)";
-        $data = [':login' => $log,':pass' => $pass];
+        $data = [':login' => $log, ':pass' => $pass];
         $db = new Db();
-        $db->insert($sql,$data);
+        $db->insert($sql, $data);
     }
+
+//    public function checkAdmin(string $login, string $password): bool
+//    {
+//
+//
+//    }
 
 
 }

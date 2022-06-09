@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="re">
 <body>
-<h2>  Привет  <?= $this->getData()['cook']->getCurrentUser() ?></h2>
+<h2>  Привет  <?= $this->getData()['cook']->getCurrentUser($this->getData()['log']
+        ,$this->getData()['pass']) ?></h2>
 
 <?php
 

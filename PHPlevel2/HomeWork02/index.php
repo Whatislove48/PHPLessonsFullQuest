@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/../App/autoload.php';
 spl_autoload_register('autoload');
 
 $article = new \App\Models\Article();
@@ -18,6 +18,8 @@ $admin = false;
 if (!empty($_COOKIE)) {
     $log = $_COOKIE['user'] ?? ' ';
     $pass = $_COOKIE['pass'] ?? ' ';
+    $userLog = $log;
+    $userPass = $pass;
 }
 
 if (isset($_POST['out']) && 1 == $_POST['out']) {
@@ -34,7 +36,8 @@ if ($cook->checkPassword($log, $pass)) {
 }
 $view->assign('admin',$admin);
 $view->assign('access',$access);
-
+$view->assign('log',$log);
+$view->assign('pass',$pass);
 $view->display('HW02/main.php');
 
 
