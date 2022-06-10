@@ -11,7 +11,7 @@
 <?php
 foreach ($this->data['articles'] as $key => $new) {?>
     <article>
-        <a href="article.php?id=<?= $new->getId() ?>"><hr>
+        <a href="index.php?id=<?= $new->getId() ?>&&ctrl=ClientWebFour&&act=showArticle"><hr>
             <?php  echo $new->getTitle(); ?></a>
     </article>
 <?php } ?>
