@@ -6,7 +6,7 @@ require_once __DIR__.'/../classes/Article.php';
 
 $dataBase = new ConnectBase();
 $view = new View();
-$sql = 'SELECT * FROM news WHERE id=:id';
+$sql = 'SELECT * FROM news WHERE id=:id'; // Перенести в index
 
 if (!isset($_GET['id'])) {
     header('location: http://lessonshmsh/PHPLessonsFullQuest/PHPlevel1/HomeWork07/first.php');

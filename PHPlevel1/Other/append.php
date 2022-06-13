@@ -1,30 +1,35 @@
 <?php
 
-//require_once __DIR__.'/Age.php';
-//require_once __DIR__.'/Animal.php';
-//require_once __DIR__.'/Type.php';
-require_once __DIR__.'/classes/TestOne.php';
-//require_once __DIR__.'/classes/TestInterface.php';
-require_once __DIR__.'/classes/IntClass.php';
-require_once __DIR__.'/classes/Baby.php';
-require_once __DIR__.'/classes/SmallBaby.php';
+// Пример подключения автозагрузки
 
-$aboba = new SmallBaby('Ziliboba',1337);
+require_once __DIR__ . '/autoload.php';
+spl_autoload_register('autoload');
 
-echo $aboba->getAll();  // TestOne
-echo'<br>';
-//echo $aboba->someMethod(); // interface
-echo $aboba->getSmall(); //   abstract
+$data = $_GET;
 
-die;
+echo '<br>';
 
-require_once __DIR__.'/classes/Pig.php';
+$sql = 'SELECT * FROM news';
 
-$pig = new Pig(85,new Age(9));
+$sql2 = "INSERT INTO news (author, title, text)
+        VALUES ("."'".$data['author']."'".",
+        "."'".$data['title']."'".",
+        "."'".$data['text']."'".")";
 
-if($pig->isPeppa() && $pig->isNeedKill()){
-    echo 'Шаурма готова к разработке';
-}
+
+var_dump($sql2);
+
+$test = new \classes\Db();
+
+$test->execute($sql2);
+
+$all = $test->query($sql);
+
+//$all = $test->UpQuery($sql,'\classes\Models\Article');
+
+//var_dump($test->getAll());
+
+echo '<br> -- END';
 
 ?>
 
