@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="re">
 <body>
+
+<h3>
+    <a href="index.php?ctrl=ClientWebFour&&act=showAllArticle"> Client </a>
+</h3>
+
+
 <h2>  Привет  <?= $this->getData()['cook']->getCurrentUser
     ($this->getData()['log']
     ,$this->getData()['pass'])
@@ -14,7 +20,7 @@ foreach ($this->getData()['articles'] as $key => $new) {?>
             <?php  echo $new->getTitle(); ?></a>
     </article>
     <?php
-    if ($this->getData()['admin']) { ?><br><table>
+    if ($this->getData()['confirm']) { ?><br><table>
         <td><a href="changeArticle.php?id=<?= $new->getId()?>"> Редактировать новость</a></td>
         <td><a href="deleteArticle.php?id=<?= $new->getId()?>"> Удалить новость</a></td>
     <?php } ?>
@@ -36,7 +42,7 @@ if (!$this->getData()['confirm']) {
 
 <?php }
 
-if ($this->getData()['admin']){ ?>
+if ($this->getData()['confirm']){ ?>
     Добавление Новости <br>
     <form action="addArticle.php" method="post">
         <input type="text" name="author"> Author <br>

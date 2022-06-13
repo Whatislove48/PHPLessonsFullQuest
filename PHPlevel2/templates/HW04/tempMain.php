@@ -8,6 +8,10 @@
 
 <h1> Полный список новостей</h1>
 
+<h3>
+    <a href="index.php?ctrl=AdminWebFour&&act=showAllArticle"> Admin </a>
+</h3>
+
 <?php
 foreach ($this->data['articles'] as $key => $new) {?>
     <article>
@@ -15,6 +19,9 @@ foreach ($this->data['articles'] as $key => $new) {?>
             <?php  echo $new->getTitle(); ?></a>
     </article>
 <?php } ?>
+
+
+
 <hr>
 </body>
 </html>

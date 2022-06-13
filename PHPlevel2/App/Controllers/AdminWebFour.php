@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controller;
+use App\Models\Cookie;
 
 class AdminWebFour extends Controller
 {
@@ -11,7 +12,11 @@ class AdminWebFour extends Controller
     {
 
         $articles = new \App\Models\Article();
+        $cook = new Cookie();
         $this->view->assign('confirm', $this->confirm);
+        $this->view->assign('cook', $cook);
+        $this->view->assign('log', $this->userLog);
+        $this->view->assign('pass', $this->userPass);
         $this->view->assign('articles', $articles->findAll());
         $this->view->display('HW04/adminWeb.php');
         var_dump($this->confirm);

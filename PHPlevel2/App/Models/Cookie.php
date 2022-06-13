@@ -37,6 +37,7 @@ class Cookie
         if (empty($res)) {
             return 'Unknown user';
         }
+        var_dump($res);die;
         return $res[0]->login;
 
     }
