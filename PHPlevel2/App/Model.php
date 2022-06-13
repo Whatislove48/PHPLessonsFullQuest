@@ -98,6 +98,7 @@ abstract class Model
 
     public function findById(int $id):array // W
     {
+
         $db = new Db();
         $sql = 'SELECT * FROM '. static::TABLE.
             ' WHERE id=:id';

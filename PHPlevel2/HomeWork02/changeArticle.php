@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/../App/autoload.php';
 spl_autoload_register('autoload');
 
 $article = new \App\Models\Article();

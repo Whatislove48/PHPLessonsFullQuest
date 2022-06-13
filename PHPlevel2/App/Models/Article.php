@@ -14,16 +14,6 @@ class Article extends \App\Model
     protected string $text;
     public const TABLE = 'news';
 
-//    public function __construct(int $id,
-//                                string $author,
-//                                string $title,
-//                                string $text)
-//    {
-//        $this->id = $id;
-//        $this->author = $author;
-//        $this->title = $title;
-//        $this->text = $text;
-//    }
 
 
     /**
@@ -31,7 +21,7 @@ class Article extends \App\Model
      * @param string $title
      * @param string $text
      */
-    public function setArticle(string $author,string $title, string $text):void
+    public function setArticle(string $author, string $title, string $text): void
     {
         $this->author = $author;
         $this->title = $title;
@@ -39,12 +29,12 @@ class Article extends \App\Model
     }
 
 
-    public function getAll():string
+    public function getAll(): string
     {
-        return 'Id ->'.$this->id .'<br>'.
-            'Author ->'.$this->author .'<br>'.
-            'title ->'.$this->title .'<br>'.
-            'text -> '.$this->text.'<br>';
+        return 'Id ->' . $this->id . '<br>' .
+            'Author ->' . $this->author . '<br>' .
+            'title ->' . $this->title . '<br>' .
+            'text -> ' . $this->text . '<br>';
     }
 
     public static function findAllArticle(): array
@@ -52,19 +42,28 @@ class Article extends \App\Model
 
         $sql = 'SELECT * FROM news';
         $db = new Db;
-        return $db->query($sql,static::class);
+        return $db->query($sql, static::class);
 
     }
 
-    public function getId():int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle():string
+    public function getTitle(): string
     {
         return $this->title;
     }
 
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
 
 }

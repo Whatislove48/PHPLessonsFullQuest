@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="re">
 <body>
-<h2>  Привет  <?= $this->getData()['cook']->getCurrentUser($this->getData()['log']
-        ,$this->getData()['pass']) ?></h2>
+<h2>  Привет  <?= $this->getData()['cook']->getCurrentUser
+    ($this->getData()['log']
+    ,$this->getData()['pass'])
+    ?></h2>
 
 <?php
 
-foreach ($this->getData()['news'] as $key => $new) {?>
-<article >
-    <a href="article.php?id=<?php echo $new->getId()?>"><br>
-        <?php  echo $new->getTitle(); ?></a>
-</article>
+foreach ($this->getData()['articles'] as $key => $new) {?>
+    <article >
+        <a href="article.php?id=<?php echo $new->getId()?>"><br>
+            <?php  echo $new->getTitle(); ?></a>
+    </article>
     <?php
     if ($this->getData()['admin']) { ?><br><table>
         <td><a href="changeArticle.php?id=<?= $new->getId()?>"> Редактировать новость</a></td>
@@ -20,7 +22,7 @@ foreach ($this->getData()['news'] as $key => $new) {?>
 
 <?php }
 
-if (!$this->getData()['access']) {
+if (!$this->getData()['confirm']) {
     ?>
     <hr> Авторизация <br>
     <form action="login.php" method="post">
@@ -35,7 +37,7 @@ if (!$this->getData()['access']) {
 <?php }
 
 if ($this->getData()['admin']){ ?>
-        Добавление Новости <br>
+    Добавление Новости <br>
     <form action="addArticle.php" method="post">
         <input type="text" name="author"> Author <br>
         <input type="text" name="title"> Title <br>
@@ -51,3 +53,4 @@ if ($this->getData()['admin']){ ?>
 
 </body>
 </html>
+
