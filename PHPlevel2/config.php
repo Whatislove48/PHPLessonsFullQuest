@@ -3,9 +3,9 @@
 return [
     'db' => [
         'host' => 'localhost',
-        'dbname' => 'mybase',
-        'user' => 'root',
-        'password' => ''
+        'dbname' => 'lessons',
+        'user' => 'admin',
+        'password' => 'root'
     ]
 ];
 

@@ -16,45 +16,21 @@
 
 foreach ($this->getData()['articles'] as $key => $new) {?>
     <article >
-        <a href="article.php?id=<?php echo $new->getId()?>"><br>
-            <?php  echo $new->getTitle(); ?></a>
+       <br>
+            <?php  echo $new->getTitle(); ?>
     </article>
-    <?php
-    if ($this->getData()['confirm']) { ?><br><table>
-        <td><a href="changeArticle.php?id=<?= $new->getId()?>"> Редактировать новость</a></td>
-        <td><a href="deleteArticle.php?id=<?= $new->getId()?>"> Удалить новость</a></td>
-    <?php } ?>
+    <br><table>
+        <td><a href="index.php?ctrl=AdminWebFour&&act=showArticle&&id=<?= $new->getId()?>"> Редактировать новость</a></td>
+        <td><a href="index.php?ctrl=AdminWebFour&&act=deleteArticle&&id=<?= $new->getId()?>"> Удалить новость</a></td>
     </table><hr>
 
-<?php }
-
-if (!$this->getData()['confirm']) {
-    ?>
-    <hr> Авторизация <br>
-    <form action="login.php" method="post">
-        <input type="text" name='user' placeholder="Логин" required minlength="3"><br>
-        <input type="text" name='pass' placeholder="Пароль" required minlength="3"><br>
-        <button type="submit"> Авторизация</button>
-    </form>
-
-    Не зарегистрированы? Тогда вам <br>
-    <a href="login.php"> На страницу регистрации</a><br>
-
-<?php }
-
-if ($this->getData()['confirm']){ ?>
-    Добавление Новости <br>
-    <form action="addArticle.php" method="post">
-        <input type="text" name="author"> Author <br>
-        <input type="text" name="title"> Title <br>
-        <input type="text" name="text"> Text <br>
-        <button type="submit"> Add </button>
-    </form>
 <?php } ?>
 
-<form action="index.php" method="post">
-    <input type="hidden" name="out" value="1">
-    <button type="submit"> Выйти</button>
+<form action="index.php?ctrl=AdminWebFour&&act=addArticle" method="post">
+    <input type="text" name="author"> Author <br>
+    <input type="text" name="title"> Title <br>
+    <input type="text" name="text"> Text <br>
+    <button type="submit"> Добавить новость</button>
 </form>
 
 </body>
