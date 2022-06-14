@@ -1,3 +1,7 @@
+<?php
+/** @var App\View\Views $this */
+?>
+
 <!doctype html>
 <html lang="re">
 <body>

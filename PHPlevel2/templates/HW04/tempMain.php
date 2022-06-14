@@ -1,3 +1,6 @@
+<?php
+/** @var App\View\Views $this */
+?>
 <!doctype html>
 <html lang="ru">
 <head>

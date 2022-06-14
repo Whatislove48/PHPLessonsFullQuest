@@ -1,5 +1,7 @@
 <?php
 
+/** @var App\View\Views $this */
+
 echo $this->getData()['articles']->getAll();
 $id = $this->getData()['articles']->getId();
 $author = $this->getData()['articles']->getAuthor();
