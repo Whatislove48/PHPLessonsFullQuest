@@ -3,6 +3,7 @@
 namespace App;
 
 
+use App\Exceptions\DbException;
 use mysql_xdevapi\Exception;
 
 
@@ -23,19 +24,20 @@ class Db
     public function insert(string $sql, $data = []): bool  // W
     {
         $sth = $this->dbh->prepare($sql);
-        if (true === $sth->execute($data)) {
-            return true;
+        if (false === $sth->execute($data)) {
+            throw new DbException('ERROR INSERT');
         }
-        //throw new Exception('ERROR INSERT');
-        return false;
+        return true;
     }
 
 
     public function query(string $sql, string $class, $data = []): array //W
     {
         $sth = $this->dbh->prepare($sql);
-        if (false === $sth->execute($data)) {
-            throw new Exception('ERROR QUERY');
+        $res = $sth->execute($data);
+
+        if (false === $res) {
+            throw new DbException('ERROR QUERY');
         }
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }

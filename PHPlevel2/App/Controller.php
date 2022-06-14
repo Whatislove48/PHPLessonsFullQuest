@@ -24,7 +24,7 @@ abstract class Controller
             $this->userPass = $_COOKIE['pass'] ?: '111';
             $this->confirm = $cook->checkPassword($this->userLog,$this->userPass);
         }
-        var_dump($this->confirm);
+
         $this->view = new Views();
     }
 
