@@ -5,6 +5,16 @@ spl_autoload_register('autoload');
 
 $all = \App\Models\Article::findAllArticle(); // массив артикулов Object
 
+$cook = new \App\Models\Cookie();
+$cook->setCookie('Boss','a0a5c818517bbcc5303847645e27022c970dc73b');
+
+$ctrl = 'AdminWebFirst';
+$act = 'showAllArticle';
+
+$class = $class = '\App\Controllers\\' . $ctrl;
+$ctrl = new $class();
+$ctrl->action($act);
+
 ?>
 
 <!doctype html>

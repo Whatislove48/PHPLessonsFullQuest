@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controller;
+use App\Exceptions\NotFoundExpection;
 use App\Models\Article;
 use App\Models\Cookie;
 
@@ -45,11 +46,11 @@ class AdminWebFour extends Controller
         if (isset($_GET['id'])) {
             $id = $_GET['id'] ?: 1;
         } else {
-            throw new \Exception('Error 404');
+            throw new NotFoundExpection('Error 404');
         }
 
         if (0 === $id) {
-            throw new \Exception('Error 404');
+            throw new NotFoundExpection('Error 404');
         }
 
         $article = new Article();
@@ -69,11 +70,11 @@ class AdminWebFour extends Controller
         if (isset($_GET['id'])) {
             $id = $_GET['id'] ?: 1;
         } else {
-            throw new \Exception('Error 404');
+            throw new NotFoundExpection('Error 404');
         }
 
         if (0 === $id) {
-            throw new \Exception('Error 404');
+            throw new NotFoundExpection('Error 404');
         }
 
         $article = new Article();
