@@ -1,0 +1,30 @@
+15-06-2022 - MSK:15:27:30 -> Time -> 15-06-2022 - MSK:15:27:30
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Db.php
+Line -> 52
+Error -> ERROR QUERY
+
+15-06-2022 - MSK:15:27:31 -> Time -> 15-06-2022 - MSK:15:27:31
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Db.php
+Line -> 52
+Error -> ERROR QUERY
+
+15-06-2022 - MSK:15:28:55 -> Time -> 15-06-2022 - MSK:15:28:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controller.php
+Line -> 43
+Error -> Call to undefined method App\Controllers\ClientWebFour::sho()
+
+15-06-2022 - MSK:15:28:59 -> Time -> 15-06-2022 - MSK:15:28:59
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controller.php
+Line -> 43
+Error -> Call to undefined method App\Controllers\ClientWebFour::sho()
+
+15-06-2022 - MSK:15:29:32 -> Time -> 15-06-2022 - MSK:15:29:32
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Db.php
+Line -> 56
+Error -> 404 - Запись не найдена
+
+15-06-2022 - MSK:15:29:35 -> Time -> 15-06-2022 - MSK:15:29:35
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Db.php
+Line -> 56
+Error -> 404 - Запись не найдена
+

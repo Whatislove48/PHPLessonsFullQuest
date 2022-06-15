@@ -8,17 +8,24 @@ use App\Models\Cookie;
 class ClientWebFour extends Controller
 {
 
-
+    /**
+     * Displays all news
+     * @return void
+     */
     public function showAllArticle():void
     {
-
         $articles = new \App\Models\Article();
         $this->view->assign('confirm',$this->confirm);
         $this->view->assign('articles',$articles->findAll());
         $this->view->display('HW04/tempMain.php');
-
     }
 
+
+    /**
+     * Displays one news
+     * @return void
+     * @throws \Exception
+     */
     public function showArticle():void
     {
 
@@ -36,7 +43,6 @@ class ClientWebFour extends Controller
         $articles = new \App\Models\Article();
         $this->view->assign('article', $articles->findById($id)[0]);
         $this->view->display('HW04/tempOneNew.php');
-
     }
 
 

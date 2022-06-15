@@ -9,19 +9,22 @@ use App\Models\Cookie;
 class AdminWebFour extends Controller
 {
 
-
+    /**
+     * Displays all news
+     * @return void
+     */
     public function showAllArticle(): void
     {
 
-        $articles = new \App\Models\Article();
+        $articles = new Article();
         $cook = new Cookie();
+        //$cook->setCookie('Zeliboba','1234');
         $this->view->assign('confirm', $this->confirm);
         $this->view->assign('cook', $cook);
         $this->view->assign('log', $this->userLog);
         $this->view->assign('pass', $this->userPass);
         $this->view->assign('articles', $articles->findAll());
         $this->view->display('HW04/adminWeb.php');
-
     }
 
 
@@ -31,6 +34,11 @@ class AdminWebFour extends Controller
     }
 
 
+    /**
+     * Displays one news
+     * @return void
+     * @throws \Exception
+     */
     public function showArticle(): void // W
     {
 
@@ -44,13 +52,17 @@ class AdminWebFour extends Controller
             throw new \Exception('Error 404');
         }
 
-        $article = new \App\Models\Article();
+        $article = new Article();
         $this->view->assign('articles', $article->findById($id)[0]);
         $this->view->display('HW04/changeArticle.php');
-
     }
 
 
+    /**
+     * Deleting exist new in the database
+     * @return void
+     * @throws \Exception
+     */
     public function deleteArticle(): void // W
     {
 
@@ -64,24 +76,30 @@ class AdminWebFour extends Controller
             throw new \Exception('Error 404');
         }
 
-        $article = new \App\Models\Article();
+        $article = new Article();
         $article->findById($id)[0]->delete();
-
         header('Location: index.php?ctrl=AdminWebFour&&act=showAllArticle');
-
     }
 
+
+    /**
+     * Adds new article into database
+     * @return void
+     */
     public function addArticle(): void // W
     {
-        $article = new \App\Models\Article();
+        $article = new Article();
         $article->setArticle(   $_POST['author'],
                                 $_POST['title'],
                                 $_POST['text']);
         $article->save();
-
         header('Location: index.php?ctrl=AdminWebFour&&act=showAllArticle');
     }
 
+    /**
+     * Change existing news in the database
+     * @return void
+     */
     public function changeArticle(): void // W
     {
         $articles = new Article();
@@ -91,7 +109,6 @@ class AdminWebFour extends Controller
             $_POST['title'],
             $_POST['text']);
         $article->save();
-
         header('Location: index.php?ctrl=AdminWebFour&&act=showAllArticle');
     }
 

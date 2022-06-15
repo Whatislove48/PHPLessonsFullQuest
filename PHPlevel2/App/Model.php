@@ -10,6 +10,11 @@ abstract class Model
     public const TABLE = '';
 
 
+    /**
+     * updating in database exist field
+     * @return void
+     * @throws Exceptions\DbException
+     */
     protected function update(): void // W
     {
         $db = new Db();
@@ -33,6 +38,11 @@ abstract class Model
     }
 
 
+    /**
+     * inserting in the database new field
+     * @return void
+     * @throws Exceptions\DbException
+     */
     protected function insert(): void  // W
     {
         $db = new Db();
@@ -56,6 +66,12 @@ abstract class Model
     }
 
 
+    /**
+     * find all fields in database
+     * @return array
+     * @throws Exceptions\DbException
+     * @throws Exceptions\NotFoundExpection
+     */
     public function findAll(): array
     {
         $sql = 'SELECT * FROM ' . static::TABLE;
@@ -64,6 +80,10 @@ abstract class Model
     }
 
 
+    /**
+     * choose the way to save the field
+     * @return string
+     */
     public function save(): string // W
     {
 
@@ -77,6 +97,12 @@ abstract class Model
         return 'Insert';
     }
 
+
+    /**
+     * delete field for given id
+     * @return bool
+     * @throws Exceptions\DbException
+     */
     public function delete(): bool // W
     {
         $db = new Db;
@@ -96,6 +122,14 @@ abstract class Model
         return true;
     }
 
+
+    /**
+     * find info in database for given id
+     * @param int $id
+     * @return array
+     * @throws Exceptions\DbException
+     * @throws Exceptions\NotFoundExpection
+     */
     public function findById(int $id):array // W
     {
 

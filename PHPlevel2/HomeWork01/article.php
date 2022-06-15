@@ -17,7 +17,7 @@ $data[':id'] = $id;
 
 $view->assign(0, ($bd->query($sql, '\App\Models\Article', $data)[0]));
 
-$view->display('tempOneNew.php');
+$view->display('HW02/tempOneNew.php');
 
 ?>
 

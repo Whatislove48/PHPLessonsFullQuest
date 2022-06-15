@@ -10,18 +10,21 @@ abstract class Controller
 
     protected Views $view;
     protected string $userLog = 'unknown';
-    protected string $userPass = '111';
+    protected string $userPass = '';
     protected bool $confirm = false;
     protected bool $Admin = false;
 
 
+    /**
+     * Validates user cookie data
+     */
     public function __construct()
     {
         $cook = new Cookie();
         //$cook->setCookie('Zeliboba','1234');
         if(isset($_COOKIE) && !empty($_COOKIE)) {
             $this->userLog = $_COOKIE['log'] ?: 'unknown';
-            $this->userPass = $_COOKIE['pass'] ?: '111';
+            $this->userPass = $_COOKIE['pass'] ?: '';
             $this->confirm = $cook->checkPassword($this->userLog,$this->userPass);
         }
 
@@ -35,6 +38,11 @@ abstract class Controller
     }
 
 
+    /**
+     * Grants access rights to the controller
+     * @param $action
+     * @return void
+     */
     public function action($action)
     {
         if( false === $this->access()){

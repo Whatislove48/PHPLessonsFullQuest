@@ -4,6 +4,8 @@ namespace App;
 
 
 use App\Exceptions\DbException;
+use App\Exceptions\MultiErrors;
+use App\Exceptions\NotFoundExpection;
 use mysql_xdevapi\Exception;
 
 
@@ -14,32 +16,61 @@ class Db
     protected array $data = [];
     protected \PDO $dbh;
 
+
+    /**
+     * @throws DbException
+     */
     public function __construct()
     {
-        $config = new Config();
-        $this->dbh = new \PDO($config->getHost() . $config->getDbName(),
-            $config->getUser(), $config->getUserPass());
+        try{
+            $config = new Config();
+            $this->dbh = new \PDO($config->getHost() . $config->getDbName(),
+                $config->getUser(), $config->getUserPass());
+        }
+        catch (\PDOException $er){
+            throw new DbException('','Ошибка подключения к базе');
+        }
     }
 
-    public function insert(string $sql, $data = []): bool  // W
+
+    /**
+     * @param string $sql
+     * @param array $data
+     * @return bool
+     * @throws DbException
+     */
+    public function insert(string $sql, array $data = []): bool  // W
     {
         $sth = $this->dbh->prepare($sql);
         if (false === $sth->execute($data)) {
-            throw new DbException('ERROR INSERT');
+            throw new DbException($sql,'ERROR INSERT');
         }
         return true;
     }
 
 
-    public function query(string $sql, string $class, $data = []): array //W
+    /**
+     * @param string $sql
+     * @param string $class
+     * @param array $data
+     * @return array
+     * @throws DbException
+     * @throws NotFoundExpection
+     */
+    public function query(string $sql, string $class, array $data = []): array //W
     {
-        $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute($data);
-
-        if (false === $res) {
-            throw new DbException('ERROR QUERY');
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $sth->execute($data);
         }
-        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+        catch (\PDOException $pdo){
+            throw new DbException($sql,'ERROR QUERY');
+        }
+        $res = $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+        if(empty($res) ){
+            throw new NotFoundExpection('404 - Запись не найдена');
+        }
+        return $res;
     }
 
 

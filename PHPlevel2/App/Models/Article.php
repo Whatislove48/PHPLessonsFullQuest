@@ -4,6 +4,8 @@ namespace App\Models;
 
 
 use App\Db;
+use App\Exceptions\DbException;
+use App\Exceptions\NotFoundExpection;
 
 class Article extends \App\Model
 {
@@ -13,7 +15,6 @@ class Article extends \App\Model
     protected string $author;
     protected string $text;
     public const TABLE = 'news';
-
 
 
     /**
@@ -29,6 +30,9 @@ class Article extends \App\Model
     }
 
 
+    /**
+     * @return string
+     */
     public function getAll(): string
     {
         return 'Id ->' . $this->id . '<br>' .
@@ -37,30 +41,53 @@ class Article extends \App\Model
             'text -> ' . $this->text . '<br>';
     }
 
+
+    /**
+     * @throws DbException
+     * @throws NotFoundExpection
+     * @return array
+     */
     public static function findAllArticle(): array
     {
 
-        $sql = 'SELECT * FROM news';
+        $sql = 'SELECT * FROM '.static::TABLE;
+        //var_dump($sql);die;
         $db = new Db;
         return $db->query($sql, static::class);
 
     }
 
+
+    /**
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;
     }
 
+
+    /**
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
+
+    /**
+     * @return string
+     */
     public function getAuthor(): string
     {
         return $this->author;
     }
 
+
+    /**
+     * @return string
+     */
     public function getText(): string
     {
         return $this->text;

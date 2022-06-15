@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Db;
+use App\Exceptions\DbException;
+use App\Exceptions\NotFoundExpection;
 
 class Cookie
 {
@@ -12,6 +14,11 @@ class Cookie
     protected string $table = 'users';
 
 
+    /**
+     * @param string $login
+     * @param string $password
+     * @return bool
+     */
     public function checkPassword(string $login, string $password): bool //W
     {
         $db = new Db();
@@ -28,6 +35,13 @@ class Cookie
     }
 
 
+    /**
+     * @param string $log
+     * @param string $pass
+     * @throws DbException
+     * @throws NotFoundExpection
+     * @return string
+     */
     public function getCurrentUser(string $log, string $pass): string   //  W
     {
         $data[':login'] = $log;
@@ -42,6 +56,12 @@ class Cookie
     }
 
 
+    /**
+     * @param string $login
+     * @throws DbException
+     * @throws NotFoundExpection
+     * @return bool
+     */
     public function existsUser(string $login): bool // W
     {
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE login =:login';
@@ -53,12 +73,23 @@ class Cookie
         return true;
     }
 
+    /**
+     * @param string $log
+     * @param string $pass
+     * @return void
+     */
     public function setCookie(string $log, string $pass): void // W
     {
         setcookie('log', $log);
         setcookie('pass', ($pass));
     }
 
+    /**
+     * @param string $log
+     * @param string $pass
+     * @throws DbException
+     * @return void
+     */
     public function saveUser(string $log, string $pass): void  //W
     {
         if ('' === $log || '' === $pass) {

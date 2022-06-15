@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../App/autoload.php';
 spl_autoload_register('autoload');
 
+$logger = new \App\Logger();
 
 try {
     $ctrl = empty($_GET) ? 'ClientWebFour' : ($_GET['ctrl'] ?: 'ClientWebFour');
@@ -17,12 +18,20 @@ try {
     }
 
 } catch (\App\Exceptions\DbException $ex) {
-    echo $ex->getMessage();
+    $logger->saveLog($ex);
+    $ex->getAllInfo();
     die;
-} catch (PDOException $e) {
-    echo $e->getMessage();
-
+} catch (\App\Exceptions\NotFoundExpection $except) {
+    $logger->saveLog($except);
+    echo 'Message -> ' . $except->getMessage();
+    die;
+} catch (Throwable $e) {
+    $logger->saveLog($e);
+    echo 'Message -> ' . 'Error Controller';
+    header('Location: index.php?ctrl=ClientWebFour&&act=showAllArticle');
+    //die;
 }
+
 
 
 
