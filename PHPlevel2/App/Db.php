@@ -67,9 +67,9 @@ class Db
             throw new DbException($sql,'ERROR QUERY');
         }
         $res = $sth->fetchAll(\PDO::FETCH_CLASS, $class);
-        if(empty($res) ){
-            throw new NotFoundExpection('404 - Запись не найдена');
-        }
+        //if(empty($res) ){
+            //throw new NotFoundExpection('404 - Запись не найдена');
+        //}
         return $res;
     }
 

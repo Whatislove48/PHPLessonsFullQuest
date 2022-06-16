@@ -93,7 +93,7 @@ class Cookie
     public function saveUser(string $log, string $pass): void  //W
     {
         if ('' === $log || '' === $pass) {
-            throw new \Exception('Empty field');
+            throw new \Exception('Empty authorize field');
         }
         $sql = "INSERT INTO users (login,password) VALUES (
                                              :login,:pass)";

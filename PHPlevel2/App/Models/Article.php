@@ -51,9 +51,12 @@ class Article extends \App\Model
     {
 
         $sql = 'SELECT * FROM '.static::TABLE;
-        //var_dump($sql);die;
         $db = new Db;
-        return $db->query($sql, static::class);
+        $res = $db->query($sql, static::class);
+        if(empty($res)){
+            throw new NotFoundExpection('404 - Field not found ');
+        }
+        return $res;
 
     }
 

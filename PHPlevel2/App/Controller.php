@@ -12,7 +12,8 @@ abstract class Controller
     protected string $userLog = 'unknown';
     protected string $userPass = '';
     protected bool $confirm = false;
-    protected bool $Admin = false;
+    protected Cookie $cook;
+    protected string $class;
 
 
     /**
@@ -20,13 +21,16 @@ abstract class Controller
      */
     public function __construct()
     {
-        $cook = new Cookie();
-        //$cook->setCookie('Zeliboba','1234');
+        $this->cook = new Cookie();
         if(isset($_COOKIE) && !empty($_COOKIE)) {
-            $this->userLog = $_COOKIE['log'] ?: 'unknown';
-            $this->userPass = $_COOKIE['pass'] ?: '';
-            $this->confirm = $cook->checkPassword($this->userLog,$this->userPass);
+            $this->userLog = $_COOKIE['log'] ?? 'unknown';
+            $this->userPass = $_COOKIE['pass'] ?? '';
+            $this->confirm = $this->cook->checkPassword($this->userLog,$this->userPass);
         }
+        //$name = explode('\\',static::class);
+        //$this->class = $name[(count($name))-1];
+        $name = new \ReflectionClass($this);
+        $this->class = $name->getShortName();
 
         $this->view = new Views();
     }

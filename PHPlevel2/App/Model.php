@@ -110,15 +110,15 @@ abstract class Model
 
         $fields = get_object_vars($this);
 
-        if(!array_key_exists('id',$fields)){
+        if (!array_key_exists('id', $fields)) {
             return false;
         }
         $data[':id'] = $fields['id'];
 
-        $sql = 'DELETE FROM '.static::TABLE.
+        $sql = 'DELETE FROM ' . static::TABLE .
             ' WHERE id=:id';
 
-        $db->insert($sql,$data);
+        $db->insert($sql, $data);
         return true;
     }
 
@@ -130,15 +130,14 @@ abstract class Model
      * @throws Exceptions\DbException
      * @throws Exceptions\NotFoundExpection
      */
-    public function findById(int $id):array // W
+    public function findById(int $id): array // W
     {
-
         $db = new Db();
-        $sql = 'SELECT * FROM '. static::TABLE.
+        $sql = 'SELECT * FROM ' . static::TABLE .
             ' WHERE id=:id';
 
         $data[':id'] = $id;
-        return $db->query($sql,static::class,$data);
+        return $db->query($sql, static::class, $data);
     }
 
 
