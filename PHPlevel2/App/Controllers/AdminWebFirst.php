@@ -2,18 +2,11 @@
 
 namespace App\Controllers;
 
-class AdminWebFirst extends AdminWebFour
+
+class AdminWebFirst extends AdminWebMain
 {
 
-
-    public function checkAdmin(): bool
-    {
-        if (('Admin' === $this->userLog || 'Boss' === $this->userLog)
-            && $this->confirm) {
-            return true;
-        }
-        return false;
-    }
+    protected const TEMP = 'HW01/';
 
 
     public function access(): bool
