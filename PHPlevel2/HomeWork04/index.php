@@ -12,15 +12,15 @@ try {
     $class = '\App\Controllers\\' . $ctrl;
 
     $ctrl = new $class();
+    $ctrl->action($act);
 
-    if ($ctrl->access()) {
-        $ctrl->action($act);
-    }
-
-} catch (Exception $ex){
+}
+catch (Exception $ex){
     echo $ex->getMessage();
 }
-
-
+catch (Throwable $e) {
+    header('Location: index.php?ctrl=ClientWebFour&&act=showAllArticle');
+    exit;
+}
 
 
