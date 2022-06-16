@@ -5,8 +5,9 @@ namespace App\Models;
 use App\Db;
 use App\Exceptions\DbException;
 use App\Exceptions\NotFoundExpection;
+use App\Model;
 
-class Cookie
+class Cookie extends Model
 {
 
     protected string $login;
