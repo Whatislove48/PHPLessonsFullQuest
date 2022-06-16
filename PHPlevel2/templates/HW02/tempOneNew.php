@@ -1,4 +1,6 @@
-
+<?php
+/** @var App\View\Views $this */
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -7,15 +9,20 @@
 </head>
 <body>
 
-<h3> Новость <?php echo $this->getData()[0]->getId(); ?></h3>
+<h1> Новость <?php echo $this->getData()['article']->getId(); ?></h1>
 
 <?php
-
-$new = $this->getData()[0];
-echo '<br>';
-echo $new->getAll();
+$new = $this->getData()['article'];
+echo '<br>Author: ';
+echo $new->getAuthor();
+echo '<hr>Title: ';
+echo $new->getTitle();
+echo '<hr>Text:';
+echo $new->getText();
 
 ?>
+<hr>
+<a href="index.php"> На главную </a>
 
 </body>
 </html>
