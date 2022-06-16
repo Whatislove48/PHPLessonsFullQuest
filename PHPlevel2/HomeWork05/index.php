@@ -20,16 +20,16 @@ try {
 } catch (\App\Exceptions\DbException $ex) {
     $logger->saveLog($ex);
     $ex->getAllInfo();
-    die;
+    exit;
 } catch (\App\Exceptions\NotFoundExpection $except) {
     $logger->saveLog($except);
     echo 'Message -> ' . $except->getMessage();
-    die;
+    exit;
 } catch (Throwable $e) {
     $logger->saveLog($e);
     echo 'Message -> ' . 'Error Controller';
     header('Location: index.php?ctrl=ClientWebFour&&act=showAllArticle');
-    //die;
+    exit;
 }
 
 

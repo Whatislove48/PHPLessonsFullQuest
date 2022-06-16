@@ -33,3 +33,8 @@ File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App
 Line -> 71
 Error -> 404 - Запись не найдена
 
+Time -> 16-06-2022 - MSK:11:55:08
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/templates/HW04/tempOneNew.php
+Line -> 12
+Error -> Call to a member function getId() on null
+
