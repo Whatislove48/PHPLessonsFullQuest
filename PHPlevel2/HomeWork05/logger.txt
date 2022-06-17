@@ -38,3 +38,208 @@ File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/tem
 Line -> 12
 Error -> Call to a member function getId() on null
 
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:54
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:15:39:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 22
+Error -> Call to undefined method App\Models\Article::findAll()
+
+Time -> 17-06-2022 - MSK:17:38:58
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/templates/HW04/tempOneNew.php
+Line -> 12
+Error -> Call to undefined method App\View\Views::getData()
+

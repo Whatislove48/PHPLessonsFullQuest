@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-
-use App\Db;
-use App\Exceptions\DbException;
-use App\Exceptions\NotFoundExpection;
 use App\Repositories\ArticleRepository;
 
-class Article extends \App\Model
+class ArticleRep extends ArticleRepository
 {
-
     protected int $id;
     protected string $title;
     protected string $author;
@@ -29,8 +24,6 @@ class Article extends \App\Model
         $this->title = $title;
         $this->text = $text;
     }
-
-
 
 
 

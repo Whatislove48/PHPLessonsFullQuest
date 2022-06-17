@@ -15,14 +15,14 @@
 </h3>
 
 <?php
-foreach ($this->articles as $key => $new) {?>
+foreach ($this->data['articles'] as $key => $new) {?>
     <article>
         <a href="index.php?id=<?= $new->getId() ?>&&ctrl=ClientWebFirst&&act=showArticle"><hr>
             <?php  echo $new->getTitle(); ?></a>
     </article>
 <?php }
 
-if(!$this->confirm){
+if(!$this->getData()['confirm']){
     ?>
     <br>  Вы не авторизованы <br>
 <form action="index.php?ctrl=ClientWebFirst&&act=authorization" method="post">

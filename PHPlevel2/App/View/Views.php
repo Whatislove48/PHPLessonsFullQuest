@@ -25,9 +25,24 @@ class Views
      * get saved data
      * @return array
      */
-    public function getData(): array
+//    public function getData(): array
+//    {
+//        return $this->data;
+//    }
+
+    public function __set(string $name, $value): void
     {
-        return $this->data;
+        $this->data[$name] = $value;
+    }
+
+    public function __get(string $name)
+    {
+        return $this->data[$name] ?? null;
+    }
+
+    public function __isset(string $name): bool
+    {
+        return (isset($this->data[$name]));
     }
 
 

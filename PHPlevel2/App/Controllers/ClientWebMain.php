@@ -18,9 +18,12 @@ abstract class ClientWebMain extends Controller
     public function showAllArticle(): void
     {
         $articles = new \App\Models\Article();
-        $this->view->assign('confirm', $this->confirm);
-        $this->view->assign('articles', $articles->findAll());
+        //$this->view->assign('confirm', $this->confirm);
+        //$this->view->assign('articles', $articles->findAll());
+        $this->view->confirm = $this->confirm;
+        $this->view->articles = $articles->findAll();
         $this->view->display(static::TEMP . 'tempMain.php');
+
     }
 
 

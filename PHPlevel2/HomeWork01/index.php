@@ -23,7 +23,10 @@ try {
     echo '<br> Line -> ' . $except->getLine();
     exit;
 } catch (Throwable $e) {
-    header('Location: index.php?ctrl=ClientWebFirst&&act=showAllArticle');
+    echo 'Message -> ' . $e->getMessage();
+    echo '<br> File -> ' . $e->getFile();
+    echo '<br> Line -> ' . $e->getLine();
+    //header('Location: index.php?ctrl=ClientWebFirst&&act=showAllArticle');
     exit;
 }
 

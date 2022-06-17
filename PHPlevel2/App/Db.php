@@ -4,7 +4,7 @@ namespace App;
 
 
 use App\Exceptions\DbException;
-use App\Exceptions\MultiErrors;
+use App\Repositories\DbSingleTon;
 use App\Exceptions\NotFoundExpection;
 use mysql_xdevapi\Exception;
 
@@ -20,16 +20,21 @@ class Db
     /**
      * @throws DbException
      */
+//    public function __construct()
+//    {
+//        try{
+//            $config = new Config();
+//            $this->dbh = new \PDO($config->getHost() . $config->getDbName(),
+//                $config->getUser(), $config->getUserPass());
+//        }
+//        catch (\PDOException $er){
+//            throw new DbException('','Ошибка подключения к базе');
+//        }
+//    }
+
     public function __construct()
     {
-        try{
-            $config = new Config();
-            $this->dbh = new \PDO($config->getHost() . $config->getDbName(),
-                $config->getUser(), $config->getUserPass());
-        }
-        catch (\PDOException $er){
-            throw new DbException('','Ошибка подключения к базе');
-        }
+        $this->dbh = DbSingleTon::connect();
     }
 
 
@@ -43,7 +48,7 @@ class Db
     {
         $sth = $this->dbh->prepare($sql);
         if (false === $sth->execute($data)) {
-            throw new DbException($sql,'ERROR INSERT');
+            throw new DbException($sql, 'ERROR INSERT');
         }
         return true;
     }
@@ -62,13 +67,12 @@ class Db
         try {
             $sth = $this->dbh->prepare($sql);
             $sth->execute($data);
-        }
-        catch (\PDOException $pdo){
-            throw new DbException($sql,'ERROR QUERY');
+        } catch (\PDOException $pdo) {
+            throw new DbException($sql, 'ERROR QUERY');
         }
         $res = $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         //if(empty($res) ){
-            //throw new NotFoundExpection('404 - Запись не найдена');
+        //throw new NotFoundExpection('404 - Запись не найдена');
         //}
         return $res;
     }
