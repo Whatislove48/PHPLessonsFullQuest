@@ -15,10 +15,10 @@ class Views
      * @param $value
      * @return void
      */
-    public function assign(string $name, $value): void
-    {
-        $this->data[$name] = $value;
-    }
+//    public function assign(string $name, $value): void
+//    {
+//        $this->data[$name] = $value;
+//    }
 
 
     /**

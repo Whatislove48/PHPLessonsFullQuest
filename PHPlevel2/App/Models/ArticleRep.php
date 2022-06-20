@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Repositories\ArticleRepository;
 
-class ArticleRep extends ArticleRepository
+class ArticleRep
 {
     protected int $id;
     protected string $title;

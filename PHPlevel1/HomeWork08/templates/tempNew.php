@@ -25,7 +25,7 @@ $article = new Article($data[0]['id'],
                         $data[0]['text']);
 
 $view->assign(0,$article);
-$view->display('tempOneNew.php');
+$view->display('errorWeb.php');
 
 ?>
 <hr>

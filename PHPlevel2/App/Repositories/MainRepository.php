@@ -135,6 +135,16 @@ abstract class MainRepository
     }
 
 
+    public function findAll(): array
+    {
+        $sql = 'SELECT * FROM '.static::TABLE;
+        return $this->query($sql, static::class);
+    }
+
+
+
+
+
 
 
 

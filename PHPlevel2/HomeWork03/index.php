@@ -4,20 +4,22 @@
 require_once __DIR__ . '/../App/autoload.php';
 spl_autoload_register('autoload');
 
+//var_dump($_SERVER['REQUEST_URI']);
+$uri = $_SERVER['REQUEST_URI'];
+$parts = explode('/',$uri);
 
-echo 'Hey<br>';
+var_dump($parts);
 
-$test = new \App\Models\UserRep();
+$ctrl = $parts[4] ?: 'ClientWebFirst';
+$act = $parts[5] ?: 'showAllArticle';
 
-foreach ($test->findAllUsers() as $user){
-    var_dump($user);
-    echo '<hr>';
-}
-echo '<hr>';
+$class = '\App\Controllers\\' . $ctrl;
+$ctrl = new $class();
+$ctrl->action($act);
 
-echo $test->findById(2)->getLogin();
+die;
 
-
+echo '<br>';
 
 
 

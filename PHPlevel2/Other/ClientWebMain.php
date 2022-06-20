@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Controller;
-use App\Exceptions\InputExpection;
-use App\Repositories\ArticleRepository;
+use App\Exceptions\DbException;
+use App\Exceptions\NotFoundExpection;
 
 abstract class ClientWebMain extends Controller
 {
@@ -28,24 +28,25 @@ abstract class ClientWebMain extends Controller
 
 
     /**
-     * Displays one new
+     * Displays one news
      * @return void
+     * @throws \Exception
      */
     public function showArticle(): void
     {
-        if (!isset($_POST['ctrl']) || !isset($_POST['action']) ||
-            !isset($_POST['id'])) {
-            throw new InputExpection('Неверный ввод', 420);
-        }
-        if (($this->class !== $_POST['ctrl']) ||
-            ('showArticle' !== $_POST['action']) ||
-            ($_POST['id'] < 0)) {
-            throw new InputExpection(' Не найдено', 404);
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'] ?: 1;
+        } else {
+            throw new \Exception('Error 404',404);
         }
 
+        if (0 === $id) {
+            throw new \Exception('Error 404',404);
+        }
         //$articles = new \App\Models\Article();
-        $articles = new ArticleRepository();
-        $this->view->article = $articles->findById($_POST['id']);
+        $articles = new \App\Repositories\ArticleRepository();
+        $this->view->article = $articles->findById($id);
         $this->view->display(static::TEMP . 'tempOneNew.php');
     }
 
@@ -53,26 +54,24 @@ abstract class ClientWebMain extends Controller
     /**
      * Authorization new user if her info not found in database
      * @return void
+     * @throws DbException
      */
     public function authorization(): void
     {
-        if (!isset($_POST['login']) || !isset($_POST['password'])) {
-            throw new InputExpection('Неверный ввод', 420);
-        }
-
         if (strlen($_POST['login']) < 3 && strlen($_POST['password']) < 3) {
-            throw new InputExpection('Слишком короткий логин или пароль',228);
+            throw new NotFoundExpection('Слишком короткий логин или пароль');
         }
         $log = $_POST['login'];
         $pass = $_POST['password'];
+
         if ($this->cook->checkPassword($log, $pass)) {
             $this->cook->setCookie($log, $pass);
-            header('Location: http://localhost/index.php');
+            header('Location: index.php?ctrl=' . $this->class . '&&act=showAllArticle');
             exit;
         }
         $this->cook->saveUser($log, $pass);
         $this->cook->setCookie($log, $pass);
-        header('Location: http://localhost/index.php');
+        header('Location: index.php?ctrl=' . $this->class . '&&act=showAllArticle');
         exit;
     }
 

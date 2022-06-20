@@ -9,25 +9,27 @@
 </head>
 <body>
 
-<h1> Полный список новостей</h1>
+<h1> Полный список новостей </h1>
 <h3>
-    <a href="index.php?ctrl=AdminWebFirst&&act=showAllArticle"> Admin </a>
+    <a href="index.php/AdminWebFirst/showAllArticle"> Admin </a>
 </h3>
 
 <?php
-foreach ($this->data['articles'] as $key => $new) {?>
-    <article>
-        <a href="index.php?id=<?= $new->getId() ?>&&ctrl=ClientWebFirst&&act=showArticle"><hr>
-            <?php  echo $new->getTitle(); ?></a>
-    </article>
+foreach ($this->articles as $key => $new) {?>
+    <form action= "index.php/ClientWebThird/showArticle/<?= $new->getId() ?>" method="post">
+        <button type="submit"> <?php  echo $new->getTitle(); ?> </button>
+        <input type="hidden" name="ctrl" value="ClientWebThird">
+        <input type="hidden" name="action" value="showArticle">
+        <input type="hidden" name="id" value="<?= $new->getId() ?>"><hr>
+    </form>
 <?php }
 
-if(!$this->getData()['confirm']){
+if(!$this->confirm){
     ?>
     <br>  Вы не авторизованы <br>
-<form action="index.php?ctrl=ClientWebFirst&&act=authorization" method="post">
-    <input type="text" name='login' placeholder="Логин" required minlength="2"><br>
-    <input type="text" name='password' placeholder="Пароль" required minlength="2"><br>
+<form action="index.php/ClientWebThird/authorization" method="post">
+    <input type="text" name='login' placeholder="Логин"><br>
+    <input type="text" name='password' placeholder="Пароль"><br>
     <button type="submit"> Авторизация</button>
 </form>
 

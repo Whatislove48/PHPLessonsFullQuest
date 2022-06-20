@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1> Полный список новостей</h1>
+<h1> Полный список новостей </h1>
 <h3>
     <a href="index.php?ctrl=AdminWebFirst&&act=showAllArticle"> Admin </a>
 </h3>

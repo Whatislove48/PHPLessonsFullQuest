@@ -12,15 +12,13 @@ class UserRepository extends MainRepository
 
 
 
-    /**
-     * @return array
-     */
-    public function findAllUsers(): array
-    {
 
-        $sql = 'SELECT * FROM '.static::TABLE;
-        return $this->query($sql, static::class);
-    }
+//    public function findAllUsers(): array
+//    {
+//
+//        $sql = 'SELECT * FROM '.static::TABLE;
+//        return $this->query($sql, static::class);
+//    }
 
 
     /**

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Repositories\UserRepository;
 
-class UserRep extends UserRepository
+class UserRep
 {
 
     protected int $id;

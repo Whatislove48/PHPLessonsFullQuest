@@ -15,17 +15,13 @@ class ArticleRepository extends MainRepository
     public const TABLE = 'news';
 
 
-    /**
-     * @throws DbException
-     * @throws NotFoundExpection
-     * @return array
-     */
-    public function findAllArticle(): array
-    {
 
-        $sql = 'SELECT * FROM '.static::TABLE;
-        return $this->query($sql, static::class);
-    }
+//    public function findAllArticle(): array
+//    {
+//
+//        $sql = 'SELECT * FROM '.static::TABLE;
+//        return $this->query($sql, static::class);
+//    }
 
 
     /**
@@ -33,13 +29,13 @@ class ArticleRepository extends MainRepository
      * @param int $id
      * @return ArticleRep
      */
-    public function findById(int $id): ArticleRep // W
+    public function findById(int $id) : ArticleRep
     {
         $sql = 'SELECT * FROM ' . static::TABLE .
             ' WHERE id=:id';
 
         $data[':id'] = $id;
-        return $this->query($sql, static::class, $data)[0];
+        return $this->query($sql, ArticleRep::class, $data)[0];
     }
 
 

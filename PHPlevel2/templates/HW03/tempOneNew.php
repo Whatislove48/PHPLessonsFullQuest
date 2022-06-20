@@ -9,10 +9,10 @@
 </head>
 <body>
 
-<h1> Новость <?php echo $this->getData()['article']->getId(); ?></h1>
+<h1> Новость <?php echo $this->article->getId(); ?></h1>
 
 <?php
-$new = $this->getData()['article'];
+$new = $this->article;
 echo '<br>Author: ';
 echo $new->getAuthor();
 echo '<hr>Title: ';
