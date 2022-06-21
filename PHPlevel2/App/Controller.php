@@ -2,7 +2,8 @@
 
 namespace App;
 
-use App\Models\Cookie;
+
+use App\Repositories\CookieRepository;
 use App\View\Views;
 
 abstract class Controller
@@ -12,7 +13,7 @@ abstract class Controller
     protected string $userLog = 'unknown';
     protected string $userPass = '';
     protected bool $confirm = false;
-    protected Cookie $cook;
+    protected CookieRepository $cook;
     protected string $class;
 
 
@@ -21,12 +22,14 @@ abstract class Controller
      */
     public function __construct()
     {
-        $this->cook = new Cookie();
+        $this->cook = new CookieRepository();
+
         if(isset($_COOKIE) && !empty($_COOKIE)) {
             $this->userLog = $_COOKIE['log'] ?? 'unknown';
             $this->userPass = $_COOKIE['pass'] ?? '';
             $this->confirm = $this->cook->checkPassword($this->userLog,$this->userPass);
         }
+
         //$name = explode('\\',static::class);
         //$this->class = $name[(count($name))-1];
         $name = new \ReflectionClass($this);

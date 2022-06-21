@@ -11,7 +11,7 @@ use App\Models\ArticleRep;
 class ArticleRepository extends MainRepository
 {
 
-
+    public const CLASSNAME = ArticleRep::class;
     public const TABLE = 'news';
 
 
@@ -37,8 +37,6 @@ class ArticleRepository extends MainRepository
         $data[':id'] = $id;
         return $this->query($sql, ArticleRep::class, $data)[0];
     }
-
-
 
 
 

@@ -6,10 +6,10 @@ use App\Repositories\ArticleRepository;
 
 class ArticleRep
 {
-    protected int $id;
-    protected string $title;
-    protected string $author;
-    protected string $text;
+    public int $id;
+    public string $title;
+    public string $author;
+    public string $text;
     public const TABLE = 'news';
 
 

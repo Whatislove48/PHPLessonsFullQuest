@@ -10,6 +10,7 @@ abstract class MainRepository
 {
 
     public const TABLE = '';
+    public int $count = 0;
 
 
     /**
@@ -35,11 +36,15 @@ abstract class MainRepository
             $sth = $db->prepare($sql);
             $sth->execute($data);
         } catch (\PDOException $pdo) {
-            throw new DbException($sql, 'ERROR QUERY');
+            throw new DbException($sql, 'ERROR QUERY', 405);
         }
         $res = $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+
+        if ('App\Repositories\CookieRepository' === $class) {
+            return $res;
+        }
         if (empty($res)) {
-            throw new NotFoundExpection('404 - Запись не найдена');
+            throw new NotFoundExpection('404 - Запись не найдена', 404);
         }
         return $res;
     }
@@ -47,10 +52,10 @@ abstract class MainRepository
     /**
      * updating in database exist field
      */
-    private function update(): void // W
+    private function update($object): void // W
     {
 
-        $fields = get_object_vars($this);
+        $fields = get_object_vars($object);
         $data = [];
         $set = [];
 
@@ -73,10 +78,10 @@ abstract class MainRepository
     /**
      * inserting in the database new field
      */
-    private function paste(): void  // W
+    private function paste($object): void  // W
     {
 
-        $fields = get_object_vars($this);
+        $fields = get_object_vars($object);
         $data = [];
         $cols = [];
 
@@ -100,15 +105,15 @@ abstract class MainRepository
      * choose the way to save the field
      * @return string
      */
-    public function save(): bool
+    public function save($object): bool
     {
-        $fields = get_object_vars($this);
+        $fields = get_object_vars($object);
 
         if (array_key_exists('id', $fields)) {
-            $this->update();
+            $this->update($object);
             return false;
         }
-        $this->paste();
+        $this->paste($object);
         return true;
     }
 
@@ -117,10 +122,10 @@ abstract class MainRepository
      * delete field for given id
      * @return bool
      */
-    public function delete(): bool // W
+    public function delete($object): bool // W
     {
         $data = [];
-        $fields = get_object_vars($this);
+        $fields = get_object_vars($object);
 
         if (!array_key_exists('id', $fields)) {
             return false;
@@ -137,18 +142,9 @@ abstract class MainRepository
 
     public function findAll(): array
     {
-        $sql = 'SELECT * FROM '.static::TABLE;
-        return $this->query($sql, static::class);
+        $sql = 'SELECT * FROM ' . static::TABLE;
+        return $this->query($sql, static::CLASSNAME);
     }
-
-
-
-
-
-
-
-
-
 
 
 }

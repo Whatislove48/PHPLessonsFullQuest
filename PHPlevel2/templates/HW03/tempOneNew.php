@@ -22,7 +22,7 @@ echo $new->getText();
 
 ?>
 <hr>
-<a href="index.php"> На главную </a>
+<a href="/index.php"> На главную </a>
 
 </body>
 </html>

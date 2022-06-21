@@ -17,7 +17,7 @@ abstract class ClientWebMain extends Controller
      */
     public function showAllArticle(): void
     {
-        $articles = new \App\Models\Article();
+        $articles = new ArticleRepository();
         //$this->view->assign('confirm', $this->confirm);
         //$this->view->assign('articles', $articles->findAll());
         $this->view->confirm = $this->confirm;
@@ -61,19 +61,26 @@ abstract class ClientWebMain extends Controller
         }
 
         if (strlen($_POST['login']) < 3 && strlen($_POST['password']) < 3) {
-            throw new InputExpection('Слишком короткий логин или пароль',228);
+            throw new InputExpection('Слишком короткий логин или пароль', 228);
         }
         $log = $_POST['login'];
         $pass = $_POST['password'];
+
         if ($this->cook->checkPassword($log, $pass)) {
             $this->cook->setCookie($log, $pass);
+            //echo('-----------Work If in Autroization-----------');die;
             header('Location: http://localhost/index.php');
-            exit;
+            //exit;
         }
-        $this->cook->saveUser($log, $pass);
-        $this->cook->setCookie($log, $pass);
-        header('Location: http://localhost/index.php');
-        exit;
+
+        if (!$this->cook->checkPassword($log, $pass)) {
+            //echo('-----------Work end Autroization-----------');
+            $this->cook->saveUser($log, $pass);
+            $this->cook->setCookie($log, $pass);
+            header('Location: http://localhost/index.php');
+            //exit;
+        }
+
     }
 
 }

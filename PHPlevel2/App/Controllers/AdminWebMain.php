@@ -3,8 +3,11 @@
 namespace App\Controllers;
 
 use App\Controller;
+use App\Exceptions\InputExpection;
 use App\Exceptions\NotFoundExpection;
 use App\Models\Article;
+use App\Models\ArticleRep;
+use App\Repositories\ArticleRepository;
 
 abstract class AdminWebMain extends Controller
 {
@@ -18,13 +21,13 @@ abstract class AdminWebMain extends Controller
      */
     public function showAllArticle(): void
     {
-
-        $articles = new Article();
-        $this->view->assign('confirm', $this->confirm);
-        $this->view->assign('cook', $this->cook);
-        $this->view->assign('log', $this->userLog);
-        $this->view->assign('pass', $this->userPass);
-        $this->view->assign('articles', $articles->findAll());
+        $articles = new ArticleRepository();
+        $this->view->confirm = $this->confirm;
+        $this->view->cook = $this->cook;
+        //$this->view->log = $this->userLog;
+        //$this->view->pass = $this->userPass;
+        $this->view->user = $this->cook->getCurrentUser($this->userLog, $this->userPass);
+        $this->view->articles = $articles->findAll();
         $this->view->display(static::TEMP . 'adminWeb.php');
     }
 
@@ -42,19 +45,16 @@ abstract class AdminWebMain extends Controller
      */
     public function showArticle(): void // W
     {
-
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'] ?: 1;
-        } else {
-            throw new NotFoundExpection('Error 404');
+        if (!isset($_POST['changeId'])) {
+            throw new NotFoundExpection('Параметр не передан', 500);
         }
 
-        if (0 === $id) {
-            throw new NotFoundExpection('Error 404');
+        if ($_POST['changeId'] <= 0) {
+            throw new NotFoundExpection('Не найдено', 404);
         }
-
-        $article = new Article();
-        $this->view->assign('articles', $article->findById($id)[0]);
+        $id = $_POST['changeId'];
+        $article = new ArticleRepository();
+        $this->view->article = $article->findById($id);
         $this->view->display(static::TEMP . 'changeArticle.php');
     }
 
@@ -66,20 +66,17 @@ abstract class AdminWebMain extends Controller
      */
     public function deleteArticle(): void // W
     {
-
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'] ?: 1;
-        } else {
-            throw new NotFoundExpection('Error 404');
+        if (!isset($_POST['delId'])) {
+            throw new NotFoundExpection('Параметр не передан', 500);
         }
 
-        if (0 === $id) {
-            throw new NotFoundExpection('Error 404');
+        if ($_POST['delId'] <= 0) {
+            throw new NotFoundExpection('Не найдено', 404);
         }
-
-        $article = new Article();
-        $article->findById($id)[0]->delete();
-        header('Location: index.php?ctrl=' . $this->class  . '&&act=showAllArticle');
+        $id = $_POST['delId'];
+        $article = new ArticleRepository();
+        $article->delete($article->findById($id));
+        header('Location: http://localhost/index.php');
     }
 
 
@@ -89,13 +86,24 @@ abstract class AdminWebMain extends Controller
      */
     public function addArticle(): void // W
     {
-        $article = new Article();
+        if (!isset($_POST['author']) || !isset($_POST['title']) ||
+            !isset($_POST['text'])) {
+            throw new InputExpection('Неверный ввод', 228);
+        }
+
+        if (empty($_POST['author']) || empty($_POST['title']) ||
+            empty($_POST['text'])) {
+            throw new InputExpection('Неверный ввод', 228);
+        }
+
+        $art = new ArticleRepository();
+        $article = new ArticleRep();
         $article->setArticle(
             $_POST['author'],
             $_POST['title'],
             $_POST['text']);
-        $article->save();
-        header('Location: index.php?ctrl=' . $this->class . '&&act=showAllArticle');
+        $art->save($article);
+        header('Location: http://localhost/index.php');
     }
 
     /**
@@ -104,14 +112,25 @@ abstract class AdminWebMain extends Controller
      */
     public function changeArticle(): void // W
     {
-        $articles = new Article();
-        $article = $articles->findById($_POST['id'])[0];
+        if (!isset($_POST['author']) || !isset($_POST['title']) ||
+            !isset($_POST['text']) || !isset($_POST['id'])) {
+            throw new InputExpection('Неверный ввод', 228);
+        }
+
+        if (empty($_POST['author']) || empty($_POST['title']) ||
+            empty($_POST['text']) || empty($_POST['id'])) {
+            throw new InputExpection('Неверный ввод', 228);
+        }
+
+        $articles = new ArticleRepository();
+        $article = $articles->findById($_POST['id']);
+        var_dump($article);
         $article->setArticle(
             $_POST['author'],
             $_POST['title'],
             $_POST['text']);
-        $article->save();
-        header('Location: index.php?ctrl=' . $this->class . '&&act=showAllArticle');
+        $articles->save($article);
+        header('Location: http://localhost/index.php');
     }
 
 

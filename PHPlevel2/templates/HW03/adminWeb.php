@@ -3,34 +3,34 @@
 ?>
 
 <!doctype html>
-<html lang="re">
+<html lang="ru">
 <body>
 
 <h3>
-    <a href="index.php?ctrl=ClientWebFirst&&act=showAllArticle"> Client </a>
+    <a href="/index.php/ClientWebThird/showAllArticle"> Client </a>
 </h3>
 
-
-<h2>  Привет  <?= $this->getData()['cook']->getCurrentUser
-    ($this->getData()['log']
-    ,$this->getData()['pass'])
-    ?></h2>
+<h2>  Привет  <?= $this->user; ?></h2>
 
 <?php
 
-foreach ($this->getData()['articles'] as $key => $new) {?>
+foreach ($this->articles as $key => $new) {?>
     <article >
        <br>
             <?php  echo $new->getTitle(); ?>
     </article>
-    <br><table>
-        <td><a href="index.php?ctrl=AdminWebFirst&&act=showArticle&&id=<?= $new->getId()?>"> Редактировать новость</a></td>
-        <td><a href="index.php?ctrl=AdminWebFirst&&act=deleteArticle&&id=<?= $new->getId()?>"> Удалить новость</a></td>
-    </table><hr>
+    <form action="/index.php/AdminWebThird/showArticle/<?= $new->getId()?>" method="post">
+        <input type="hidden" name="changeId" value="<?= $new->getId()?>">
+        <button type="submit"> Редактировать </button>
+    </form>
+    <form action="/index.php/AdminWebThird/deleteArticle/<?= $new->getId()?>" method="post">
+        <input type="hidden" name="delId" value="<?= $new->getId()?>">
+        <button type="submit"> Удалить </button>
+    </form><hr>
 
 <?php } ?>
 
-<form action="index.php?ctrl=AdminWebFirst&&act=addArticle" method="post">
+<form action="/index.php/AdminWebThird/addArticle" method="post">
     <input type="text" name="author"> Author <br>
     <input type="text" name="title"> Title <br>
     <input type="text" name="text"> Text <br>
