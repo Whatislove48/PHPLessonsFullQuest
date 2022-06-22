@@ -2,7 +2,6 @@
 
 namespace App\View;
 
-use \App\Models\Article;
 
 class Views
 {
@@ -59,12 +58,12 @@ class Views
 
     /**
      * render template
-     * @param $template
+     * @param string $template
      * @return string
      */
-    public function render($template):string
+    public function render(string $template):string
     {
-        return include __DIR__ . '/../templates/' . $template;
+        return include __DIR__ . '/../../templates/' . $template;
     }
 
 

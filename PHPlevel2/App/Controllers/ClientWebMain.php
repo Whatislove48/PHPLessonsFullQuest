@@ -39,7 +39,7 @@ abstract class ClientWebMain extends Controller
         }
         if (($this->class !== $_POST['ctrl']) ||
             ('showArticle' !== $_POST['action']) ||
-            ($_POST['id'] < 0)) {
+            ($_POST['id'] <= 0)) {
             throw new InputExpection(' Не найдено', 404);
         }
 
@@ -60,7 +60,7 @@ abstract class ClientWebMain extends Controller
             throw new InputExpection('Неверный ввод', 420);
         }
 
-        if (strlen($_POST['login']) < 3 && strlen($_POST['password']) < 3) {
+        if (strlen($_POST['login']) < 3 || strlen($_POST['password']) < 3) {
             throw new InputExpection('Слишком короткий логин или пароль', 228);
         }
         $log = $_POST['login'];
@@ -68,13 +68,11 @@ abstract class ClientWebMain extends Controller
 
         if ($this->cook->checkPassword($log, $pass)) {
             $this->cook->setCookie($log, $pass);
-            //echo('-----------Work If in Autroization-----------');die;
             header('Location: http://localhost/index.php');
             //exit;
         }
 
         if (!$this->cook->checkPassword($log, $pass)) {
-            //echo('-----------Work end Autroization-----------');
             $this->cook->saveUser($log, $pass);
             $this->cook->setCookie($log, $pass);
             header('Location: http://localhost/index.php');

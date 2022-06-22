@@ -124,7 +124,6 @@ abstract class AdminWebMain extends Controller
 
         $articles = new ArticleRepository();
         $article = $articles->findById($_POST['id']);
-        var_dump($article);
         $article->setArticle(
             $_POST['author'],
             $_POST['title'],

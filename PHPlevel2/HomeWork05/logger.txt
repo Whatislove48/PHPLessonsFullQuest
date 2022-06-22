@@ -86,3 +86,9 @@ Line -> 38
 Code -> 420
 exception message -> Неверный ввод
 
+Time -> 22-06-2022 - MSK:15:25:03
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/AdminWebMain.php
+Line -> 96
+Code -> 228
+exception message -> Неверный ввод
+
