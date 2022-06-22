@@ -1,0 +1,42 @@
+
+
+
+
+
+-------------------------------------------------------------------------
+$sum = function (int $x, int $y): int {
+    return $x + $y;
+};
+
+$dif = function (int $x, int $y): int {
+    return $x - $y;
+};
+
+function calc($x, $y, $op)
+{
+    return $op($x, $y);
+}
+
+echo calc(3, 8, $dif);
+echo '<hr>';
+$arr = [2, 3, 7, 9, 13];
+$res = array_map(function ($x) {
+    return $x * $x;
+}, $arr);
+
+$log = new \App\PsrLog();
+
+var_dump($log);
+
+echo '<hr>';
+
+
+
+try {
+    throw new Exception('GRISHA', 228);
+} catch (Exception $ex) {
+    $log->error('Er', $log->getContext($ex));
+    echo '<hr>';
+}
+
+----------------------------------------------------------------------------------
