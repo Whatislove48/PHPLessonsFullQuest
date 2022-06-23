@@ -92,3 +92,21 @@ Line -> 96
 Code -> 228
 exception message -> Неверный ввод
 
+Time -> 23-06-2022 - MSK:09:33:49
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 38
+Code -> 420
+exception message -> Неверный ввод
+
+Time -> 23-06-2022 - MSK:09:33:50
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Controllers/ClientWebMain.php
+Line -> 38
+Code -> 420
+exception message -> Неверный ввод
+
+Time -> 23-06-2022 - MSK:11:45:23
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/PHPlevel2/App/Repositories/MainRepository.php
+Line -> 158
+Code -> 0
+exception message -> PDOStatement::fetch(): Argument #2 ($cursorOrientation) must be of type int, string given
+

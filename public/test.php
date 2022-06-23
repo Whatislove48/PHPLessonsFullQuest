@@ -1,23 +1,19 @@
 <?php
 
 
-$hello = function ($name) {
-    return 'Hellow ' . $name;
-};
+require_once __DIR__ . '/../PHPlevel2/App/autoload.php';
 
 
-function sum(...$args){
-    $sum = 0;
-    foreach ($args as $val){
-        $sum += $val;
+$functions =
+[
+    'title' => function(\App\Models\ArticleRep $article) {
+        return $article->getTitle();
+    },
+    'trimmedText' => function(\App\Models\ArticleRep $article) {
+        return mb_strimwidth($article->getText(), 0, 100);
     }
+];
 
-    return $sum;
-
-}
+$all = new \App\Repositories\ArticleRepository();
 
 
-$test = [12,34,65,890,12,23,345,56];
-var_dump(...$test);
-
-echo sum(12,234,546,2);

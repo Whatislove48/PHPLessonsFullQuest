@@ -32,7 +32,13 @@ class PsrLog extends AbstractLogger implements LoggerInterface
     }
 
 
-    public function log($level, \Stringable|string $message, array $context = []): void
+    /**
+     * @param $level
+     * @param \Stringable|string $message
+     * @param array $context
+     * @return void
+     */
+    public function log($level,  $message, array $context = []): void
     {
         echo 'Log WORK'.'<hr>';
         $put = 'Time -> ' . $this->getTime() . "\n" .

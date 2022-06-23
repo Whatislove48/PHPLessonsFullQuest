@@ -52,7 +52,7 @@ abstract class MainRepository
     /**
      * updating in database exist field
      */
-    private function update($object): void // W
+    private function update(object $object): void // W
     {
 
         $fields = get_object_vars($object);
@@ -78,7 +78,7 @@ abstract class MainRepository
     /**
      * inserting in the database new field
      */
-    private function paste($object): void  // W
+    private function paste(object $object): void  // W
     {
 
         $fields = get_object_vars($object);
@@ -105,7 +105,7 @@ abstract class MainRepository
      * choose the way to save the field
      * @return string
      */
-    public function save($object): bool
+    public function save(object $object): bool
     {
         $fields = get_object_vars($object);
 
@@ -122,7 +122,7 @@ abstract class MainRepository
      * delete field for given id
      * @return bool
      */
-    public function delete($object): bool // W
+    public function delete(object $object): bool // W
     {
         $data = [];
         $fields = get_object_vars($object);
@@ -144,6 +144,21 @@ abstract class MainRepository
     {
         $sql = 'SELECT * FROM ' . static::TABLE;
         return $this->query($sql, static::CLASSNAME);
+    }
+
+
+    public function queryEach(string $sql, string $class, array $data = [])
+    {
+        $db = DbSingleTon::connect();
+
+        $sth = $db->prepare($sql);
+        $sth->execute($data);
+
+        $res = $sth->fetch(\PDO::FETCH_CLASS, $class);
+        while (isset($res)) {
+            $res = $sth->fetch(\PDO::FETCH_CLASS, $class);
+            yield $res;
+        }
     }
 
 
