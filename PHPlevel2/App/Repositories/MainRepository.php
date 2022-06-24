@@ -77,6 +77,7 @@ abstract class MainRepository
 
     /**
      * inserting in the database new field
+     * @throws DbException
      */
     private function paste(object $object): void  // W
     {
@@ -103,7 +104,9 @@ abstract class MainRepository
 
     /**
      * choose the way to save the field
-     * @return string
+     * @param object $object
+     * @return bool
+     * @throws DbException
      */
     public function save(object $object): bool
     {
@@ -121,6 +124,7 @@ abstract class MainRepository
     /**
      * delete field for given id
      * @return bool
+     * @throws DbException
      */
     public function delete(object $object): bool // W
     {

@@ -16,7 +16,7 @@
 
 <?php
 foreach ($this->articles as $key => $new) {?>
-    <form action= "/index.php/ClientWebThird/showArticle/<?= $new->getId() ?>" method="post">
+    <form action= "/public/index.php/ClientWebThird/showArticle/<?= $new->getId() ?>" method="post">
         <button type="submit"> <?php  echo $new->getTitle(); ?> </button>
         <input type="hidden" name="ctrl" value="ClientWebThird">
         <input type="hidden" name="action" value="showArticle">

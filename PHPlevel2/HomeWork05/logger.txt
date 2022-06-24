@@ -110,3 +110,45 @@ Line -> 158
 Code -> 0
 exception message -> PDOStatement::fetch(): Argument #2 ($cursorOrientation) must be of type int, string given
 
+Time -> 24-06-2022 - MSK:10:42:33
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/public/index.php
+Line -> 15
+Code -> 0
+exception message -> Class "\App\Controllers\index.php" not found
+
+Time -> 24-06-2022 - MSK:10:42:35
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/public/index.php
+Line -> 15
+Code -> 0
+exception message -> Class "\App\Controllers\index.php" not found
+
+Time -> 24-06-2022 - MSK:11:08:55
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/public/index.php
+Line -> 15
+Code -> 0
+exception message -> Class "\App\Controllers\index.php" not found
+
+Time -> 24-06-2022 - MSK:11:09:24
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/public/index.php
+Line -> 15
+Code -> 0
+exception message -> Class "\App\Controllers\index.php" not found
+
+Time -> 24-06-2022 - MSK:11:09:31
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/public/index.php
+Line -> 15
+Code -> 0
+exception message -> Class "\App\Controllers\index.php" not found
+
+Time -> 24-06-2022 - MSK:11:09:41
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/public/index.php
+Line -> 15
+Code -> 0
+exception message -> Class "\App\Controllers\index.php" not found
+
+Time -> 24-06-2022 - MSK:11:10:57
+File -> /home/roman/PhpstormProjects/localhost/PHPLessonsFullQuest/public/index.php
+Line -> 15
+Code -> 0
+exception message -> Class "\App\Controllers\index.php" not found
+

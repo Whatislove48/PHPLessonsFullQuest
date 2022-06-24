@@ -6,9 +6,11 @@ $uri = parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
 
 try {
     $segments = explode('/',trim($uri,'/'));
-
-    $ctrl = $segments[1] ?? 'ClientWebThird';
-    $act = $segments[2] ?? 'showAllArticle';
+    var_dump($segments);echo '<hr>';
+    $ctrl = $segments[2] ?? 'ClientWebThird';
+    echo 'CONTROLLER ->' . $ctrl. '<hr>';
+    $act = $segments[3] ?? 'showAllArticle';
+    echo 'ACTION ->' . $act. '<hr>';
     $class = '\App\Controllers\\' . $ctrl;
 
     echo '<hr>';

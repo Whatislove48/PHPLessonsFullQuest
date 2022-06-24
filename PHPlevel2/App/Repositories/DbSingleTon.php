@@ -24,14 +24,13 @@ abstract class DbSingleTon
     public static function connect(): \PDO
     {
         try {
-            $config = new Config();
             if (null === self::$instance) {
+                $config = new Config();
                 self::$instance = new \PDO($config->getHost() . $config->getDbName(),
                     $config->getUser(), $config->getUserPass());
             }
-        }
-        catch (\PDOException $e){
-            throw new DbException('','Ошибка подключения к базе');
+        } catch (\PDOException $e) {
+            throw new DbException('', 'Ошибка подключения к базе');
         }
         return self::$instance;
     }
